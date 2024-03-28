@@ -13,9 +13,9 @@ export async function getCabins () {
 
 export async function createEditCabin (newCabin, id) {
   // accept only alphanumeric, hyphens, underscores and dot
-  if (!newCabin.image.name.match(/^[a-zA-Z0-9-_.]+$/)) {
-    throw new Error('Image name should only contain alphanumeric, hyphens, and underscores.')
-  }
+  // if (!newCabin.image.name.match(/^[a-zA-Z0-9-_.]+$/)) {
+  //   throw new Error('Image name should only contain alphanumeric, hyphens, and underscores.')
+  // }
 
   // Check if the image is already uploaded
   const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);

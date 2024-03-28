@@ -121,17 +121,16 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
           defaultValue={0}
           {...register("discount", {
             required: "This field is required",
-            validate: (value) =>
-              getValues().regularPrice >= value ||
-              "Discount should be less than regular price",
+            validate: (value) => {
+              if (Number(value) >= Number(getValues().regularPrice)) {
+                return "Discount should be less than regular price";
+              }
+            },
           })}
         />
       </FormRow>
 
-      <FormRow
-        label="Description for website"
-        error={errors?.description?.message}
-      >
+      <FormRow label="Description" error={errors?.description?.message}>
         <Textarea
           type="number"
           id="description"

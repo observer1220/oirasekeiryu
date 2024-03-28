@@ -9,17 +9,23 @@
 #### Users
 
 - [x] Cearate a new user, logout and sending verification email
-- [] Update account
+- [x] Update account, when update success, do not clear name field
 
 #### Cabins
 
 - [x] Cearate a new cabin
 - [] Maximum capacity problem
+- [] Cabin Picture Zoom in
+- [x] Regular price 1980 less than Discount 20 problem is cause by string type
+- [x] Update cabin
+- [x] Delete cabin, related to bookings, if there is a booking, cannot be delete
+- [x] Duplicate cabin
 
 #### Bookings
 
 - [] Create booking, set price by day, PDF invoice
 - [] Delete booking
+- [] Check-in
 
 #### Settings
 
@@ -27,6 +33,7 @@
 
 ### Debug
 
+- [x] Deploy failure on Vercel
 - [] 複習 368. Converting the Modal to a Compound Component
 - [] 複習 381 + 382 pagination
 - [] 釐清 display: grid 實作方法
