@@ -25,11 +25,15 @@
 
 - [] Create booking, set price by day, PDF invoice
 - [] Delete booking
-- [] Check-in
+
+#### Chcek-in
+
+- [] Check-in button problem
 
 #### Settings
 
 - [] Update hotel settings
+- [] multiple language
 
 ### Debug
 
@@ -42,8 +46,8 @@
 
 - [] 隱藏左側列表
 - [] 變更專案名稱：奧入瀨溪流酒店
-- [] 變更 Logo
-- [] 變更 SVG
+- [x] 變更左側 Logo
+- [x] 變更 favicon
 
 ### 測試帳號
 

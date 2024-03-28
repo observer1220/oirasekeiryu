@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
+import Reserve from "./pages/Reserve";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,6 +56,7 @@ function App() {
               <Route path="*" element={<PageNotFound />} />
             </Route>
             <Route path="login" element={<Login />} />
+            <Route path="reserve" element={<Reserve />} />
           </Routes>
         </BrowserRouter>
         <Toaster
