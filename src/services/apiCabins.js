@@ -12,12 +12,14 @@ export async function getCabins () {
 }
 
 export async function createEditCabin (newCabin, id) {
-  console.log('newCabin', newCabin, id);
+  // accept only alphanumeric, hyphens, underscores and dot
+  if (!newCabin.image.name.match(/^[a-zA-Z0-9-_.]+$/)) {
+    throw new Error('Image name should only contain alphanumeric, hyphens, and underscores.')
+  }
 
+  // Check if the image is already uploaded
   const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
-  console.log(hasImagePath);
 
-  // console.log(newCabin);
   const imageName = `${Math.random()}-${newCabin.image.name}`.replace('/', '')
   const imagePath = hasImagePath
     ? newCabin.image
@@ -40,7 +42,6 @@ export async function createEditCabin (newCabin, id) {
   const { data, error } = await query.select().single()
 
   if (error) {
-    // console.log(error);
     throw new Error('Cabin could not be created')
   }
 

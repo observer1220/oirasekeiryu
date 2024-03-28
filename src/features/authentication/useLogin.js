@@ -10,7 +10,6 @@ export function useLogin () {
   const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
-      // 登入成功時，將 user 資料寫入 queryClient
       queryClient.setQueryData(["user"], user.user)
       navigate("/dashboard", { replace: true })
       toast.success("Login success")
