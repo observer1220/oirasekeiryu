@@ -14,7 +14,7 @@
 #### Cabins
 
 - [x] Cearate a new cabin
-- - [] Maximum capacity problem
+- [] Maximum capacity problem
 
 #### Bookings
 
