@@ -16,7 +16,7 @@ const StyledSidebar = styled.aside`
 function Sidebar() {
   return (
     <StyledSidebar>
-      <Logo />
+      <Logo height="4.2rem" />
       <MainNav />
     </StyledSidebar>
   );

@@ -6,7 +6,7 @@ import LoginLayout from "../ui/Layout/LoginLayout";
 function Login() {
   return (
     <LoginLayout>
-      <Logo />
+      <Logo height="8.6rem" />
       <Heading as="h4">Log in to your account</Heading>
       <LoginForm />
     </LoginLayout>

@@ -10,9 +10,8 @@ import { useCabins } from "../features/cabins/useCabins";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReserveLayout from "../ui/Layout/ReserveLayout";
-import LanguageSwitch from "../ui/LanguageSwitch";
 
-function Reserve() {
+function Reservation() {
   const { t } = useTranslation();
   const { isLoading, reserve } = useReserve();
   const { cabins } = useCabins();
@@ -46,7 +45,6 @@ function Reserve() {
   if (isLoading) return <Spinner />;
   return (
     <ReserveLayout>
-      <LanguageSwitch />
       <h1>{t("reserve.title")}</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {/* cabinPrice extrasPrice totalPrice hasBreakfast */}
@@ -132,4 +130,4 @@ function Reserve() {
   );
 }
 
-export default Reserve;
+export default Reservation;

@@ -20,7 +20,7 @@ import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
 
 import Home from "./pages/Home";
-import Reserve from "./pages/Reserve";
+import Reservation from "./pages/Reservation";
 import Login from "./pages/Login";
 
 const queryClient = new QueryClient({
@@ -61,7 +61,7 @@ function App() {
                 <Route path="*" element={<PageNotFound />} />
               </Route>
               <Route path="/" element={<Home />} />
-              <Route path="guest-reservation" element={<Reserve />} />
+              <Route path="guest-reservation" element={<Reservation />} />
               <Route path="login" element={<Login />} />
             </Routes>
           </BrowserRouter>
