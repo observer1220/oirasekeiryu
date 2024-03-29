@@ -1,15 +1,17 @@
-# The Wild Oasis
+# Oirase Keiryu Hotel
 
 ### Frontpage
+
+#### Menu
+
+- [x] multiple language
 
 #### Reservation
 
 - [] Create a new guest
 - [] Update guest
 
-#### header
-
-- [x] multiple language
+---
 
 ### Backstage
 

@@ -15,11 +15,13 @@ import Cabins from "./pages/Cabins";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import Account from "./pages/Account";
-import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
+
+import Home from "./pages/Home";
 import Reserve from "./pages/Reserve";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +42,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route
+                path="/admin"
                 element={
                   <ProtectedRoute>
                     <AppLayout />
@@ -57,8 +60,9 @@ function App() {
                 <Route path="account" element={<Account />} />
                 <Route path="*" element={<PageNotFound />} />
               </Route>
+              <Route path="/" element={<Home />} />
+              <Route path="guest-reservation" element={<Reserve />} />
               <Route path="login" element={<Login />} />
-              <Route path="reserve" element={<Reserve />} />
             </Routes>
           </BrowserRouter>
           <Toaster
