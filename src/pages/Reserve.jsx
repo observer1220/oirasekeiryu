@@ -10,6 +10,7 @@ import { useCabins } from "../features/cabins/useCabins";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReserveLayout from "../ui/Layout/ReserveLayout";
+import LanguageSwitch from "../ui/LanguageSwitch";
 
 function Reserve() {
   const { t } = useTranslation();
@@ -20,9 +21,9 @@ function Reserve() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
-  function onSubmit({ startDate, endDate, numGuests }) {
+  function onSubmit({ guestId, startDate, endDate, numGuests }) {
     reserve(
-      { startDate, endDate, numGuests, cabinId },
+      { guestId, startDate, endDate, numGuests, cabinId },
       {
         onSuccess: () => reset(),
       }
@@ -45,9 +46,20 @@ function Reserve() {
   if (isLoading) return <Spinner />;
   return (
     <ReserveLayout>
+      <LanguageSwitch />
       <h1>{t("reserve.title")}</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {/* cabinPrice extrasPrice totalPrice hasBreakfast */}
+        <FormRow label="Guest Name" error={errors?.guestId?.message}>
+          <Input
+            type="text"
+            id="guestId"
+            disabled={isLoading}
+            {...register("guestId", {
+              required: "This field is required",
+            })}
+          />
+        </FormRow>
         <FormRow label="Start Date" error={errors?.startDate?.message}>
           <Input
             type="date"

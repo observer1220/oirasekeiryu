@@ -1,15 +1,16 @@
 import supabase from "./supabase";
 
-export async function reserve ({ startDate, endDate, numGuests, cabinId }) {
+export async function reserve ({ guestId, startDate, endDate, numGuests, cabinId }) {
   console.log({ startDate, endDate, numGuests, cabinId });
   const numNights = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
 
   const { data: cabinData } = await supabase
     .from('cabins')
     .select('*');
-  const cabinPrice = cabinData.find((cabin) => cabin.id === cabinId).discount;
+  const cabinDataById = cabinData.find((cabin) => cabin.id === cabinId);
+  const cabinPrice = cabinDataById.discount === 0 ? cabinDataById.regularPrice : cabinDataById.discount;
   const totalPrice = numNights * cabinPrice;
-  // const guestId = 112
+  // const guestId = guestId;
   // console.log({ guestId });
 
   const { data, error } = await supabase.from('bookings').insert([
@@ -23,7 +24,7 @@ export async function reserve ({ startDate, endDate, numGuests, cabinId }) {
       cabinPrice: cabinPrice,
       totalPrice: totalPrice,
       cabinId: cabinId,
-      guestId: 112,
+      guestId: guestId,
     }
   ]);
 

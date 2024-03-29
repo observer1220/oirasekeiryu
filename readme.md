@@ -1,10 +1,17 @@
 # The Wild Oasis
 
-### 功能列表
+### Frontpage
+
+#### Reservation
+
+- [] Create a new guest
+- [] Update guest
 
 #### header
 
 - [x] multiple language
+
+### Backstage
 
 #### Login
 
@@ -13,8 +20,6 @@
 #### Guests
 
 - [] Guest list
-- [] Create a new guest
-- [] Update guest
 
 #### Users
 
@@ -62,3 +67,25 @@
 
 - Account：test@gmail.com
 - Password：test1234
+
+---
+
+### 架構說明
+
+- assets：放置靜態檔案
+- context：放置全域變數
+- data: 放置假資料
+- features：放置功能模組
+- hooks：放置自定義 hooks
+- i18n：放置多國語系檔案
+- pages：放置主頁面
+- services：API 串接
+- styles：放置全域樣式
+- ui：放置前端共用元件
+- utils：放置工具函式
+
+---
+
+Reference
+
+- 奧入瀨溪流酒店：https://hoshinoresorts.com/zh_tw/hotels/oirasekeiryu/
