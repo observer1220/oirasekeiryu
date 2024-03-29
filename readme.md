@@ -2,6 +2,10 @@
 
 ### 功能列表
 
+#### header
+
+- [x] multiple language
+
 #### Login
 
 - [x] Login
@@ -33,7 +37,6 @@
 #### Settings
 
 - [] Update hotel settings
-- [] multiple language
 
 ### Debug
 
