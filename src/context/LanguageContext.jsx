@@ -33,7 +33,6 @@ function LanguageSwitchProvider({ children }) {
 
 function useSwitchLanguage() {
   const context = useContext(LanguageContext);
-  console.log(context);
   if (!context) {
     throw new Error(
       "useSwitchLanguage must be used within a LanguageSwitchProvider"

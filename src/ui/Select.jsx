@@ -19,7 +19,8 @@ Select.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
     })
   ),
   value: PropTypes.string,
@@ -29,8 +30,8 @@ Select.propTypes = {
 function Select({ options, value, onChange, ...props }) {
   return (
     <StyledSelect value={value} onChange={onChange} {...props}>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
+      {options?.map((option, idx) => (
+        <option key={idx} value={option.value}>
           {option.label}
         </option>
       ))}

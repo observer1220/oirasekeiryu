@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { LanguageSwitchProvider } from "./context/LanguageContext";
 
-import AppLayout from "./ui/AppLayout";
+import AppLayout from "./ui/Layout/AppLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
 
 import Dashboard from "./pages/Dashboard";

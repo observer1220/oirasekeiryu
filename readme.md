@@ -10,6 +10,12 @@
 
 - [x] Login
 
+#### Guests
+
+- [] Guest list
+- [] Create a new guest
+- [] Update guest
+
 #### Users
 
 - [x] Cearate a new user, logout and sending verification email
@@ -27,7 +33,7 @@
 
 #### Bookings
 
-- [] Create booking, set price by day, PDF invoice
+- [] Create booking, lack user field
 - [] Delete booking
 
 #### Chcek-in
@@ -48,7 +54,7 @@
 ### UI 設計
 
 - [] 隱藏左側列表
-- [] 變更專案名稱：奧入瀨溪流酒店
+- [x] 變更專案名稱：奧入瀨溪流酒店
 - [x] 變更左側 Logo
 - [x] 變更 favicon
 
