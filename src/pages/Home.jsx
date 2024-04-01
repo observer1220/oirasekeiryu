@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import LanguageSwitch from "../ui/LanguageSwitch";
 import Logo from "../ui/Logo";
+import ToggleDrawer from "../ui/ToggleDrawer";
+import Footer from "../ui/Footer";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -16,26 +18,15 @@ const Menu = styled.div`
   background-color: #f0f0f0;
 `;
 
-const HamburguerMenu = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.6rem;
-  font-weight: bold;
-`;
-
 function Home() {
   return (
-    // Layout
-    // Menu: Home, Guest Reservation, LanguageSwitch
-    // Footer
-    // Animation
     <HomeContainer>
       <Menu>
-        <HamburguerMenu>Menu</HamburguerMenu>
+        <ToggleDrawer />
         <Logo height="4rem" />
         <LanguageSwitch />
       </Menu>
+      <Footer />
     </HomeContainer>
   );
 }

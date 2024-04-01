@@ -2,14 +2,22 @@
 
 ### Frontpage
 
-#### Menu
+#### General
 
-- [x] multiple language
+- [x] Drawer menu
+- [x] Multiple language
+- [] Breadcrumb
 
 #### Reservation
 
-- [] Create a new guest
-- [] Update guest
+- [] Cabin list with reservation link
+- [] Create booking (lack user field)
+
+#### Guest information
+
+- [] Guest sign up
+- [] Guest information update
+- [] Delete booking
 
 ---
 
@@ -37,11 +45,6 @@
 - [x] Update cabin
 - [x] Delete cabin, related to bookings, if there is a booking, cannot be delete
 - [x] Duplicate cabin
-
-#### Bookings
-
-- [] Create booking, lack user field
-- [] Delete booking
 
 #### Chcek-in
 
