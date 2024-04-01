@@ -11,8 +11,7 @@ const HamburguerMenu = styled.button`
 `;
 
 const Drawer = styled.ul`
-  display: ${({ open }) => (open ? "block" : "none")};
-  background-color: #333;
+  background: #333;
   color: #fff;
   position: fixed;
   top: 67px;
@@ -20,6 +19,10 @@ const Drawer = styled.ul`
   width: 300px;
   height: 100%;
   z-index: 1;
+
+  /* add ease-in animation */
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
 
   li {
     padding: 1rem;
@@ -31,13 +34,9 @@ const Drawer = styled.ul`
 function ToggleDrawer() {
   const [isOpen, setOpen] = useState();
 
-  const toggleButton = () => {
-    setOpen(!isOpen);
-    console.log("HELLO", isOpen);
-  };
   return (
     <>
-      <HamburguerMenu onClick={toggleButton}>Menu</HamburguerMenu>
+      <HamburguerMenu onClick={() => setOpen(!isOpen)}>Menu</HamburguerMenu>
       <Drawer open={isOpen}>
         <li>
           <StyledNavLink to="/admin/dashboard">

@@ -1,12 +1,19 @@
 # Oirase Keiryu Hotel
 
-### Frontpage
+### Guest
 
 #### General
 
-- [x] Drawer menu
+- [x] Drawer menu with ease-in-out design
 - [x] Multiple language
 - [] Breadcrumb
+
+#### Home
+
+- [x] 飯店故事
+- [] 景點介紹
+- [] 客房介紹
+- [] 交通指南
 
 #### Reservation
 
@@ -21,7 +28,7 @@
 
 ---
 
-### Backstage
+### Admin
 
 #### Login
 
