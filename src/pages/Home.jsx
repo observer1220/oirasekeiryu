@@ -3,7 +3,7 @@ import LanguageSwitch from "../ui/LanguageSwitch";
 import Logo from "../ui/Logo";
 import ToggleDrawer from "../ui/ToggleDrawer";
 import Footer from "../ui/Footer";
-import HotelStory from "../ui/HotelStory";
+import HotelDescription from "../ui/HotelDescription";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ function Home() {
       </Menu>
       <MainContainer>
         {/* 飯店描述 */}
-        <HotelStory />
+        <HotelDescription />
         {/* 景點介紹 */}
         {/* 客房介紹 */}
         {/* 交通指南 */}
