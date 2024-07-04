@@ -8,6 +8,7 @@ import Input from "../../ui/Input";
 
 import { useUser } from "./useUser";
 import { useUpdateUser } from "./useUpdateUser";
+import { toast } from "react-hot-toast";
 
 function UpdateUserDataForm() {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
@@ -25,7 +26,10 @@ function UpdateUserDataForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!fullName) return;
+    if (!fullName) {
+      toast.error("Full name field cannot be empty!");
+      return;
+    }
     updateUser(
       { fullName, avatar },
       {

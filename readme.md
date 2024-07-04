@@ -1,26 +1,24 @@
 # Oirase Keiryu Hotel
 
-### Guest
+### For Guest
 
-#### General
+#### Header
 
 - [x] Drawer menu with ease-in-out design
-- [x] Multiple language
+- [] Multiple Language
 - [] Breadcrumb
 
-#### Home
+#### Home Page
 
-- [x] 飯店故事
-- [] 景點介紹
-- [] 客房介紹
-- [] 交通指南
+- [x] Hotel introduction
+- [] Room introduction
+- [] Traffic information
 
-#### Reservation
+#### Reservation Page
 
-- [] Cabin list with reservation link
-- [] Create booking (lack user field)
+- [] Display cabin list that guest can reserve room.
 
-#### Guest information
+#### Guest Information Page
 
 - [] Guest sign up
 - [] Guest information update
@@ -28,76 +26,93 @@
 
 ---
 
-### Admin
+### For Admin
 
-#### Login
+#### Login Page
 
-- [x] Login
+- [x] Login Function: type email and password, then click login button. If success, redirect to dashboard page. If fail, show error message.
 
-#### Guests
+#### Dashboard Page
 
-- [] Guest list
+- [x] Display Total booking numbers, Sales numbers, Check-in numbers, Occupancy rate.
+
+#### Bookings Page
+
+- [x] Display Booking List.
+- [x] Sorting Function:
+      -- [x] Radio Button: switch check-in, check-out, status to filter booking list.
+      -- [x] Dropdown List: sort by date, sort by amount.
+- [x] See Details Button: Navigate to booking details page.
+      -- [x] Check-in Button: Navigate to check-in page.
+      -- [x] Delete Button: delete booking order.
+      -- [x] Go Back Button.
+- [x] Check-in Pages: Navigate to check-in page.
+      -- [x] Checkbox for adding breakfast to booking order.
+      -- [x] Checkbox for confirming payment.
+      -- [x] Check-in Button: update booking status to check-in.
+      -- [x] Go Back Button.
+- [x] Delete Function: Delete booking order.
+
+#### Cabins Page
+
+- [x] Display Cabin List.
+      -- [] Picture zoom-in.
+- [x] Sorting Function:
+      -- [x] Radio Button: no discount, with discount.
+      -- [x] Dropdown List: sort by name, price, capacity.
+- [x] Add Cabin
+      -- [] Maximum capacity has no limit, but setting has limit.
+- [x] Duplicate Cabin
+- [x] Edit Cabin
+- [x] Delete Cabin: related to bookings, if there's a booking, cannot be deleted.
 
 #### Users
 
-- [x] Cearate a new user, logout and sending verification email
-- [x] Update account, when update success, do not clear name field
-
-#### Cabins
-
-- [x] Cearate a new cabin
-- [] Maximum capacity problem
-- [] Cabin Picture Zoom in
-- [x] Regular price 1980 less than Discount 20 problem is cause by string type
-- [x] Update cabin
-- [x] Delete cabin, related to bookings, if there is a booking, cannot be delete
-- [x] Duplicate cabin
-
-#### Chcek-in
-
-- [] Check-in button problem
+- [x] Cearate Admin Account
+      -- [x] Logout and sending verification email to the new admin user.
+- [x] Update Admin User Information
+      -- [x] Name field validation
 
 #### Settings
 
-- [] Update hotel settings
+- [x] Update Hotel Settings: Minimum stay, Maximum stay, Maximum guests, Breakfast price.
 
-### Debug
+#### Guests Page
+
+- [] Guest List: not done yet.
+
+### TodoList
 
 - [x] Deploy failure on Vercel
 - [] 複習 368. Converting the Modal to a Compound Component
 - [] 複習 381 + 382 pagination
 - [] 釐清 display: grid 實作方法
+- [] Split common components and business components.
+- [] TypeScript
 
-### UI 設計
+### Test Account
 
-- [] 隱藏左側列表
-- [x] 變更專案名稱：奧入瀨溪流酒店
-- [x] 變更左側 Logo
-- [x] 變更 favicon
-
-### 測試帳號
-
-- Account：test@gmail.com
-- Password：test1234
+- Account: test@gmail.com
+- Password: test1234
 
 ---
 
-### 架構說明
+### Structure of the project
 
-- assets：放置靜態檔案
-- context：放置全域變數
-- data: 放置假資料
-- features：放置功能模組
-- hooks：放置自定義 hooks
-- i18n：放置多國語系檔案
-- pages：放置主頁面
-- services：API 串接
-- styles：放置全域樣式
-- ui：放置前端共用元件
-- utils：放置工具函式
+- assets: static files
+- context: global state management
+- data: fake data
+- features: components that are related to a specific feature
+- hooks: self-defined hooks
+- i18n: internationalization
+- pages: main pages
+- services: api services
+- styles: global styles
+- ui: common components
+- utils: utility functions
 
 ---
 
 Reference
 
-- 奧入瀨溪流酒店：https://hoshinoresorts.com/zh_tw/hotels/oirasekeiryu/
+- 奧入瀨溪流酒店: https://hoshinoresorts.com/zh_tw/hotels/oirasekeiryu/

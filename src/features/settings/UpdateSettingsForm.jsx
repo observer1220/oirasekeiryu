@@ -27,7 +27,7 @@ function UpdateSettingsForm() {
   };
   return (
     <Form>
-      <FormRow label="Minimum nights/booking">
+      <FormRow label="Minimum stay">
         <Input
           type="number"
           id="min-nights"
@@ -36,7 +36,7 @@ function UpdateSettingsForm() {
           disabled={isEditing}
         />
       </FormRow>
-      <FormRow label="Maximum nights/booking">
+      <FormRow label="Maximum stay">
         <Input
           type="number"
           id="max-nights"
@@ -45,7 +45,7 @@ function UpdateSettingsForm() {
           disabled={isEditing}
         />
       </FormRow>
-      <FormRow label="Maximum guests/booking">
+      <FormRow label="Maximum guests">
         <Input
           type="number"
           id="max-guests"
