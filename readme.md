@@ -1,12 +1,6 @@
 # Oirase Keiryu Hotel
 
-### For Guest
-
-#### Header
-
-- [x] Drawer menu with ease-in-out design
-- [] Multiple Language
-- [] Breadcrumb
+### Guest Pages
 
 #### Home Page
 
@@ -24,9 +18,19 @@
 - [] Guest information update
 - [] Delete booking
 
+#### Header
+
+- [x] Drawer menu with ease-in-out design
+- [] Multiple Language
+- [] Breadcrumb
+
+#### Footer
+
+- [] Contact information
+
 ---
 
-### For Admin
+### Admin Pages
 
 #### Login Page
 
