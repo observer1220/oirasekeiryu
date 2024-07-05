@@ -22,8 +22,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: oirasekeiryu
-          path: ${{ runner.temp }}/artifact.tar
+          path: ./public
 
   deploy:
     runs-on: ubuntu-latest
