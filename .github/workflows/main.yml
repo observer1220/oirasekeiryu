@@ -13,22 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build
-
       - name: Archive production artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
           name: github-pages
           retention-days: 1
-
 
   report-build-status:
     runs-on: ubuntu-latest
