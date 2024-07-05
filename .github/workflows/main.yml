@@ -5,12 +5,8 @@ on:
     branches:
       - master
 
-permissions:
-  contents: write
-
 jobs:
   build-and-deploy:
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,9 +16,7 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: | 
-          npm ci
-          npm run build
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
