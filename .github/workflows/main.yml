@@ -19,22 +19,15 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v1
         with:
           path: dist
           name: github-pages
 
-  report-build-status:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Report build status
-        run: echo "Build status reported"
-
   deploy:
     runs-on: ubuntu-latest
-    needs: report-build-status
+    needs: build
     permissions:
       pages: write
       id-token: write
