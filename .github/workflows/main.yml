@@ -1,0 +1,42 @@
+name: pages build and deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+  report-build-status:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Report build status
+        run: echo "Build status reported"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: report-build-status
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
