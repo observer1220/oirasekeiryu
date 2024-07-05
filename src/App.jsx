@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -39,7 +39,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
           <GlobalStyles />
-          <BrowserRouter>
+          <HashRouter>
             <Routes>
               <Route
                 path="/admin"
@@ -64,7 +64,7 @@ function App() {
               <Route path="reservation" element={<Reservation />} />
               <Route path="login" element={<Login />} />
             </Routes>
-          </BrowserRouter>
+          </HashRouter>
           <Toaster
             position="top-center"
             gutter={12}
