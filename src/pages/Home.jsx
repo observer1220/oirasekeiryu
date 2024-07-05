@@ -40,7 +40,7 @@ function Home() {
         {/* 飯店描述 */}
         <HotelDescription />
         {/* 景點介紹 */}
-        <SightseeingSpots />
+        {/* <SightseeingSpots /> */}
         {/* 客房介紹 */}
         {/* 交通指南 */}
       </MainContainer>
