@@ -41,6 +41,7 @@ function Home() {
         <HotelDescription />
         {/* 景點介紹 */}
         <SightseeingSpots />
+        TEST
         {/* 客房介紹 */}
         {/* 交通指南 */}
       </MainContainer>
