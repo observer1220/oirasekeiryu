@@ -34,6 +34,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: report-build-status
 
+    permissions:
+      pages: write
+      id-token: write 
+
+    environment:
+      name: github-pages
+      url: 'https://observer1220.github.io/oirasekeiryu/'
+
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
