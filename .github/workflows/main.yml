@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Archive production artifacts
+      - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ./dist
           name: github-pages
           retention-days: 1
 
