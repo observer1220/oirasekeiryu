@@ -4,6 +4,7 @@ import Logo from "../ui/Logo";
 import ToggleDrawer from "../ui/ToggleDrawer";
 import Footer from "../ui/Footer";
 import HotelDescription from "../ui/HotelDescription";
+import SightseeingSpots from "../ui/SightseeingSpots";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ function Home() {
         {/* 飯店描述 */}
         <HotelDescription />
         {/* 景點介紹 */}
+        <SightseeingSpots />
         {/* 客房介紹 */}
         {/* 交通指南 */}
       </MainContainer>
