@@ -31,8 +31,8 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment:
-      name: oirasekeiryu
     steps:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
+      with:
+        artifact_name: oirasekeiryu
