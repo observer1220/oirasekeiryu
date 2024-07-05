@@ -45,11 +45,12 @@ jobs:
       pages: write
       id-token: write 
 
-    environment:
-      name: github-pages
-      url: 'https://observer1220.github.io/oirasekeiryu/'
-
     steps:
+      - name: Download production artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: github-pages
+          
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
