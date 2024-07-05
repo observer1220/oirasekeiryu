@@ -5,7 +5,7 @@
 #### Home Page
 
 - [x] Hotel introduction
-- [] Room introduction
+- [x] Room introduction
 - [] Traffic information
 
 #### Reservation Page
