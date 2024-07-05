@@ -23,6 +23,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: dist
+          name: github-pages
 
   report-build-status:
     runs-on: ubuntu-latest
