@@ -27,11 +27,8 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: dist
-          name: github-pages
-
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifact_name: github-pages
