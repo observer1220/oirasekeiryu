@@ -19,13 +19,16 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        
+      - name: Clear cache
+        run: rm -rf ./dist
 
       - name: Build
         run: npm run build
 
       - name: List build output
         run: ls -l ./dist
-        
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
