@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useDarkMode } from "../context/DarkModeContext";
 import PropTypes from "prop-types";
+import DarkLogo from "../../public/logo-dark.svg";
+import LightLogo from "../../public/logo-light.svg";
 
 const StyledLogo = styled.div`
   text-align: center;
@@ -16,7 +18,7 @@ Logo.propTypes = {
 
 function Logo({ height }) {
   const { isDarkMode } = useDarkMode();
-  const src = isDarkMode ? "/logo-dark.svg" : "/logo-light.svg";
+  const src = isDarkMode ? DarkLogo : LightLogo;
 
   return (
     <StyledLogo>
