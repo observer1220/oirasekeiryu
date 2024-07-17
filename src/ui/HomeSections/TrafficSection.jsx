@@ -5,7 +5,7 @@ const TextLayer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  margin: 60px 0;
+  margin: 60px 10px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -14,6 +14,7 @@ const TextLayer = styled.div`
 
 const GoogleMap = styled.iframe`
   width: 600px;
+  max-width: 100%;
   height: 450px;
   border: 0;
 `;

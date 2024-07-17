@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import titleBackground from "../../../public/bg-lead-title.jpg";
+import titleBackground from "../../assets/bg-lead-title.jpg";
 
 const TextLayer = styled.div`
   display: flex;

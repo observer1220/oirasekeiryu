@@ -32,7 +32,7 @@ const Drawer = styled.ul`
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
 
   li {
-    padding: 1rem;
+    padding: 1.2rem 2.4rem;
     border-bottom: 1px solid #fff;
     cursor: pointer;
   }
@@ -71,7 +71,7 @@ function ToggleDrawer({ roomsRef, trafficRef }) {
         </li>
         <li>
           <StyledNavLink to="/admin/dashboard">
-            <span>會員註冊</span>
+            <span>後台管理</span>
           </StyledNavLink>
         </li>
       </Drawer>
