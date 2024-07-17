@@ -1,6 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import StyledNavLink from "./StyledNavLink";
+import menuIcon from "../assets/menuIcon.png";
+import PropTypes from "prop-types";
+
+ToggleDrawer.propTypes = {
+  roomsRef: PropTypes.object,
+  trafficRef: PropTypes.object,
+};
 
 const HamburguerMenu = styled.button`
   background-color: transparent;
@@ -31,22 +38,36 @@ const Drawer = styled.ul`
   }
 `;
 
-function ToggleDrawer() {
+const Icon = styled.img`
+  width: 30px;
+`;
+
+function ToggleDrawer({ roomsRef, trafficRef }) {
   const [isOpen, setOpen] = useState();
+  
+  const scrollToAnchor = (event, ref) => {
+    event.preventDefault();
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+      setOpen(false);
+    }
+  };
 
   return (
     <>
-      <HamburguerMenu onClick={() => setOpen(!isOpen)}>Menu</HamburguerMenu>
+      <HamburguerMenu onClick={() => setOpen(!isOpen)}>
+        <Icon src={menuIcon} alt="" />
+      </HamburguerMenu>
       <Drawer open={isOpen}>
         <li>
-          <StyledNavLink to="/admin/dashboard">
+          <a href="#rooms" onClick={(event) => scrollToAnchor(event, roomsRef)}>
             <span>客房介紹</span>
-          </StyledNavLink>
+          </a>
         </li>
         <li>
-          <StyledNavLink to="/admin/dashboard">
-            <span>周邊景點</span>
-          </StyledNavLink>
+          <a href="#traffic" onClick={(event) => scrollToAnchor(event, trafficRef)}>
+            <span>交通指南</span>
+          </a>
         </li>
         <li>
           <StyledNavLink to="/admin/dashboard">

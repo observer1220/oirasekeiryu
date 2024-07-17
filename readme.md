@@ -7,6 +7,7 @@
 - [x] Hotel introduction
 - [x] Room introduction
 - [] Traffic information
+- [x] Anchor to different sections
 
 #### Reservation Page
 

@@ -3,8 +3,12 @@ import LanguageSwitch from "../ui/LanguageSwitch";
 import Logo from "../ui/Logo";
 import ToggleDrawer from "../ui/ToggleDrawer";
 import Footer from "../ui/Footer";
-import HotelDescription from "../ui/HotelDescription";
-import SightseeingSpots from "../ui/SightseeingSpots";
+import HotelDescription from "../ui/HomeSections/HotelDescription";
+import SightseeingSpots from "../ui/HomeSections/SightseeingSpots";
+import RoomSection from "../ui/HomeSections/RoomSection";
+import { useRef } from "react";
+import banner from "../assets/banner.avif"; 
+import TrafficSection from "../ui/HomeSections/TrafficSection";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -25,24 +29,29 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 1rem;
 `;
 
 function Home() {
+  const roomsRef = useRef();
+  const trafficRef = useRef();
+
   return (
     <HomeContainer>
       <Menu>
-        <ToggleDrawer />
+        <ToggleDrawer roomsRef={roomsRef} trafficRef={trafficRef} />
         <Logo height="4rem" />
         <LanguageSwitch />
       </Menu>
       <MainContainer>
+        <img src={banner} alt="" />
         {/* 飯店描述 */}
         <HotelDescription />
         {/* 景點介紹 */}
         <SightseeingSpots />
         {/* 客房介紹 */}
+        <RoomSection ref={roomsRef} />
         {/* 交通指南 */}
+        <TrafficSection ref={trafficRef} />
       </MainContainer>
       <Footer />
     </HomeContainer>
