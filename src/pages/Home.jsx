@@ -2,10 +2,12 @@ import { useRef } from "react";
 import styled from "styled-components";
 import { Logo } from "../components/common";
 import { LanguageSwitch, ToggleDrawer } from "../components/function";
-import HotelDescription from "../components/HomeSections/HotelDescription";
-import SightseeingSpots from "../components/HomeSections/SightseeingSpots";
-import RoomSection from "../components/HomeSections/RoomSection";
-import TrafficSection from "../components/HomeSections/TrafficSection";
+import {
+  HotelDescription,
+  SightseeingSpots,
+  RoomSection,
+  TrafficSection,
+} from "../components/HomeSections";
 import Footer from "../components/Footer";
 import banner from "../assets/banner.avif";
 

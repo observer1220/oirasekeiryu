@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import StyledNavLink from "../common/StyledNavLink";
+import { StyledNavLink } from "../common";
 import menuIcon from "../../assets/menuIcon.png";
 import PropTypes from "prop-types";
 

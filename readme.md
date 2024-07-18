@@ -107,7 +107,7 @@
 | File Name  | Describtion                                       |
 | :--------- | :------------------------------------------------ |
 | assets     | folder for static files, such as images           |
-| components | common components                                 |
+| components | common, function, layout components               |
 | context    | global state management                           |
 | mockData   | mock data                                         |
 | features   | components that are related to a specific feature |
