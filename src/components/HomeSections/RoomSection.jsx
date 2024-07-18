@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useCabins } from "../../features/cabins/useCabins";
-import Spinner from "../Spinner";
+import Spinner from "../common/Spinner";
 import { forwardRef } from "react";
 
 const TextLayer = styled.div`
@@ -54,5 +54,5 @@ const RoomSection = forwardRef((props, ref) => {
   );
 });
 
-RoomSection.displayName = 'RoomSection';
+RoomSection.displayName = "RoomSection";
 export default RoomSection;

@@ -1,11 +1,8 @@
 import styled from "styled-components";
-
-import Heading from "../../ui/Heading";
-import Row from "../../ui/Row";
-import Spinner from "../../ui/Spinner";
+import { Row, Spinner, Heading } from "../../components/common";
 import TodayItem from "./TodayItem";
-
 import { useTodayActivity } from "./useTodayActivity";
+
 const StyledToday = styled.div`
   /* Box */
   background-color: var(--color-grey-0);

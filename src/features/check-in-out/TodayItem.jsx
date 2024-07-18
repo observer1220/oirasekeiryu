@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Tag from "../../ui/Tag";
-import { Flag } from "../../ui/Flag";
-import Button from "../../ui/Button";
+import { Tag, Flag, Button } from "../../components/common";
 import CheckoutButton from "./CheckoutButton";
 
 const StyledTodayItem = styled.li`

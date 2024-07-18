@@ -6,7 +6,7 @@
 
 - [x] Hotel introduction
 - [x] Room introduction
-- [] Traffic information
+- [x] Traffic information
 - [x] Anchor to different sections
 
 #### Reservation Page
@@ -104,17 +104,19 @@
 
 ### Structure of the project
 
-- assets: static files
-- context: global state management
-- data: fake data
-- features: components that are related to a specific feature
-- hooks: self-defined hooks
-- i18n: internationalization
-- pages: main pages
-- services: api services
-- styles: global styles
-- ui: common components
-- utils: utility functions
+| File Name  | Describtion                                       |
+| :--------- | :------------------------------------------------ |
+| assets     | folder for static files, such as images           |
+| components | common components                                 |
+| context    | global state management                           |
+| mockData   | mock data                                         |
+| features   | components that are related to a specific feature |
+| hooks      | self-defined hooks                                |
+| i18n       | internationalization                              |
+| pages      | main pages                                        |
+| services   | api services                                      |
+| styles     | global styles                                     |
+| utils      | utility functions                                 |
 
 ---
 

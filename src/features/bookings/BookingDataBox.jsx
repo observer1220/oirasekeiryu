@@ -7,9 +7,7 @@ import {
   HiOutlineHomeModern,
 } from "react-icons/hi2";
 
-import DataItem from "../../ui/DataItem";
-import { Flag } from "../../ui/Flag";
-
+import { DataItem, Flag } from "../../components/common";
 import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
 import PropTypes from "prop-types";
 

@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import { HiArrowUpOnSquare } from "react-icons/hi2";
-
 import BookingDataBox from "./BookingDataBox";
-import Row from "../../ui/Row";
-import Heading from "../../ui/Heading";
-import Tag from "../../ui/Tag";
-import ButtonGroup from "../../ui/ButtonGroup";
-import Button from "../../ui/Button";
-import ButtonText from "../../ui/ButtonText";
-import Spinner from "../../ui/Spinner";
-import Modal from "../../ui/Modal";
-import ConfirmDelete from "../../ui/ConfirmDelete";
+import {
+  Row,
+  Tag,
+  Button,
+  ButtonGroup,
+  ButtonText,
+  Spinner,
+  Modal,
+  ConfirmDelete,
+  Heading,
+} from "../../components/common";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
 import { useBooking } from "./useBooking";

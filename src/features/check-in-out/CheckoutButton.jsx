@@ -1,4 +1,4 @@
-import Button from "../../ui/Button";
+import { Button } from "../../components/common";
 import PropTypes from "prop-types";
 import { useCheckout } from "./useCheckout";
 

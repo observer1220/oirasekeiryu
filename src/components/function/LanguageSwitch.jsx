@@ -1,5 +1,5 @@
-import ButtonIcon from "./ButtonIcon";
-import { useSwitchLanguage } from "../context/LanguageContext";
+import ButtonIcon from "../common/ButtonIcon";
+import { useSwitchLanguage } from "../../context/LanguageContext";
 
 function LanguageSwitch() {
   const { isMandarin, switchLanguage } = useSwitchLanguage();

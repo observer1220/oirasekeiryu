@@ -5,10 +5,8 @@ import CreateCabinForm from "./CreateCabinForm";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { HiSquare2Stack, HiPencil, HiTrash } from "react-icons/hi2";
 import { useCreateCabin } from "./useCreateCabin";
-import Modal from "../../ui/Modal";
-import Table from "../../ui/Table";
-import ConfirmDelete from "../../ui/ConfirmDelete";
-import Menus from "../../ui/Menus";
+import { Table, Modal, ConfirmDelete } from "../../components/common";
+import Menus from "../../components/Menus";
 
 CabinRow.propTypes = {
   cabin: PropTypes.shape({

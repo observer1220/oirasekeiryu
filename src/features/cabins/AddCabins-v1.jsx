@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../../ui/Button";
-import Modal from "../../ui/Modal";
+import { Button, Modal } from "../../components/common";
 import CreateCabinForm from "./CreateCabinForm";
+
 function AddCabins() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   return (

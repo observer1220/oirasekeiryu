@@ -1,9 +1,5 @@
 import { useForm } from "react-hook-form";
-import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import FormRow from "../../ui/FormRow";
-import Input from "../../ui/Input";
-import Spinner from "../../ui/Spinner";
+import { Button, Form, FormRow, Input, Spinner } from "../../components/common";
 import { useSignup } from "./useSignup";
 
 function SignupForm() {

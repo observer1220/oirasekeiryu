@@ -1,6 +1,4 @@
-import TableOperations from "../../ui/TableOperations";
-import Filter from "../../ui/Filter";
-import SortBy from "../../ui/SortBy";
+import { TableOperations, Filter, SortBy } from "../../components/common";
 
 function CabinTableOperations() {
   return (

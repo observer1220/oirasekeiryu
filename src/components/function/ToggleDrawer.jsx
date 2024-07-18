@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import StyledNavLink from "./StyledNavLink";
-import menuIcon from "../assets/menuIcon.png";
+import StyledNavLink from "../common/StyledNavLink";
+import menuIcon from "../../assets/menuIcon.png";
 import PropTypes from "prop-types";
 
 ToggleDrawer.propTypes = {
@@ -44,7 +44,7 @@ const Icon = styled.img`
 
 function ToggleDrawer({ roomsRef, trafficRef }) {
   const [isOpen, setOpen] = useState();
-  
+
   const scrollToAnchor = (event, ref) => {
     event.preventDefault();
     if (ref.current) {
@@ -65,7 +65,10 @@ function ToggleDrawer({ roomsRef, trafficRef }) {
           </a>
         </li>
         <li>
-          <a href="#traffic" onClick={(event) => scrollToAnchor(event, trafficRef)}>
+          <a
+            href="#traffic"
+            onClick={(event) => scrollToAnchor(event, trafficRef)}
+          >
             <span>交通指南</span>
           </a>
         </li>

@@ -1,5 +1,4 @@
-import Heading from "../ui/Heading";
-import Row from "../ui/Row";
+import { Row, Heading } from "../components/common";
 import UpdateSettingsForm from "../features/settings/UpdateSettingsForm";
 
 function Settings() {

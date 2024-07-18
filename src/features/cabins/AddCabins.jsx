@@ -1,5 +1,4 @@
-import Button from "../../ui/Button";
-import Modal from "../../ui/Modal";
+import { Button, Modal } from "../../components/common";
 import CreateCabinForm from "./CreateCabinForm";
 
 function AddCabins() {

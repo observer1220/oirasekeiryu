@@ -6,7 +6,7 @@ import {
   HiHomeModern,
   HiMiniCog6Tooth,
 } from "react-icons/hi2";
-import StyledNavLink from "./StyledNavLink";
+import { StyledNavLink } from "./common";
 
 const NavList = styled.ul`
   display: flex;

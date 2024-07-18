@@ -1,7 +1,6 @@
 import LoginForm from "../features/authentication/LoginForm";
-import Logo from "../ui/Logo";
-import Heading from "../ui/Heading";
-import LoginLayout from "../ui/Layout/LoginLayout";
+import { Logo, Heading } from "../components/common";
+import LoginLayout from "../components/Layout/LoginLayout";
 
 function Login() {
   return (

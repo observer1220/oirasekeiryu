@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Heading from "../../ui/Heading";
+import { Heading } from "../../components/common";
 import {
   Cell,
   Legend,

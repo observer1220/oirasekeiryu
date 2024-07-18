@@ -1,5 +1,4 @@
-import Heading from "../ui/Heading";
-import Row from "../ui/Row";
+import { Row, Heading } from "../components/common";
 import CabinTable from "../features/cabins/CabinTable";
 import AddCabins from "../features/cabins/AddCabins";
 import CabinTableOperations from "../features/cabins/CabinTableOperations";

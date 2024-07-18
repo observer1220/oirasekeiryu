@@ -1,14 +1,13 @@
-import styled from "styled-components";
-import LanguageSwitch from "../ui/LanguageSwitch";
-import Logo from "../ui/Logo";
-import ToggleDrawer from "../ui/ToggleDrawer";
-import Footer from "../ui/Footer";
-import HotelDescription from "../ui/HomeSections/HotelDescription";
-import SightseeingSpots from "../ui/HomeSections/SightseeingSpots";
-import RoomSection from "../ui/HomeSections/RoomSection";
 import { useRef } from "react";
-import banner from "../assets/banner.avif"; 
-import TrafficSection from "../ui/HomeSections/TrafficSection";
+import styled from "styled-components";
+import { Logo } from "../components/common";
+import { LanguageSwitch, ToggleDrawer } from "../components/function";
+import HotelDescription from "../components/HomeSections/HotelDescription";
+import SightseeingSpots from "../components/HomeSections/SightseeingSpots";
+import RoomSection from "../components/HomeSections/RoomSection";
+import TrafficSection from "../components/HomeSections/TrafficSection";
+import Footer from "../components/Footer";
+import banner from "../assets/banner.avif";
 
 const HomeContainer = styled.div`
   display: flex;

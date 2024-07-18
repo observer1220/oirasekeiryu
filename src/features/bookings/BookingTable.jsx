@@ -1,10 +1,7 @@
-import Table from "../../ui/Table";
-import Menus from "../../ui/Menus";
-import Empty from "../../ui/Empty";
-import Spinner from "../../ui/Spinner";
+import { Table, Empty, Spinner, Pagination } from "../../components/common";
+import Menus from "../../components/Menus";
 import BookingRow from "./BookingRow";
 import { useBookings } from "./useBookings";
-import Pagination from "../../ui/Pagination";
 
 function BookingTable() {
   const { isLoading, bookings, count } = useBookings();

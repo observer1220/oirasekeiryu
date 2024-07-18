@@ -2,11 +2,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { format, isToday } from "date-fns";
 
-import Tag from "../../ui/Tag";
-import Table from "../../ui/Table";
-import Menus from "../../ui/Menus";
-import Modal from "../../ui/Modal";
-import ConfirmDelete from "../../ui/ConfirmDelete";
+import { Table, Tag, Modal, ConfirmDelete } from "../../components/common";
+import Menus from "../../components/Menus";
 
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
