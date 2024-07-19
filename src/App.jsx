@@ -1,30 +1,26 @@
 import { styled } from "styled-components";
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes, Outlet } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { LanguageSwitchProvider } from "./context/LanguageContext";
-
-import { Outlet } from "react-router-dom";
-import { Header, AdminSidebar } from "./components/Layout";
-
-import ProtectedRoute from "./components/Layout/ProtectedRoute";
-
-import Dashboard from "./pages/Dashboard";
-import Bookings from "./pages/Bookings";
-import Cabins from "./pages/Cabins";
-import Users from "./pages/Users";
-import Settings from "./pages/Settings";
-import Account from "./pages/Account";
-import PageNotFound from "./pages/PageNotFound";
-import Booking from "./pages/Booking";
-import Checkin from "./pages/Checkin";
-
-import Home from "./pages/Home";
-import Reservation from "./pages/Reservation";
-import Login from "./pages/Login";
+import { Header, AdminSidebar, ProtectedRoute } from "./components/Layout";
+import {
+  Dashboard,
+  Bookings,
+  Cabins,
+  Users,
+  Settings,
+  Account,
+  PageNotFound,
+  Booking,
+  Checkin,
+  Home,
+  Reservation,
+  Login,
+} from "./pages";
 
 const queryClient = new QueryClient({
   defaultOptions: {

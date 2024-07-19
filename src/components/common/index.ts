@@ -15,7 +15,6 @@ import FormRow from "./FormRow";
 import FormRowVertical from "./FormRowVertical";
 import Input from "./Input";
 import Logo from "./Logo";
-// import Modal-v1 from "./Modal-v1";
 import Modal from "./Modal";
 import Row from "./Row";
 import Select from "./Select";

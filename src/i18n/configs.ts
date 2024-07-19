@@ -16,7 +16,8 @@ i18n.use(initReactI18next).init({
   resources,
   lng: "zh",
   interpolation: {
-    escapeValue: false, // React本身就具有防止XSS攻擊的機制
+    // React本身就具有防止XSS攻擊的機制，所以不需要進行escape
+    escapeValue: false,
   },
 });
 

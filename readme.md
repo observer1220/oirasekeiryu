@@ -104,19 +104,18 @@
 
 ### Structure of the project
 
-| File Name  | Describtion                                       |
-| :--------- | :------------------------------------------------ |
-| assets     | folder for static files, such as images           |
-| components | common, function, layout components               |
-| context    | global state management                           |
-| mockData   | mock data                                         |
-| features   | components that are related to a specific feature |
-| hooks      | self-defined hooks                                |
-| i18n       | internationalization                              |
-| pages      | main pages                                        |
-| services   | api services                                      |
-| styles     | global styles                                     |
-| utils      | utility functions                                 |
+|     | File Name  | Describtion                                       |
+| :-- | :--------- | :------------------------------------------------ |
+| [x] | assets     | folder for static files, such as images           |
+| [x] | components | common, function, layout components               |
+| []  | context    | global state management                           |
+| []  | features   | components that are related to a specific feature |
+| []  | hooks      | self-defined hooks                                |
+| []  | i18n       | internationalization                              |
+| [x] | pages      | admin, guest, general pages                       |
+| []  | services   | api service that manipulate data from Supabase    |
+| [x] | styles     | global styles                                     |
+| []  | utils      | utility functions                                 |
 
 ---
 

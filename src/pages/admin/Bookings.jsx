@@ -1,6 +1,6 @@
-import { Row, Heading } from "../components/common";
-import BookingTable from "../features/bookings/BookingTable";
-import BookingTableOperations from "../features/bookings/BookingTableOperations";
+import { Row, Heading } from "../../components/common";
+import BookingTable from "../../features/bookings/BookingTable";
+import BookingTableOperations from "../../features/bookings/BookingTableOperations";
 
 function Bookings() {
   return (

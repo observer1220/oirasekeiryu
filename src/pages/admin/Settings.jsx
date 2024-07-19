@@ -1,5 +1,5 @@
-import { Row, Heading } from "../components/common";
-import UpdateSettingsForm from "../features/settings/UpdateSettingsForm";
+import { Row, Heading } from "../../components/common";
+import UpdateSettingsForm from "../../features/settings/UpdateSettingsForm";
 
 function Settings() {
   return (

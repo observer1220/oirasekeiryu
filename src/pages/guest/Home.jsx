@@ -1,15 +1,15 @@
-import { useRef } from "react";
 import styled from "styled-components";
-import { Logo } from "../components/common";
-import { LanguageSwitch, ToggleDrawer } from "../components/function";
+import { useRef } from "react";
+import { Logo } from "../../components/common";
+import { LanguageSwitch, ToggleDrawer } from "../../components/function";
 import {
   HotelDescription,
   SightseeingSpots,
   RoomSection,
   TrafficSection,
-} from "../components/HomeSections";
-import { Footer } from "../components/Layout";
-import banner from "../assets/banner.avif";
+} from "../../components/HomeSections";
+import { Footer } from "../../components/Layout";
+import banner from "../../assets/banner.avif";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -45,13 +45,9 @@ function Home() {
       </Menu>
       <MainContainer>
         <img src={banner} alt="" />
-        {/* 飯店描述 */}
         <HotelDescription />
-        {/* 景點介紹 */}
         <SightseeingSpots />
-        {/* 客房介紹 */}
         <RoomSection ref={roomsRef} />
-        {/* 交通指南 */}
         <TrafficSection ref={trafficRef} />
       </MainContainer>
       <Footer />
