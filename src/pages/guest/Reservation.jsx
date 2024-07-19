@@ -25,19 +25,20 @@ const ReserveLayout = styled.main`
 `;
 
 function Reservation() {
+  const location = useLocation();
   const { t } = useTranslation();
   const { isLoading, reserve } = useReserve();
   const { cabins } = useCabins();
   const [options, setOptions] = useState([]);
-  const [cabinId, setCabinId] = useState("");
+  const cabinId = Number(location.pathname.split("/").pop());
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
-  const location = useLocation();
-  const goBack = useMoveBack();
+  const moveBack = useMoveBack();
 
-  function onSubmit({ guestId, startDate, endDate, numGuests }) {
+  function onSubmit({ guestName, startDate, endDate, numGuests }) {
+    console.log("訂房", guestName, startDate, endDate, numGuests, cabinId);
     reserve(
-      { guestId, startDate, endDate, numGuests, cabinId },
+      { guestName, startDate, endDate, numGuests, cabinId },
       {
         onSuccess: () => reset(),
       }
@@ -45,9 +46,6 @@ function Reservation() {
   }
 
   useEffect(() => {
-    const cabinId = location.pathname.split("/").pop();
-    setCabinId(cabinId);
-
     const results = [];
     cabins?.forEach((value) => {
       results.push({
@@ -74,12 +72,12 @@ function Reservation() {
             disabled="true"
           />
         </FormRow>
-        <FormRow label="Guest Name" error={errors?.guestId?.message}>
+        <FormRow label="Guest Name" error={errors?.guestName?.message}>
           <Input
             type="text"
-            id="guestId"
+            id="guestName"
             disabled={isLoading}
-            {...register("guestId", {
+            {...register("guestName", {
               required: "This field is required",
             })}
           />
@@ -133,14 +131,8 @@ function Reservation() {
         {/* <FormRow label="Breakfast" error={errors?.hasBreakfast?.message}>
         </FormRow> */}
         <FormRow>
-          <Button disabled={isLoading}>Submit</Button>
-          {/* type is an HTML attribute! */}
-          <Button
-            variation="secondary"
-            type="reset"
-            disabled={isLoading}
-            onClick={goBack}
-          >
+          <Button disabled={isLoading}>訂房</Button>
+          <Button variation="secondary" disabled={isLoading} onClick={moveBack}>
             回到首頁
           </Button>
         </FormRow>
