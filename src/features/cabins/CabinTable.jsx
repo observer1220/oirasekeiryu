@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import CabinRow from "./CabinRow";
 import { Table, Spinner, Empty } from "../../components/common";
-import Menus from "../../components/Menus";
+import { Menus } from "../../components/Layout";
 import { useCabins } from "./useCabins";
 
 function CabinTable() {

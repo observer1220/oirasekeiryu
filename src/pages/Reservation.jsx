@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import {
   Button,
@@ -11,7 +12,16 @@ import { useReserve } from "../features/authentication/useReserve";
 import { useCabins } from "../features/cabins/useCabins";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ReserveLayout from "../components/Layout/ReserveLayout";
+
+const ReserveLayout = styled.main`
+  min-height: 100vh;
+  display: grid;
+  /* grid-template-columns: 36rem; */
+  align-content: center;
+  justify-content: center;
+  gap: 3.2rem;
+  background-color: var(--color-grey-50);
+`;
 
 function Reservation() {
   const { t } = useTranslation();

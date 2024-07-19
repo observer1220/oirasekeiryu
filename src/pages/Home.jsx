@@ -8,7 +8,7 @@ import {
   RoomSection,
   TrafficSection,
 } from "../components/HomeSections";
-import Footer from "../components/Footer";
+import { Footer } from "../components/Layout";
 import banner from "../assets/banner.avif";
 
 const HomeContainer = styled.div`

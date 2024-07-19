@@ -1,5 +1,5 @@
 import { Table, Empty, Spinner, Pagination } from "../../components/common";
-import Menus from "../../components/Menus";
+import { Menus } from "../../components/Layout";
 import BookingRow from "./BookingRow";
 import { useBookings } from "./useBookings";
 

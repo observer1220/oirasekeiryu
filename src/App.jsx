@@ -1,3 +1,4 @@
+import { styled } from "styled-components";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,8 +7,10 @@ import { Toaster } from "react-hot-toast";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { LanguageSwitchProvider } from "./context/LanguageContext";
 
-import AppLayout from "./components/Layout/AppLayout";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { Outlet } from "react-router-dom";
+import { Header, AdminSidebar } from "./components/Layout";
+
+import ProtectedRoute from "./components/Layout/ProtectedRoute";
 
 import Dashboard from "./pages/Dashboard";
 import Bookings from "./pages/Bookings";
@@ -32,6 +35,27 @@ const queryClient = new QueryClient({
   },
 });
 
+const StyledAppLayout = styled.div`
+  display: grid;
+  grid-template-columns: 26rem 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+`;
+
+const Main = styled.main`
+  background-color: var(--color-grey-50);
+  padding: 4rem 4.8rem 6.4rem;
+  overflow: scroll;
+`;
+
+const Container = styled.div`
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+`;
+
 function App() {
   return (
     <LanguageSwitchProvider>
@@ -45,7 +69,15 @@ function App() {
                 path="/admin"
                 element={
                   <ProtectedRoute>
-                    <AppLayout />
+                    <StyledAppLayout>
+                      <Header />
+                      <AdminSidebar />
+                      <Main>
+                        <Container>
+                          <Outlet />
+                        </Container>
+                      </Main>
+                    </StyledAppLayout>
                   </ProtectedRoute>
                 }
               >

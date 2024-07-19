@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
-import UserAvatar from "../features/authentication/UserAvatar";
-import Logout from "../features/authentication/Logout";
-import { ButtonIcon } from "./common";
+import UserAvatar from "../../features/authentication/UserAvatar";
+import Logout from "../../features/authentication/Logout";
+import { ButtonIcon } from "../common";
 import { HiOutlineUser } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import DarkModeToggle from "./function/DarkModeToggle";
+import DarkModeToggle from "../function/DarkModeToggle";
 
 const StyledHeader = styled.header`
   display: flex;
