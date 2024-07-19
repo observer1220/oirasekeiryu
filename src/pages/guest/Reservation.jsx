@@ -8,7 +8,7 @@ import {
   Spinner,
   Select,
 } from "../../components/common";
-import { useReserve } from "../../features/authentication/useReserve";
+import { useReserve } from "../../features/authentication/useAuthentication";
 import { useCabins } from "../../features/cabins/useCabins";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";

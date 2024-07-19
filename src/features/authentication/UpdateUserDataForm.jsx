@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import {
   Button,
   FileInput,
@@ -7,9 +6,7 @@ import {
   FormRow,
   Input,
 } from "../../components/common";
-
-import { useUser } from "./useUser";
-import { useUpdateUser } from "./useUpdateUser";
+import { useUser, useUpdateUser } from "./useAuthentication";
 import { toast } from "react-hot-toast";
 
 function UpdateUserDataForm() {

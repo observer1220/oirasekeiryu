@@ -13,7 +13,7 @@ import {
 } from "../../components/common";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
-import { useBooking } from "../bookings/useBooking";
+import { useBooking } from "../bookings/useBookings";
 import { useCheckin } from "./useCheckin";
 import { useSettings } from "../settings/useSettings";
 

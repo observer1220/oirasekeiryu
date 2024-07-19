@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Row, Spinner, Heading } from "../../components/common";
 import TodayItem from "./TodayItem";
-import { useTodayActivity } from "./useTodayActivity";
+import { useTodayActivity } from "./useCheckin";
 
 const StyledToday = styled.div`
   /* Box */

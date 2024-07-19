@@ -1,22 +1,18 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { format, isToday } from "date-fns";
-
 import { Table, Tag, Modal, ConfirmDelete } from "../../components/common";
 import { Menus } from "../../components/Layout";
-
-import { formatCurrency } from "../../utils/helpers";
-import { formatDistanceFromNow } from "../../utils/helpers";
+import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
 import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
   HiEye,
   HiTrash,
 } from "react-icons/hi2";
-
 import { useNavigate } from "react-router-dom";
-import { useCheckout } from "../check-in-out/useCheckout";
-import { useDeleteBooking } from "./useDeleteBooking";
+import { useCheckout } from "../check-in-out/useCheckin";
+import { useDeleteBooking } from "./useBookings";
 
 const Cabin = styled.div`
   font-size: 1.6rem;

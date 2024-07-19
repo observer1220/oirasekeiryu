@@ -6,7 +6,7 @@ import {
   FormRowVertical,
   SpinnerMini,
 } from "../../components/common";
-import { useLogin } from "./useLogin";
+import { useLogin } from "./useAuthentication";
 
 function LoginForm() {
   const [email, setEmail] = useState("test@gmail.com");

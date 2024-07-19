@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Form, FormRow, Input, Spinner } from "../../components/common";
-import { useSignup } from "./useSignup";
+import { useSignup } from "./useAuthentication";
 
 function SignupForm() {
   const { isLoading, signup } = useSignup();

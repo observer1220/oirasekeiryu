@@ -1,6 +1,6 @@
 import { Button } from "../../components/common";
 import PropTypes from "prop-types";
-import { useCheckout } from "./useCheckout";
+import { useCheckout } from "./useCheckin";
 
 CheckoutButton.propTypes = {
   bookingId: PropTypes.string,

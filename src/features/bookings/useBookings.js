@@ -1,8 +1,29 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSearchParams, useParams } from "react-router-dom";
+import { getBooking } from "../../services/apiBookings";
 import { getBookings } from "../../services/apiBookings";
-import { useSearchParams } from "react-router-dom";
+import { deleteBooking as deleteBookingApi } from "../../services/apiBookings";
+import { toast } from "react-hot-toast";
 
-export function useBookings () {
+function useBooking () {
+  const { bookingId } = useParams();
+
+  // QUERY
+  const {
+    isLoading,
+    data: booking = {},
+    error,
+  } = useQuery({
+    // 這裡的 filter 類似 useEffect 的依賴陣列(Dependency array)
+    queryKey: ["booking", bookingId],
+    queryFn: () => getBooking(bookingId),
+    retry: false,
+  });
+
+  return { isLoading, booking, error }
+}
+
+function useBookings () {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
@@ -50,3 +71,24 @@ export function useBookings () {
 
   return { isLoading, bookings, error, count }
 }
+
+function useDeleteBooking () {
+  const queryClient = useQueryClient();
+
+  const { isLoading: isDeleting, mutate: deleteBooking } = useMutation({
+    mutationFn: deleteBookingApi,
+    onSuccess: () => {
+      toast.success("Booking successfully deleted");
+      queryClient.invalidateQueries({
+        queryKey: ["bookings"],
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    }
+  });
+
+  return { isDeleting, deleteBooking }
+}
+
+export { useBooking, useBookings, useDeleteBooking }

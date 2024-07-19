@@ -1,6 +1,5 @@
 import { Form, FormRow, Input, Spinner } from "../../components/common";
-import { useSettings } from "./useSettings";
-import { useUpdateSetting } from "./useUpdateSetting";
+import { useSettings, useUpdateSetting } from "./useSettings";
 
 function UpdateSettingsForm() {
   const {

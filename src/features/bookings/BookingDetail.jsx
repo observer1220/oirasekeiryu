@@ -14,10 +14,9 @@ import {
 } from "../../components/common";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
-import { useBooking } from "./useBooking";
+import { useBooking, useDeleteBooking } from "./useBookings";
 import { useNavigate } from "react-router-dom";
-import { useCheckout } from "../check-in-out/useCheckout";
-import { useDeleteBooking } from "./useDeleteBooking";
+import { useCheckout } from "../check-in-out/useCheckin";
 
 const HeadingGroup = styled.div`
   display: flex;
