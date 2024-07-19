@@ -1,9 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams, useParams } from "react-router-dom";
-import { getBooking } from "../../services/apiBookings";
-import { getBookings } from "../../services/apiBookings";
-import { deleteBooking as deleteBookingApi } from "../../services/apiBookings";
 import { toast } from "react-hot-toast";
+import { getBooking, getBookings, deleteBooking as deleteBookingApi } from "../../services/apiBookings";
 
 function useBooking () {
   const { bookingId } = useParams();

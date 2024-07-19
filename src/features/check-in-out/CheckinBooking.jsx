@@ -12,7 +12,7 @@ import {
   Heading,
 } from "../../components/common";
 
-import { useMoveBack } from "../../hooks/useMoveBack";
+import { useMoveBack } from "../../hooks/useGeneral";
 import { useBooking } from "../bookings/useBookings";
 import { useCheckin } from "./useCheckin";
 import { useSettings } from "../settings/useSettings";

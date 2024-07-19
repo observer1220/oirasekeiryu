@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { createPortal } from "react-dom";
-import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { useOutsideClick } from "../../hooks/useGeneral";
 
 const Menu = styled.div`
   display: flex;

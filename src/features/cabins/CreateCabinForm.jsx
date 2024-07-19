@@ -8,8 +8,7 @@ import {
   Textarea,
   FormRow,
 } from "../../components/common";
-import { useCreateCabin } from "./useCreateCabin";
-import { useEditCabin } from "./useEditCabin";
+import { useCreateCabin, useEditCabin } from "./useCabins";
 
 CreateCabinForm.propTypes = {
   cabinToEdit: PropTypes.shape({
