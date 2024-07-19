@@ -78,7 +78,7 @@ const Icon = styled.img`
 `;
 
 function AdminLayout() {
-  const navigete = useNavigate();
+  const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const navItems = [
     { to: "/admin/dashboard", icon: <HiHome />, label: "Home" },
@@ -99,7 +99,7 @@ function AdminLayout() {
           <StyledHeaderMenu>
             <li>
               <ButtonIcon>
-                <HiOutlineUser onClick={() => navigete("/admin/account")} />
+                <HiOutlineUser onClick={() => navigate("/admin/account")} />
               </ButtonIcon>
             </li>
             <li>

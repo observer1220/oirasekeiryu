@@ -59,7 +59,7 @@ function App() {
                 <Route path="*" element={<PageNotFound />} />
               </Route>
               <Route path="/" element={<Home />} />
-              <Route path="reservation" element={<Reservation />} />
+              <Route path="reservation/:id" element={<Reservation />} />
               <Route path="login" element={<Login />} />
             </Routes>
           </HashRouter>

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import {
@@ -10,13 +11,13 @@ import {
 } from "../../components/common";
 import { useReserve } from "../../features/authentication/useAuthentication";
 import { useCabins } from "../../features/cabins/useCabins";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import { useMoveBack } from "../../hooks/useGeneral";
 
 const ReserveLayout = styled.main`
   min-height: 100vh;
   display: grid;
-  /* grid-template-columns: 36rem; */
   align-content: center;
   justify-content: center;
   gap: 3.2rem;
@@ -31,6 +32,8 @@ function Reservation() {
   const [cabinId, setCabinId] = useState("");
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
+  const location = useLocation();
+  const goBack = useMoveBack();
 
   function onSubmit({ guestId, startDate, endDate, numGuests }) {
     reserve(
@@ -42,6 +45,9 @@ function Reservation() {
   }
 
   useEffect(() => {
+    const cabinId = location.pathname.split("/").pop();
+    setCabinId(cabinId);
+
     const results = [];
     cabins?.forEach((value) => {
       results.push({
@@ -60,6 +66,14 @@ function Reservation() {
       <h1>{t("reserve.title")}</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {/* cabinPrice extrasPrice totalPrice hasBreakfast */}
+        <FormRow label="Cabin" error={errors?.cabinId?.message}>
+          <Select
+            value={cabinId}
+            options={options}
+            id="cabinId"
+            disabled="true"
+          />
+        </FormRow>
         <FormRow label="Guest Name" error={errors?.guestId?.message}>
           <Input
             type="text"
@@ -116,13 +130,6 @@ function Reservation() {
             })}
           />
         </FormRow>
-        <FormRow label="Cabin" error={errors?.cabinId?.message}>
-          <Select
-            options={options}
-            id="cabinId"
-            onChange={(event) => setCabinId(Number(event.target.value))}
-          />
-        </FormRow>
         {/* <FormRow label="Breakfast" error={errors?.hasBreakfast?.message}>
         </FormRow> */}
         <FormRow>
@@ -132,9 +139,9 @@ function Reservation() {
             variation="secondary"
             type="reset"
             disabled={isLoading}
-            onClick={reset}
+            onClick={goBack}
           >
-            Cancel
+            回到首頁
           </Button>
         </FormRow>
       </Form>

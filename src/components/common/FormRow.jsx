@@ -10,9 +10,8 @@ FormRow.propTypes = {
 const StyledFormRow = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 24rem 1fr 1.2fr;
+  grid-template-columns: 24rem 1fr;
   gap: 2.4rem;
-
   padding: 1.2rem 0;
 
   &:first-child {
@@ -31,6 +30,11 @@ const StyledFormRow = styled.div`
     display: flex;
     justify-content: flex-end;
     gap: 1.2rem;
+  }
+
+  /* 手機螢幕 取消 grid-template-columns */
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
 
