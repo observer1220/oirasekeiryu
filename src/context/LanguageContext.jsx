@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect } from "react";
-import PropTypes from "prop-types";
 import { useLocalStorageState } from "../hooks/useGeneral";
 import { changeLanguage } from "i18next";
+import PropTypes from "prop-types";
 
 const LanguageContext = createContext();
 
@@ -17,11 +17,7 @@ function LanguageSwitchProvider({ children }) {
   }
 
   useEffect(() => {
-    if (isMandarin) {
-      changeLanguage("zh");
-    } else {
-      changeLanguage("en");
-    }
+    changeLanguage(isMandarin ? "zh" : "en");
   }, [isMandarin]);
 
   return (

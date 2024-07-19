@@ -1,9 +1,12 @@
-import { createContext, useContext, useEffect } from "react";
-import PropTypes from "prop-types";
+// 引入必要的函數和套件
+import { createContext, useContext, useEffect, useMemo } from "react";
 import { useLocalStorageState } from "../hooks/useGeneral";
+import PropTypes from "prop-types";
 
+// 創建 Context
 const DarkModeContext = createContext();
 
+// 定義 DarkModeProvider 組件
 DarkModeProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
@@ -12,28 +15,36 @@ function DarkModeProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, "isDarkMode");
 
   function toggleDarkMode() {
-    setIsDarkMode((isDarkMode) => !isDarkMode);
+    setIsDarkMode((prevMode) => !prevMode);
   }
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark-mode");
-      document.documentElement.classList.remove("light-mode");
-    } else {
-      document.documentElement.classList.add("light-mode");
-      document.documentElement.classList.remove("dark-mode");
-    }
+    const className = isDarkMode ? "dark-mode" : "light-mode";
+    document.documentElement.classList.add(className);
+    document.documentElement.classList.remove(
+      isDarkMode ? "light-mode" : "dark-mode"
+    );
   }, [isDarkMode]);
 
+  const value = useMemo(
+    () => ({
+      isDarkMode,
+      toggleDarkMode,
+    }),
+    [isDarkMode]
+  );
+
   return (
-    <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+    <DarkModeContext.Provider value={value}>
       {children}
     </DarkModeContext.Provider>
   );
 }
 
+// 自定義 hook useDarkMode
 function useDarkMode() {
   const context = useContext(DarkModeContext);
+
   if (!context) {
     throw new Error("useDarkMode must be used within a DarkModeProvider");
   }
@@ -41,4 +52,5 @@ function useDarkMode() {
   return context;
 }
 
+// 匯出組件和 hook
 export { DarkModeProvider, useDarkMode };

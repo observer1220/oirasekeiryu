@@ -38,7 +38,6 @@ function useOutsideClick (handler, listenCapturing = true) {
 
     // 事件名稱、事件處理器、捕獲或冒泡(預設為false冒泡，true為捕獲)
     document.addEventListener("click", handleClick, listenCapturing);
-
     return () => document.removeEventListener("click", handleClick, listenCapturing);
   }, [handler, listenCapturing]);
 

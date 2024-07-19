@@ -1,4 +1,4 @@
-import ButtonIcon from "../common/ButtonIcon";
+import { ButtonIcon } from "../common";
 import { useSwitchLanguage } from "../../context/LanguageContext";
 
 function LanguageSwitch() {

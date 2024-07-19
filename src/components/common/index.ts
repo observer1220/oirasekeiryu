@@ -28,6 +28,7 @@ import Textarea from "./Textarea";
 import Heading from "./Heading";
 import Pagination from "./Pagination";
 import SortBy from "./SortBy";
+import UserAvatar from "./UserAvatar";
 
 export {
   Button,
@@ -60,4 +61,5 @@ export {
   Heading,
   Pagination,
   SortBy,
+  UserAvatar,
 };

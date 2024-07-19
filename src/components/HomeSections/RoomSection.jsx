@@ -1,7 +1,7 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 import { useCabins } from "../../features/cabins/useCabins";
-import Spinner from "../common/Spinner";
-import { forwardRef } from "react";
+import { Spinner } from "../common";
 
 const TextLayer = styled.div`
   display: grid;
