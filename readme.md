@@ -9,10 +9,6 @@
 - [x] Traffic information
 - [x] Anchor to different sections
 
-#### Reservation Page
-
-- [] Display cabin list that guest can reserve room.
-
 #### Guest Information Page
 
 - [] Guest sign up
@@ -23,7 +19,6 @@
 
 - [x] Drawer menu with ease-in-out design
 - [] Multiple Language
-- [] Breadcrumb
 
 #### Footer
 
@@ -84,15 +79,14 @@
 
 #### Guests Page
 
-- [] Guest List: not done yet.
+- [] Guest Signup
+- [] Guest Login
+- [] Room Reservation => 50%
 
 ### TodoList
 
-- [x] Deploy failure on Vercel
 - [] 複習 368. Converting the Modal to a Compound Component
 - [] 複習 381 + 382 pagination
-- [] 釐清 display: grid 實作方法
-- [] Split common components and business components.
 - [] TypeScript
 
 ### Test Account
@@ -108,7 +102,7 @@
 | :-- | :--------- | :------------------------------------------------ |
 | [x] | assets     | folder for static files, such as images           |
 | [x] | components | common, function, layout components               |
-| []  | context    | global state management                           |
+| [x] | context    | global state management                           |
 | [x] | features   | components that are related to a specific feature |
 | [x] | hooks      | self-defined hooks                                |
 | [x] | i18n       | internationalization                              |

@@ -95,7 +95,9 @@ function AdminLayout() {
           <Icon src={menuIcon} alt="" />
         </ButtonIcon>
         <RightSide>
-          <UserAvatar />
+          <div style={{ display: isOpen ? "none" : "block" }}>
+            <UserAvatar />
+          </div>
           <StyledHeaderMenu>
             <li>
               <ButtonIcon>

@@ -40,7 +40,10 @@ function Reservation() {
     reserve(
       { guestName, startDate, endDate, numGuests, cabinId },
       {
-        onSuccess: () => reset(),
+        onSuccess: () => {
+          reset();
+          moveBack();
+        },
       }
     );
   }
