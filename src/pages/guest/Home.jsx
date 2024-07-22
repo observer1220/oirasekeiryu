@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRef } from "react";
-import { Logo } from "../../components/common";
-import { LanguageSwitch, ToggleDrawer } from "../../components/function";
+import { Logo, Button, GuestInfo } from "../../components/common";
+import { ToggleDrawer } from "../../components/function";
 import {
   HotelDescription,
   SightseeingSpots,
@@ -10,6 +10,8 @@ import {
 } from "../../components/HomeSections";
 import { Footer } from "../../components/Layout";
 import banner from "../../assets/banner.avif";
+import { useNavigate } from "react-router-dom";
+// import { useLocalStorageState } from "../../hooks/useGeneral";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -35,13 +37,20 @@ const MainContainer = styled.div`
 function Home() {
   const roomsRef = useRef();
   const trafficRef = useRef();
+  const navigate = useNavigate();
+  const user = localStorage.getItem("guest");
 
   return (
     <HomeContainer>
       <Menu>
         <ToggleDrawer roomsRef={roomsRef} trafficRef={trafficRef} />
         <Logo height="4rem" />
-        <LanguageSwitch />
+        {/* <LanguageSwitch /> */}
+        {user ? (
+          <GuestInfo />
+        ) : (
+          <Button onClick={() => navigate("/guestLogin")}>註冊/登入</Button>
+        )}
       </Menu>
       <MainContainer>
         <img src={banner} alt="" />

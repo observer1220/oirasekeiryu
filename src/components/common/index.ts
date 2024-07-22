@@ -29,6 +29,7 @@ import Heading from "./Heading";
 import Pagination from "./Pagination";
 import SortBy from "./SortBy";
 import UserAvatar from "./UserAvatar";
+import GuestInfo from "./GuestInfo";
 
 export {
   Button,
@@ -62,4 +63,5 @@ export {
   Pagination,
   SortBy,
   UserAvatar,
+  GuestInfo,
 };

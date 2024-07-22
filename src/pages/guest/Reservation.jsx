@@ -12,8 +12,9 @@ import {
 import { useReserve } from "../../features/authentication/useAuthentication";
 import { useCabins } from "../../features/cabins/useCabins";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useMoveBack } from "../../hooks/useGeneral";
+import toast from "react-hot-toast";
 
 const ReserveLayout = styled.main`
   min-height: 100vh;
@@ -30,10 +31,12 @@ function Reservation() {
   const { isLoading, reserve } = useReserve();
   const { cabins } = useCabins();
   const [options, setOptions] = useState([]);
+  const guestName = JSON.parse(localStorage.getItem("guest"))?.fullName;
   const cabinId = Number(location.pathname.split("/").pop());
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
   const moveBack = useMoveBack();
+  const navigate = useNavigate();
 
   function onSubmit({ guestName, startDate, endDate, numGuests }) {
     console.log("訂房", guestName, startDate, endDate, numGuests, cabinId);
@@ -59,6 +62,12 @@ function Reservation() {
     });
     // Update the options state
     setOptions([{ key: 0, label: "Select a cabin", value: "" }, ...results]);
+
+    // IF guestName is not in localStorage, redirect to /guestLogin
+    if (!guestName) {
+      navigate("/guestLogin");
+      toast.error("請先登入");
+    }
   }, [cabins]);
 
   if (isLoading) return <Spinner />;
@@ -77,9 +86,10 @@ function Reservation() {
         </FormRow>
         <FormRow label="Guest Name" error={errors?.guestName?.message}>
           <Input
+            value={guestName}
             type="text"
             id="guestName"
-            disabled={isLoading}
+            disabled="true"
             {...register("guestName", {
               required: "This field is required",
             })}

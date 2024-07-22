@@ -38,9 +38,9 @@ const RoomSection = forwardRef((props, ref) => {
       {isLoading ? (
         <Spinner />
       ) : (
-        cabins.map((cabin, idx) => (
+        cabins.map((cabin) => (
           <>
-            <CabinInfo key={idx}>
+            <CabinInfo key={cabin.id}>
               <img src={cabin.image} alt={cabin.name} />
               <h3>{cabin.name}</h3>
               <p>

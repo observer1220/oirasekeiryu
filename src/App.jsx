@@ -19,6 +19,7 @@ import {
   Home,
   Reservation,
   Login,
+  GuestLogin,
 } from "./pages";
 
 const queryClient = new QueryClient({
@@ -60,6 +61,7 @@ function App() {
               </Route>
               <Route path="/" element={<Home />} />
               <Route path="reservation/:id" element={<Reservation />} />
+              <Route path="guestLogin" element={<GuestLogin />} />
               <Route path="login" element={<Login />} />
             </Routes>
           </HashRouter>

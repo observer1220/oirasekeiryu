@@ -10,7 +10,7 @@ LanguageSwitchProvider.propTypes = {
 };
 
 function LanguageSwitchProvider({ children }) {
-  const [isMandarin, setisMandarin] = useLocalStorageState(false, "isMandarin");
+  const [isMandarin, setisMandarin] = useLocalStorageState("isMandarin", false);
 
   function switchLanguage() {
     setisMandarin((isMandarin) => !isMandarin);

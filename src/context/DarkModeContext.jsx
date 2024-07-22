@@ -12,7 +12,7 @@ DarkModeProvider.propTypes = {
 };
 
 function DarkModeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, "isDarkMode");
+  const [isDarkMode, setIsDarkMode] = useLocalStorageState("isDarkMode", false);
 
   function toggleDarkMode() {
     setIsDarkMode((prevMode) => !prevMode);

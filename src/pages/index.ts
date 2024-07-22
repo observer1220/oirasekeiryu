@@ -9,6 +9,7 @@ import Checkin from "./admin/Checkin";
 
 import Home from "./guest/Home";
 import Reservation from "./guest/Reservation";
+import GuestLogin from "./guest/GuestLogin";
 
 import PageNotFound from "./PageNotFound";
 import Login from "./Login";
@@ -26,4 +27,5 @@ export {
   Home,
   Reservation,
   Login,
+  GuestLogin,
 };
