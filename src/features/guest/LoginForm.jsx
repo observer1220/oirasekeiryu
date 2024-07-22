@@ -8,6 +8,16 @@ import {
   Heading,
 } from "../../components/common";
 import { useLogin } from "./useGuest";
+import styled from "styled-components";
+
+const GuestLoginContainer = styled.main`
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  gap: 3.2rem;
+  background-color: var(--color-grey-50);
+`;
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -29,7 +39,7 @@ function LoginForm() {
   }
 
   return (
-    <>
+    <GuestLoginContainer>
       <Heading>訪客登入</Heading>
       <Form onSubmit={handleSubmit}>
         <FormRowVertical label="EMAIL">
@@ -53,11 +63,11 @@ function LoginForm() {
         </FormRowVertical>
         <FormRowVertical>
           <Button size="large" disabled={isLoading}>
-            {!isLoading ? "Login" : <SpinnerMini />}
+            {!isLoading ? "登入" : <SpinnerMini />}
           </Button>
         </FormRowVertical>
       </Form>
-    </>
+    </GuestLoginContainer>
   );
 }
 

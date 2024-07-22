@@ -1,5 +1,10 @@
-// 引入必要的函數和套件
-import { createContext, useContext, useEffect, useMemo } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useCallback,
+} from "react";
 import { useLocalStorageState } from "../hooks/useGeneral";
 import PropTypes from "prop-types";
 
@@ -14,9 +19,9 @@ DarkModeProvider.propTypes = {
 function DarkModeProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState("isDarkMode", false);
 
-  function toggleDarkMode() {
+  const toggleDarkMode = useCallback(() => {
     setIsDarkMode((prevMode) => !prevMode);
-  }
+  }, [setIsDarkMode]);
 
   useEffect(() => {
     const className = isDarkMode ? "dark-mode" : "light-mode";
@@ -31,7 +36,7 @@ function DarkModeProvider({ children }) {
       isDarkMode,
       toggleDarkMode,
     }),
-    [isDarkMode]
+    [isDarkMode, toggleDarkMode]
   );
 
   return (

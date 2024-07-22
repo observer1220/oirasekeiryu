@@ -11,7 +11,6 @@ import {
 import { Footer } from "../../components/Layout";
 import banner from "../../assets/banner.avif";
 import { useNavigate } from "react-router-dom";
-// import { useLocalStorageState } from "../../hooks/useGeneral";
 
 const HomeContainer = styled.div`
   display: flex;

@@ -10,6 +10,16 @@ import {
 import { useSignup } from "./useGuest";
 import { useMoveBack } from "../../hooks/useGeneral";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const GuestSignupContainer = styled.main`
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  gap: 3.2rem;
+  background-color: var(--color-grey-50);
+`;
 
 function SignupForm() {
   const { isLoading, signup } = useSignup();
@@ -33,7 +43,7 @@ function SignupForm() {
   if (isLoading) return <Spinner />;
 
   return (
-    <>
+    <GuestSignupContainer>
       <Heading>訪客註冊</Heading>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormRowVertical label="姓名" error={errors?.fullName?.message}>
@@ -90,7 +100,7 @@ function SignupForm() {
           </Button>
         </FormRowVertical>
       </Form>
-    </>
+    </GuestSignupContainer>
   );
 }
 

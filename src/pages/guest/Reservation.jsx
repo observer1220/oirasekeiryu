@@ -39,7 +39,7 @@ function Reservation() {
   const navigate = useNavigate();
 
   function onSubmit({ guestName, startDate, endDate, numGuests }) {
-    console.log("訂房", guestName, startDate, endDate, numGuests, cabinId);
+    // console.log("訂房", guestName, startDate, endDate, numGuests, cabinId);
     reserve(
       { guestName, startDate, endDate, numGuests, cabinId },
       {
@@ -68,7 +68,7 @@ function Reservation() {
       navigate("/guestLogin");
       toast.error("請先登入");
     }
-  }, [cabins]);
+  }, [cabins, guestName, navigate]);
 
   if (isLoading) return <Spinner />;
   return (
