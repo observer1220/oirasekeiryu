@@ -12,11 +12,6 @@ import styled from "styled-components";
 
 const GuestLoginContainer = styled.main`
   min-height: 100vh;
-  display: grid;
-  align-content: center;
-  justify-content: center;
-  gap: 3.2rem;
-  background-color: var(--color-grey-50);
 `;
 
 function LoginForm() {
