@@ -23,10 +23,10 @@ const Tab = styled.div`
     border-radius: 1px solid #ccc;
     transition: 0.3s;
 
-    &.active {
+    /* &.active {
       background: var(--color-brand-700);
       color: white;
-    }
+    } */
   }
 `;
 
