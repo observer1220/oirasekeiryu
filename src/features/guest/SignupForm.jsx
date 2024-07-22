@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const GuestSignupContainer = styled.main`
-  min-height: 100vh;
+  width: 100%;
 `;
 
 function SignupForm() {

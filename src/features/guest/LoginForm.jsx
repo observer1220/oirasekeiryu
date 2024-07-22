@@ -11,7 +11,7 @@ import { useLogin } from "./useGuest";
 import styled from "styled-components";
 
 const GuestLoginContainer = styled.main`
-  min-height: 100vh;
+  width: 100%;
 `;
 
 function LoginForm() {
