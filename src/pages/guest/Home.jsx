@@ -24,7 +24,6 @@ const Menu = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 1rem;
-  background-color: #f0f0f0;
 `;
 
 const MainContainer = styled.div`
@@ -38,14 +37,13 @@ function Home() {
   const roomsRef = useRef();
   const trafficRef = useRef();
   const navigate = useNavigate();
-  const user = localStorage.getItem("guest");
+  const user = JSON.parse(localStorage.getItem("guest"));
 
   return (
     <HomeContainer>
       <Menu>
         <ToggleDrawer roomsRef={roomsRef} trafficRef={trafficRef} />
         <Logo height="4rem" />
-        {/* <LanguageSwitch /> */}
         {user ? (
           <GuestInfo />
         ) : (

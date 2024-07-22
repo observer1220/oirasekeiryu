@@ -5,7 +5,7 @@ const GuestInfoContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  color: black;
+  color: var(--color-text-100);
   font-weight: bold;
   font-size: 1.5rem;
 `;

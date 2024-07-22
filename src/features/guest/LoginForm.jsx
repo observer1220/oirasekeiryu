@@ -30,7 +30,7 @@ function LoginForm() {
 
   return (
     <>
-      <Heading level={2}>訪客登入</Heading>
+      <Heading>訪客登入</Heading>
       <Form onSubmit={handleSubmit}>
         <FormRowVertical label="EMAIL">
           <Input

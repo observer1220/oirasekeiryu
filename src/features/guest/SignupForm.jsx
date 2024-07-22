@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import {
   Button,
   Form,
-  FormRow,
+  FormRowVertical,
   Heading,
   Input,
   Spinner,
@@ -34,18 +34,18 @@ function SignupForm() {
 
   return (
     <>
-      <Heading level={2}>訪客註冊</Heading>
+      <Heading>訪客註冊</Heading>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormRow label="姓名" error={errors?.fullName?.message}>
+        <FormRowVertical label="姓名" error={errors?.fullName?.message}>
           <Input
             type="text"
             id="fullName"
             disabled={isLoading}
             {...register("fullName", { required: "This field is required" })}
           />
-        </FormRow>
+        </FormRowVertical>
 
-        <FormRow label="EMAIL" error={errors?.email?.message}>
+        <FormRowVertical label="EMAIL" error={errors?.email?.message}>
           <Input
             type="email"
             id="email"
@@ -58,9 +58,9 @@ function SignupForm() {
               },
             })}
           />
-        </FormRow>
+        </FormRowVertical>
 
-        <FormRow
+        <FormRowVertical
           label="身分證或護照（10碼）"
           error={errors?.nationalID?.message}
         >
@@ -76,9 +76,9 @@ function SignupForm() {
               },
             })}
           />
-        </FormRow>
+        </FormRowVertical>
 
-        <FormRow>
+        <FormRowVertical>
           <Button disabled={isLoading}>註冊</Button>
           <Button
             variation="secondary"
@@ -88,7 +88,7 @@ function SignupForm() {
           >
             回到首頁
           </Button>
-        </FormRow>
+        </FormRowVertical>
       </Form>
     </>
   );
