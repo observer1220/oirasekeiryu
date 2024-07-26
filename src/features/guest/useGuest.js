@@ -29,8 +29,6 @@ function useLogin() {
   const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, nationalID }) => loginApi({ email, nationalID }),
     onSuccess: (user) => {
-      console.log("登入角色", user);
-
       if (user.length === 0) {
         toast.error("Provided email or national ID is incorrect");
         return;
