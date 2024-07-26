@@ -1,6 +1,6 @@
 import supabase, { supabaseUrl } from "./supabase";
 
-export async function signup({ fullName, email, password }) {
+async function signup({ fullName, email, password }) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -17,7 +17,7 @@ export async function signup({ fullName, email, password }) {
   return data;
 }
 
-export async function login({ email, password }) {
+async function login({ email, password }) {
   let { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -28,7 +28,7 @@ export async function login({ email, password }) {
   return data;
 }
 
-export async function getCurrentUser() {
+async function getCurrentUser() {
   const { data: session } = await supabase.auth.getSession();
   if (!session.session) return null;
 
@@ -39,12 +39,12 @@ export async function getCurrentUser() {
   return data?.user;
 }
 
-export async function logout() {
+async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) throw new Error(error.message);
 }
 
-export async function updateCurrentUser({ password, fullName, avatar }) {
+async function updateCurrentUser({ password, fullName, avatar }) {
   // 1. Update password OR fullName
   let updateData;
   if (password) updateData = { password };
@@ -62,12 +62,15 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
   if (storageError) throw new Error(storageError.message);
 
   // 3. Update avatar in the user
-  const { data: updatedUser, error: error2 } = await supabase.auth.updateUser({
-    data: {
-      avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
-    },
-  });
-  if (error2) throw new Error(error2.message);
+  const { data: updatedUser, error: updateError } =
+    await supabase.auth.updateUser({
+      data: {
+        avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
+      },
+    });
+  if (updateError) throw new Error(updateError.message);
 
   return updatedUser;
 }
+
+export { signup, login, getCurrentUser, logout, updateCurrentUser };
