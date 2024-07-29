@@ -9,12 +9,6 @@
 - [x] Traffic information
 - [x] Anchor to different sections
 
-#### Guest Information Page
-
-- [] Guest sign up
-- [] Guest information update
-- [] Delete booking
-
 #### Header
 
 - [x] Drawer menu with ease-in-out design
@@ -22,7 +16,7 @@
 
 #### Footer
 
-- [] Contact information
+- [x] Contact information
 
 ---
 
@@ -79,9 +73,9 @@
 
 #### Guests Page
 
-- [] Guest Signup
-- [] Guest Login
-- [] Room Reservation => 50%
+- [x] Guest Signup
+- [x] Guest Login
+- [x] Room Reservation
 
 ### TodoList
 

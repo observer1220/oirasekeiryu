@@ -6,21 +6,23 @@ import {
   login as loginApi,
 } from "../../services/apiGuest";
 
-function useSignup () {
+function useSignup() {
   const { isLoading, mutate: signup } = useMutation({
     mutationFn: signupApi,
     onSuccess: () => {
-      toast.success("Account created successfully! Please verify the new account from the user's email address.")
+      toast.success(
+        "Account created successfully! Please verify the new account from the user's email address."
+      );
     },
     onError: (error) => {
-      toast.error(error.message)
-    }
-  })
+      toast.error(error.message);
+    },
+  });
 
-  return { isLoading, signup }
+  return { isLoading, signup };
 }
 
-function useLogin () {
+function useLogin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -31,14 +33,14 @@ function useLogin () {
       console.log(user);
       localStorage.setItem("guest", JSON.stringify(user[0]));
       navigate("/", { replace: true });
-      toast.success("Login success")
+      toast.success("Login success");
     },
     onError: (error) => {
       console.log(error.message);
-      toast.error('Provided email or national ID is incorrect')
-    }
-  })
-  return { isLoading, login }
+      toast.error("Provided email or national ID is incorrect");
+    },
+  });
+  return { isLoading, login };
 }
 
-export { useSignup, useLogin }
+export { useSignup, useLogin };
