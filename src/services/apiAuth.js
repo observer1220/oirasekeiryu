@@ -1,13 +1,14 @@
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function signup({ fullName, email, password }) {
+  const robotID = Math.random(email).toString(36).substring(7);
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
         fullName,
-        avatar: "",
+        avatar: `https://robohash.org/${robotID}?size=200x200`,
       },
     },
   });
