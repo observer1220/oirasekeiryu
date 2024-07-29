@@ -1,6 +1,6 @@
 import supabase, { supabaseUrl } from "./supabase";
 
-export async function getCabins() {
+async function getCabins() {
   const { data, error } = await supabase.from("cabins").select("*");
 
   if (error) {
@@ -10,7 +10,7 @@ export async function getCabins() {
   return data;
 }
 
-export async function createEditCabin(newCabin, id) {
+async function createEditCabin(newCabin, id) {
   // 檢查是否有圖片路徑，如果有，則不需上傳圖片
   const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
 
@@ -60,7 +60,7 @@ export async function createEditCabin(newCabin, id) {
   return data;
 }
 
-export async function deleteCabin(id) {
+async function deleteCabin(id) {
   const { data, error } = await supabase.from("cabins").delete().eq("id", id);
 
   if (error) {
@@ -68,3 +68,5 @@ export async function deleteCabin(id) {
   }
   return data;
 }
+
+export { getCabins, createEditCabin, deleteCabin };
