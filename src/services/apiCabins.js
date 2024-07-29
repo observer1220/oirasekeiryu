@@ -68,8 +68,3 @@ export async function deleteCabin(id) {
   }
   return data;
 }
-<<<<<<< HEAD
-=======
-
-export { getCabins, createEditCabin, deleteCabin };
->>>>>>> ca1b34dc639d554fdd12276186cfa8bac9c54ab8
