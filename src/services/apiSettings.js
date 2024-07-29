@@ -27,3 +27,5 @@ export async function updateSetting(newSetting) {
   }
   return data;
 }
+
+export { getSettings, updateSetting };

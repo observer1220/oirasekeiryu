@@ -121,3 +121,13 @@ export async function deleteBooking(id) {
   }
   return data;
 }
+
+export {
+  getBookings,
+  getBooking,
+  getBookingsAfterDate,
+  getStaysAfterDate,
+  getStaysTodayActivity,
+  updateBooking,
+  deleteBooking,
+};
