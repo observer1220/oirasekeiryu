@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
@@ -9,11 +10,27 @@ const FooterContainer = styled.footer`
   bottom: 0;
   width: 100%;
   z-index: 1;
+  opacity: ${(props) => (props.$visible ? '1' : '0')};
+  transition: opacity 0.3s ease-in-out;
 `;
 
 function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+  const handleScroll = () => {
+    if (window.scrollY > 500) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <FooterContainer>
+    <FooterContainer $visible={isVisible}>
       <p>© 2024 Hoshimo Resorts</p>
     </FooterContainer>
   );
