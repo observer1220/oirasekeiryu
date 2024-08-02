@@ -76,7 +76,7 @@ function Reservation() {
       <h1>{t("reserve.title")}</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {/* cabinPrice extrasPrice totalPrice hasBreakfast */}
-        <FormRow label="Cabin" error={errors?.cabinId?.message}>
+        <FormRow label={t("reserve.roomType")} error={errors?.cabinId?.message}>
           <Select
             value={cabinId}
             options={options}
@@ -84,7 +84,7 @@ function Reservation() {
             disabled="true"
           />
         </FormRow>
-        <FormRow label="Guest Name" error={errors?.guestName?.message}>
+        <FormRow label={t("reserve.guestName")} error={errors?.guestName?.message}>
           <Input
             value={guestName}
             type="text"
@@ -95,7 +95,7 @@ function Reservation() {
             })}
           />
         </FormRow>
-        <FormRow label="Start Date" error={errors?.startDate?.message}>
+        <FormRow label={t("reserve.checkIn")} error={errors?.startDate?.message}>
           <Input
             type="date"
             id="startDate"
@@ -111,7 +111,7 @@ function Reservation() {
             })}
           />
         </FormRow>
-        <FormRow label="End Date" error={errors?.endDate?.message}>
+        <FormRow label={t("reserve.checkOut")} error={errors?.endDate?.message}>
           <Input
             type="date"
             id="endDate"
@@ -127,7 +127,7 @@ function Reservation() {
             })}
           />
         </FormRow>
-        <FormRow label="Guests" error={errors?.numGuests?.message}>
+        <FormRow label={t("reserve.numGuests")} error={errors?.numGuests?.message}>
           <Input
             type="number"
             id="numGuests"
@@ -144,9 +144,9 @@ function Reservation() {
         {/* <FormRow label="Breakfast" error={errors?.hasBreakfast?.message}>
         </FormRow> */}
         <FormRow>
-          <Button disabled={isLoading}>訂房</Button>
+          <Button disabled={isLoading}>{t('reserve.reserve')}</Button>
           <Button $variation="secondary" disabled={isLoading} onClick={moveBack}>
-            回到首頁
+            {t('reserve.backHome')}
           </Button>
         </FormRow>
       </Form>

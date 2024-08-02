@@ -1,11 +1,21 @@
 {
     "homePage": {
         "welcome": "Welcome",
-        "roomIntroduction": "Room Introduction",
+        "room": "Room",
         "trafficGuide": "Traffic Guide",
-        "reserve":"Reserve"
+        "admin": "Admin",
+        "reserve":"Reserve",
+        "guestLogin": "Signup/Login",
+        "logout": "Logout"
     },
     "reserve": {
-        "title": "Reservation"
+        "title": "Reservation",
+        "roomType": "Room Type",
+        "guestName": "Guest Name",
+        "checkIn": "Check-in Date",
+        "checkOut": "Check-out Date",
+        "numGuests": "Guest Number",
+        "reserve": "Reserve",
+        "backHome": "Go Back"
     }
 }

@@ -29,7 +29,7 @@ function GuestInfo() {
           <br />
           <span>{user.fullName}</span>
         </Welcome>
-        <Button onClick={logoutBtn}>登出</Button>
+        <Button onClick={logoutBtn}>{t("homePage.logout")}</Button>
       </GuestInfoContainer>
     </>
   );

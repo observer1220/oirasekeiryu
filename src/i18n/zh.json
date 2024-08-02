@@ -1,11 +1,21 @@
 {
     "homePage": {
         "welcome": "歡迎光臨",
-        "roomIntroduction": "客房介紹",
+        "room": "客房介紹",
         "trafficGuide": "交通指南",
-        "reserve":"進行預約"
+        "admin": "後台管理",
+        "reserve":"進行預約",
+        "guestLogin": "註冊/登入",
+        "logout": "登出"
     },
     "reserve": {
-        "title": "顧客訂房"
+        "title": "顧客訂房",
+        "roomType": "房型",
+        "guestName": "顧客姓名",
+        "checkIn": "入住日期",
+        "checkOut": "退房日期",
+        "numGuests": "人數",
+        "reserve": "預約",
+        "backHome": "回到首頁"
     }
 }

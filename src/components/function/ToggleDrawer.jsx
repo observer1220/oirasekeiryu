@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { StyledNavLink } from "../common";
 import menuIcon from "../../assets/menuIcon.png";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 ToggleDrawer.propTypes = {
   roomsRef: PropTypes.object,
@@ -43,6 +44,7 @@ const Icon = styled.img`
 `;
 
 function ToggleDrawer({ roomsRef, trafficRef }) {
+  const { t } = useTranslation();
   const [isOpen, setOpen] = useState();
 
   const scrollToAnchor = (event, ref) => {
@@ -61,7 +63,7 @@ function ToggleDrawer({ roomsRef, trafficRef }) {
       <Drawer open={isOpen}>
         <li>
           <a href="#rooms" onClick={(event) => scrollToAnchor(event, roomsRef)}>
-            <span>客房介紹</span>
+            <span>{t('homePage.room')}</span>
           </a>
         </li>
         <li>
@@ -69,12 +71,12 @@ function ToggleDrawer({ roomsRef, trafficRef }) {
             href="#traffic"
             onClick={(event) => scrollToAnchor(event, trafficRef)}
           >
-            <span>交通指南</span>
+            <span>{t('homePage.trafficGuide')}</span>
           </a>
         </li>
         <li>
           <StyledNavLink to="/admin/dashboard">
-            <span>後台管理</span>
+            <span>{t('homePage.admin')}</span>
           </StyledNavLink>
         </li>
       </Drawer>

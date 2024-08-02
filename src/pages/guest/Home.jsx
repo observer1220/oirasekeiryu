@@ -11,6 +11,7 @@ import {
 import { Footer } from "../../components/Layout";
 import banner from "../../assets/banner.avif";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ function Home() {
   const roomsRef = useRef();
   const trafficRef = useRef();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const user = JSON.parse(localStorage.getItem("guest"));
 
   return (
@@ -47,7 +49,7 @@ function Home() {
         {user ? (
           <GuestInfo />
         ) : (
-          <Button onClick={() => navigate("/guestLogin")}>註冊/登入</Button>
+          <Button onClick={() => navigate("/guestLogin")}>{t("homePage.guestLogin")}</Button>
         )}
       </Menu>
       <MainContainer>

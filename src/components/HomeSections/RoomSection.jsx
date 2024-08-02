@@ -36,7 +36,7 @@ const RoomSection = forwardRef((props, ref) => {
 
   return (
     <TextLayer ref={ref}>
-      <h1>{t("homePage.roomIntroduction")}</h1>
+      <h1>{t("homePage.room")}</h1>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -52,7 +52,7 @@ const RoomSection = forwardRef((props, ref) => {
               <p>{cabin.description}</p>
             </CabinInfo>
             <Button onClick={() => navigate(`/reservation/${cabin.id}`)}>
-              進行預約
+              {t("homePage.reserve")}
             </Button>
           </div>
         ))
