@@ -8,7 +8,7 @@ import {
 } from "react-icons/hi2";
 
 import { DataItem, Flag } from "../../components/common";
-import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
+import { formatDistanceFromNow, formatCurrency } from "../../utils";
 import PropTypes from "prop-types";
 
 const StyledBookingDataBox = styled.section`

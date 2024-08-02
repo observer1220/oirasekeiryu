@@ -4,7 +4,7 @@ import {
   useMemo,
   useCallback,
 } from "react";
-import { useLocalStorageState } from "../hooks/useGeneral";
+import { useLocalStorageState } from "../hooks";
 import PropTypes from "prop-types";
 
 // 創建 Context
@@ -45,4 +45,4 @@ function DarkModeProvider({ children }) {
   );
 }
 
-export { DarkModeProvider, DarkModeContext  };
+export { DarkModeProvider, DarkModeContext };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { HiXMark } from "react-icons/hi2";
 import { createPortal } from "react-dom";
-import { useOutsideClick } from "../../hooks/useGeneral";
+import { useOutsideClick } from "../../hooks";
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,

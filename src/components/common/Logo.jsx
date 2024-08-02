@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useDarkMode } from "../../hooks/useGeneral";
+import { useDarkMode } from "../../hooks";
 import PropTypes from "prop-types";
 import DarkLogo from "../../assets/logo-dark.svg";
 import LightLogo from "../../assets/logo-light.svg";

@@ -8,7 +8,7 @@ import {
   Spinner,
 } from "../../components/common";
 import { useSignup } from "./useGuest";
-import { useMoveBack } from "../../hooks/useGeneral";
+import { useMoveBack } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ButtonIcon } from "../common";
-import { useSwitchLanguage } from "../../hooks/useGeneral";
+import { useLanguage } from "../../hooks";
 
 const LanguageContainer = styled.div`
   position: fixed;
@@ -19,7 +19,7 @@ const LanguageContainer = styled.div`
 `;
 
 function LanguageSwitch() {
-  const { isMandarin, switchLanguage } = useSwitchLanguage();
+  const { isMandarin, switchLanguage } = useLanguage();
   return (
     <LanguageContainer>
       <ButtonIcon onClick={switchLanguage}>

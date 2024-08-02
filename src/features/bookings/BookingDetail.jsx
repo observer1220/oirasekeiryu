@@ -12,7 +12,7 @@ import {
   ConfirmDelete,
   Heading,
 } from "../../components/common";
-import { useMoveBack } from "../../hooks/useGeneral";
+import { useMoveBack } from "../../hooks";
 import { useBooking, useDeleteBooking } from "./useBookings";
 import { useNavigate } from "react-router-dom";
 import { useCheckout } from "../check-in-out/useCheckin";

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { format, isToday } from "date-fns";
 import { Table, Tag, Modal, ConfirmDelete } from "../../components/common";
 import { Menus } from "../../components/Layout";
-import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
+import { formatCurrency, formatDistanceFromNow } from "../../utils";
 import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,

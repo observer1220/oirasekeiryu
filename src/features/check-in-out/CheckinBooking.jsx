@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { formatCurrency } from "../../utils/helpers";
+import { formatCurrency } from "../../utils";
 import BookingDataBox from "../../features/bookings/BookingDataBox";
 import {
   Row,
@@ -12,7 +12,7 @@ import {
   Heading,
 } from "../../components/common";
 
-import { useMoveBack } from "../../hooks/useGeneral";
+import { useMoveBack } from "../../hooks";
 import { useBooking } from "../bookings/useBookings";
 import { useCheckin } from "./useCheckin";
 import { useSettings } from "../settings/useSettings";

@@ -13,7 +13,7 @@ import { useReserve } from "../../features/authentication/useAuthentication";
 import { useCabins } from "../../features/cabins/useCabins";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useMoveBack } from "../../hooks/useGeneral";
+import { useMoveBack } from "../../hooks";
 import toast from "react-hot-toast";
 
 const ReserveLayout = styled.main`

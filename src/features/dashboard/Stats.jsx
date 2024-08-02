@@ -6,7 +6,7 @@ import {
 } from "react-icons/hi2";
 import Stat from "./Stat";
 import PropTypes from "prop-types";
-import { formatCurrency } from "../../utils/helpers";
+import { formatCurrency } from "../../utils";
 
 Stats.propTypes = {
   bookings: PropTypes.array,

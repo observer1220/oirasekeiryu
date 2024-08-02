@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useMemo } from "react";
-import { useLocalStorageState } from "../hooks/useGeneral";
+import { useLocalStorageState } from "../hooks";
 import { changeLanguage } from "i18next";
 import PropTypes from "prop-types";
 
