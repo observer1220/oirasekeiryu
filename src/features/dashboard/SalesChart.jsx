@@ -10,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useDarkMode } from "../../context/DarkModeContext";
+import { useDarkMode } from "../../hooks/useGeneral";
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
 import PropTypes from "prop-types";
 

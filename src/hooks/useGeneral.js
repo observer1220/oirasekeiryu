@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { DarkModeContext, LanguageContext } from "../context";
 
 function useMoveBack() {
   const navigate = useNavigate();
@@ -45,4 +46,32 @@ function useOutsideClick(handler, listenCapturing = true) {
   return ref;
 }
 
-export { useMoveBack, useLocalStorageState, useOutsideClick };
+function useDarkMode() {
+  const context = useContext(DarkModeContext);
+
+  if (!context) {
+    throw new Error("useDarkMode must be used within a DarkModeProvider");
+  }
+
+  return context;
+}
+
+function useSwitchLanguage() {
+  const context = useContext(LanguageContext);
+
+  if (!context) {
+    throw new Error(
+      "useSwitchLanguage must be used within a LanguageSwitchProvider"
+    );
+  }
+
+  return context;
+}
+
+export {
+  useMoveBack,
+  useLocalStorageState,
+  useOutsideClick,
+  useDarkMode,
+  useSwitchLanguage,
+};

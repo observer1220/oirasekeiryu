@@ -1,6 +1,5 @@
 import {
   createContext,
-  useContext,
   useEffect,
   useMemo,
   useCallback,
@@ -46,16 +45,4 @@ function DarkModeProvider({ children }) {
   );
 }
 
-// 自定義 hook useDarkMode
-function useDarkMode() {
-  const context = useContext(DarkModeContext);
-
-  if (!context) {
-    throw new Error("useDarkMode must be used within a DarkModeProvider");
-  }
-
-  return context;
-}
-
-// 匯出組件和 hook
-export { DarkModeProvider, useDarkMode };
+export { DarkModeProvider, DarkModeContext  };

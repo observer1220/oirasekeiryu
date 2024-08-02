@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useEffect } from "react";
 import { useLocalStorageState } from "../hooks/useGeneral";
 import { changeLanguage } from "i18next";
 import PropTypes from "prop-types";
@@ -27,15 +27,6 @@ function LanguageSwitchProvider({ children }) {
   );
 }
 
-function useSwitchLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error(
-      "useSwitchLanguage must be used within a LanguageSwitchProvider"
-    );
-  }
 
-  return context;
-}
 
-export { LanguageSwitchProvider, useSwitchLanguage };
+export { LanguageSwitchProvider, LanguageContext };

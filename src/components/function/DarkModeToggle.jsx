@@ -1,6 +1,6 @@
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import { ButtonIcon } from "../common";
-import { useDarkMode } from "../../context/DarkModeContext";
+import { useDarkMode } from "../../hooks/useGeneral";
 
 // 唯一在本地端使用Global State的元件，其他的狀態皆用React-Query管理
 function DarkModeToggle() {

@@ -1,5 +1,5 @@
 import { ButtonIcon } from "../common";
-import { useSwitchLanguage } from "../../context/LanguageContext";
+import { useSwitchLanguage } from "../../hooks/useGeneral";
 
 function LanguageSwitch() {
   const { isMandarin, switchLanguage } = useSwitchLanguage();
