@@ -39,8 +39,8 @@ const RoomSection = forwardRef((props, ref) => {
         <Spinner />
       ) : (
         cabins.map((cabin) => (
-          <>
-            <CabinInfo key={cabin.id}>
+          <div key={cabin.id}>
+            <CabinInfo>
               <img src={cabin.image} alt={cabin.name} />
               <h3>{cabin.name}</h3>
               <p>
@@ -52,7 +52,7 @@ const RoomSection = forwardRef((props, ref) => {
             <Button onClick={() => navigate(`/reservation/${cabin.id}`)}>
               進行預約
             </Button>
-          </>
+          </div>
         ))
       )}
     </TextLayer>

@@ -1,7 +1,8 @@
 import supabase, { supabaseUrl } from "./supabase";
 
 async function signup({ fullName, email, password }) {
-  const robotID = Math.random(email).toString(36).substring(7);
+  // toString(36)，包含數字 0-9 和字母 a-z，前幾個字符通常是 0. 開頭，因此從第 7 個字符開始擷取
+  const robotID = Math.random().toString(36).substring(7);
   const { data, error } = await supabase.auth.signUp({
     email,
     password,

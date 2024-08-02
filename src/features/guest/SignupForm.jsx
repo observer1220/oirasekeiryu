@@ -86,7 +86,7 @@ function SignupForm() {
         <FormRowVertical>
           <Button disabled={isLoading}>註冊</Button>
           <Button
-            variation="secondary"
+            $variation="secondary"
             type="reset"
             disabled={isLoading}
             onClick={() => navigate("/")}

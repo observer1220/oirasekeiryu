@@ -16,7 +16,7 @@ import menuIcon from "../../assets/menuIcon.png";
 
 const StyledAppLayout = styled.div`
   display: grid;
-  grid-template-columns: ${({ isOpen }) => (isOpen ? "20rem" : "8.4rem")} 1fr;
+  grid-template-columns: ${({ $isOpen }) => ($isOpen ? "20rem" : "8.4rem")} 1fr;
   grid-template-rows: auto 1fr;
   height: 100vh;
   transition: grid-template-columns 0.3s ease-in-out;
@@ -40,7 +40,6 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background-color: var(--color-grey-0);
   padding: 1.2rem 2.4rem;
   border-bottom: 1px solid var(--color-grey-100);
@@ -89,10 +88,10 @@ function AdminLayout() {
   ];
 
   return (
-    <StyledAppLayout isOpen={isOpen}>
+    <StyledAppLayout $isOpen={isOpen}>
       <StyledHeader>
         <ButtonIcon onClick={() => setOpen(!isOpen)}>
-          <Icon src={menuIcon} alt="" />
+          <Icon src={menuIcon} alt="Menu Icon" />
         </ButtonIcon>
         <RightSide>
           <div style={{ display: isOpen ? "none" : "block" }}>

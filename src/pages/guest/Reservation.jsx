@@ -145,7 +145,7 @@ function Reservation() {
         </FormRow> */}
         <FormRow>
           <Button disabled={isLoading}>訂房</Button>
-          <Button variation="secondary" disabled={isLoading} onClick={moveBack}>
+          <Button $variation="secondary" disabled={isLoading} onClick={moveBack}>
             回到首頁
           </Button>
         </FormRow>

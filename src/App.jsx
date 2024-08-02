@@ -3,8 +3,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
-import { DarkModeProvider } from "./context/DarkModeContext";
-import { LanguageSwitchProvider } from "./context/LanguageContext";
+import { DarkModeProvider, LanguageSwitchProvider } from "./context";
 import { AdminLayout, ProtectedRoute } from "./components/Layout";
 import {
   Dashboard,
