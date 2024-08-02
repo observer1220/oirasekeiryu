@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useCabins } from "../../features/cabins/useCabins";
 import { Button, Spinner } from "../common";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const TextLayer = styled.div`
   display: grid;
@@ -30,11 +31,12 @@ const CabinInfo = styled.div`
 
 const RoomSection = forwardRef((props, ref) => {
   const { isLoading, cabins } = useCabins();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
     <TextLayer ref={ref}>
-      <h1>客房介紹</h1>
+      <h1>{t("homePage.roomIntroduction")}</h1>
       {isLoading ? (
         <Spinner />
       ) : (

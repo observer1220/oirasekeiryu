@@ -1,4 +1,10 @@
 {
+    "homePage": {
+        "welcome": "歡迎光臨",
+        "roomIntroduction": "客房介紹",
+        "trafficGuide": "交通指南",
+        "reserve":"進行預約"
+    },
     "reserve": {
         "title": "顧客訂房"
     }

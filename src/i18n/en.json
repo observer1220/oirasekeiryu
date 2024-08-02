@@ -1,5 +1,11 @@
 {
+    "homePage": {
+        "welcome": "Welcome",
+        "roomIntroduction": "Room Introduction",
+        "trafficGuide": "Traffic Guide",
+        "reserve":"Reserve"
+    },
     "reserve": {
-        "title": "Guest Reservation"
+        "title": "Reservation"
     }
 }

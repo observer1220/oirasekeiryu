@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "./Button";
+import { useTranslation } from "react-i18next";
 
 const GuestInfoContainer = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ const Welcome = styled.span`
 
 function GuestInfo() {
   const user = JSON.parse(localStorage.getItem("guest"));
+  const { t } = useTranslation();
   const logoutBtn = () => {
     localStorage.removeItem("guest");
     window.location.reload();
@@ -23,7 +25,7 @@ function GuestInfo() {
     <>
       <GuestInfoContainer>
         <Welcome>
-          <span>歡迎光臨</span>
+          <span>{t("homePage.welcome")}</span>
           <br />
           <span>{user.fullName}</span>
         </Welcome>

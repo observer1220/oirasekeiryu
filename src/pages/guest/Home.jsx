@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRef } from "react";
 import { Logo, Button, GuestInfo } from "../../components/common";
-import { ToggleDrawer } from "../../components/function";
+import { LanguageSwitch, ToggleDrawer } from "../../components/function";
 import {
   HotelDescription,
   SightseeingSpots,
@@ -43,6 +43,7 @@ function Home() {
       <Menu>
         <ToggleDrawer roomsRef={roomsRef} trafficRef={trafficRef} />
         <Logo height="4rem" />
+        <LanguageSwitch />
         {user ? (
           <GuestInfo />
         ) : (

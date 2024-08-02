@@ -11,7 +11,7 @@ import {
   HiHomeModern,
   HiMiniCog6Tooth,
 } from "react-icons/hi2";
-import DarkModeToggle from "../function/DarkModeToggle";
+import { DarkModeToggle } from "../function";
 import menuIcon from "../../assets/menuIcon.png";
 
 const StyledAppLayout = styled.div`
