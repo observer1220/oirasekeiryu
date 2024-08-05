@@ -12,7 +12,7 @@
 #### Header
 
 - [x] Drawer menu with ease-in-out design
-- [] Multiple Language
+- [x] Multiple Language
 
 #### Footer
 
@@ -50,7 +50,6 @@
 #### Cabins Page
 
 - [x] Display Cabin List.
-      -- [] Picture zoom-in.
 - [x] Sorting Function:
       -- [x] Radio Button: no discount, with discount.
       -- [x] Dropdown List: sort by name, price, capacity.
