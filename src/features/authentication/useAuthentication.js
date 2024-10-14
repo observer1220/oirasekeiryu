@@ -11,9 +11,11 @@ import {
 import { reserve as reserveAPI } from "../../services/apiGuest";
 
 function useLogin() {
+  // 使用 useQueryClient 來獲取 queryClient 實例
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  // 使用 useMutation 來創建 login 函數
   const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
@@ -91,6 +93,7 @@ function useUpdateUser() {
 }
 
 function useUser() {
+  // 使用 useQuery 來獲取當前用戶的數據
   const { isLoading, data: user } = useQuery({
     queryKey: ["user"],
     queryFn: getCurrentUser,

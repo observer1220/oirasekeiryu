@@ -18,6 +18,7 @@ DarkModeProvider.propTypes = {
 function DarkModeProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState("isDarkMode", false);
 
+  // 使用 useCallback 避免重新渲染時重新創建函數
   const toggleDarkMode = useCallback(() => {
     setIsDarkMode((prevMode) => !prevMode);
   }, [setIsDarkMode]);
@@ -30,6 +31,7 @@ function DarkModeProvider({ children }) {
     );
   }, [isDarkMode]);
 
+  // 使用 useMemo 避免每次重新渲染時重新創建物件
   const value = useMemo(
     () => ({
       isDarkMode,
