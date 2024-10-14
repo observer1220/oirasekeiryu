@@ -33,12 +33,16 @@ const MainContainer = styled.div`
   width: 100%;
 `;
 
+interface userType {
+  fullName: string;
+}
+
 function Home() {
   const roomsRef = useRef();
   const trafficRef = useRef();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const user = JSON.parse(localStorage.getItem("guest"));
+  const user: userType = JSON.parse(localStorage.getItem("guest") || "{}");
 
   return (
     <HomeContainer>
@@ -49,7 +53,9 @@ function Home() {
         {user ? (
           <GuestInfo />
         ) : (
-          <Button onClick={() => navigate("/guestLogin")}>{t("homePage.guestLogin")}</Button>
+          <Button onClick={() => navigate("/guestLogin")}>
+            {t("homePage.guestLogin")}
+          </Button>
         )}
       </Menu>
       <MainContainer>

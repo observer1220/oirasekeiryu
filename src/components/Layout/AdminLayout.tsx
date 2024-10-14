@@ -14,7 +14,11 @@ import {
 import { DarkModeToggle } from "../function";
 import menuIcon from "../../assets/menuIcon.png";
 
-const StyledAppLayout = styled.div`
+interface StyledAppLayoutProps {
+  $isOpen: boolean;
+}
+
+const StyledAppLayout = styled.div<StyledAppLayoutProps>`
   display: grid;
   grid-template-columns: ${({ $isOpen }) => ($isOpen ? "20rem" : "8.4rem")} 1fr;
   grid-template-rows: auto 1fr;

@@ -1,8 +1,12 @@
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { getCabins, createEditCabin, deleteCabin as deleteCabinApi } from "../../services/apiCabins";
+import {
+  getCabins,
+  createEditCabin,
+  deleteCabin as deleteCabinApi,
+} from "../../services/apiCabins";
 
-function useCabins () {
+function useCabins() {
   const {
     isLoading,
     data: cabins,
@@ -11,10 +15,10 @@ function useCabins () {
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
-  return { isLoading, cabins, error }
+  return { isLoading, cabins, error };
 }
 
-function useCreateCabin () {
+function useCreateCabin() {
   const queryClient = useQueryClient();
 
   const { isLoading: isCreating, mutate: createCabin } = useMutation({
@@ -29,10 +33,10 @@ function useCreateCabin () {
       toast.error(error.message);
     },
   });
-  return { isCreating, createCabin }
+  return { isCreating, createCabin };
 }
 
-function useEditCabin () {
+function useEditCabin() {
   const queryClient = useQueryClient();
   const { isLoading: isUpdating, mutate: editCabin } = useMutation({
     mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
@@ -46,10 +50,10 @@ function useEditCabin () {
       toast.error(error.message);
     },
   });
-  return { isUpdating, editCabin }
+  return { isUpdating, editCabin };
 }
 
-function useDeleteCabin () {
+function useDeleteCabin() {
   const queryClient = useQueryClient();
 
   const { isLoading: isDeleting, mutate: deleteCabin } = useMutation({
@@ -63,10 +67,10 @@ function useDeleteCabin () {
     },
     onError: (error) => {
       toast.error(error.message);
-    }
+    },
   });
 
-  return { isDeleting, deleteCabin }
+  return { isDeleting, deleteCabin };
 }
 
 export { useCabins, useCreateCabin, useEditCabin, useDeleteCabin };

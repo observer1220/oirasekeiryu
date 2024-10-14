@@ -32,7 +32,7 @@ const Tab = styled.div`
 
 function GuestLogin() {
   const [tab, setTab] = useState("signup");
-  const TabSwicher = (tab) => {
+  const TabSwicher = (tab: string) => {
     setTab(tab);
   };
 

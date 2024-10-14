@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const FooterContainer = styled.footer`
+interface FooterProps {
+  children: React.ReactNode;
+  $visible: boolean;
+}
+
+const FooterContainer = styled.footer<FooterProps>`
   background-color: #333;
   color: #fff;
   text-align: center;
@@ -10,7 +15,7 @@ const FooterContainer = styled.footer`
   bottom: 0;
   width: 100%;
   z-index: 1;
-  opacity: ${(props) => (props.$visible ? '1' : '0')};
+  opacity: ${(props) => (props.$visible ? "1" : "0")};
   transition: opacity 0.3s ease-in-out;
 `;
 
@@ -22,7 +27,7 @@ function Footer() {
     } else {
       setIsVisible(false);
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

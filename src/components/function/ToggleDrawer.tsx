@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEvent, RefObject, useState } from "react";
 import styled from "styled-components";
 import { StyledNavLink } from "../common";
 import menuIcon from "../../assets/menuIcon.png";
@@ -18,7 +18,11 @@ const HamburguerMenu = styled.button`
   font-weight: bold;
 `;
 
-const Drawer = styled.ul`
+interface DrawerProps {
+  open: boolean;
+}
+
+const Drawer = styled.ul<DrawerProps>`
   background: #333;
   color: #fff;
   position: fixed;
@@ -43,11 +47,19 @@ const Icon = styled.img`
   width: 30px;
 `;
 
-function ToggleDrawer({ roomsRef, trafficRef }) {
-  const { t } = useTranslation();
-  const [isOpen, setOpen] = useState();
+interface ToggleDrawerProps {
+  roomsRef: any;
+  trafficRef: any;
+}
 
-  const scrollToAnchor = (event, ref) => {
+function ToggleDrawer({ roomsRef, trafficRef }: ToggleDrawerProps) {
+  const { t } = useTranslation();
+  const [isOpen, setOpen] = useState(Boolean);
+
+  const scrollToAnchor = (
+    event: MouseEvent<HTMLAnchorElement>,
+    ref: RefObject<HTMLDivElement>
+  ) => {
     event.preventDefault();
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
@@ -63,7 +75,7 @@ function ToggleDrawer({ roomsRef, trafficRef }) {
       <Drawer open={isOpen}>
         <li>
           <a href="#rooms" onClick={(event) => scrollToAnchor(event, roomsRef)}>
-            <span>{t('homePage.room')}</span>
+            <span>{t("homePage.room")}</span>
           </a>
         </li>
         <li>
@@ -71,12 +83,12 @@ function ToggleDrawer({ roomsRef, trafficRef }) {
             href="#traffic"
             onClick={(event) => scrollToAnchor(event, trafficRef)}
           >
-            <span>{t('homePage.trafficGuide')}</span>
+            <span>{t("homePage.trafficGuide")}</span>
           </a>
         </li>
         <li>
           <StyledNavLink to="/admin/dashboard">
-            <span>{t('homePage.admin')}</span>
+            <span>{t("homePage.admin")}</span>
           </StyledNavLink>
         </li>
       </Drawer>

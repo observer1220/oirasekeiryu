@@ -8,3 +8,21 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+// avif
+declare module "*.avif" {
+  const src: string;
+  export default src;
+}
+
+// png
+declare module "*.png" {
+  const src: string;
+  export default src;
+}
+
+// jpg
+declare module "*.jpg" {
+  const src: string;
+  export default src;
+}
