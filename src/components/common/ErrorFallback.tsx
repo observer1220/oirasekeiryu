@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import GlobalStyles from "../../styles/GlobalStyles";
 import PropTypes from "prop-types";
-import { Button, Heading } from "./";
+import { Button, Heading } from "./index";
 
 const StyledErrorFallback = styled.main`
   height: 100vh;
@@ -38,7 +38,12 @@ ErrorFallback.propTypes = {
   resetErrorBoundary: PropTypes.func,
 };
 
-function ErrorFallback({ error, resetErrorBoundary }) {
+interface ErrorFallbackProps {
+  error: Error;
+  resetErrorBoundary: () => void;
+}
+
+function ErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
   return (
     <>
       <GlobalStyles />
@@ -46,7 +51,7 @@ function ErrorFallback({ error, resetErrorBoundary }) {
         <Box>
           <Heading as="h1">Something went wrong😨</Heading>
           <p>{error.message}</p>
-          <Button size="large" onClick={resetErrorBoundary}>
+          <Button $size="large" onClick={resetErrorBoundary}>
             Try again
           </Button>
         </Box>

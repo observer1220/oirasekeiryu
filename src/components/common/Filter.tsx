@@ -12,7 +12,11 @@ const StyledFilter = styled.div`
   gap: 0.4rem;
 `;
 
-const FilterButton = styled.button`
+interface FilterButtonType {
+  $active?: boolean;
+}
+
+const FilterButton = styled.button<FilterButtonType>`
   background-color: var(--color-grey-0);
   border: none;
 
@@ -46,10 +50,16 @@ Filter.propTypes = {
   ),
 };
 
-function Filter({ filterField, options }) {
+interface FilterProps {
+  filterField: string;
+  options: { label: string; value: string }[];
+}
+
+function Filter({ filterField, options }: FilterProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get(filterField) || options[0].value;
-  function handleClick(value) {
+
+  function handleClick(value: string) {
     setSearchParams({ ...searchParams, [filterField]: value });
   }
 

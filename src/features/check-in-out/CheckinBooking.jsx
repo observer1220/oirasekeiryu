@@ -83,12 +83,12 @@ function CheckinBooking() {
 
       <Box>
         <Checkbox
+          id="breakfast"
           checked={addBreakfast}
           onChange={() => {
             setAddBreakfast((add) => !add);
             setConfirmPaid(false);
           }}
-          id="breakfast"
         >
           Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}?
         </Checkbox>

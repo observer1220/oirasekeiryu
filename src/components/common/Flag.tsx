@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const FlagImage = styled.img`
   max-width: 2rem;
@@ -8,12 +7,12 @@ const FlagImage = styled.img`
   border: 1px solid var(--color-grey-100);
 `;
 
-Flag.propTypes = {
-  src: PropTypes.string,
-  alt: PropTypes.string,
-};
+interface FlagProps {
+  src: string;
+  alt: string;
+}
 
-function Flag({ src, alt }) {
+function Flag({ src, alt }: FlagProps) {
   return <FlagImage src={src} alt={alt} />;
 }
 

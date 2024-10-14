@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { Select } from "./";
+import { Select } from ".";
 import propTypes from "prop-types";
 
 SortBy.propTypes = {

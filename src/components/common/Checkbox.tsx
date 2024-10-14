@@ -34,7 +34,15 @@ Checkbox.propTypes = {
   children: PropTypes.node,
 };
 
-function Checkbox({ checked, onChange, disabled = false, id, children }) {
+interface CheckboxProps {
+  checked: boolean;
+  onChange: () => void;
+  disabled?: boolean;
+  id: string;
+  children: React.ReactNode;
+}
+
+function Checkbox({ id, checked, onChange, disabled, children }: CheckboxProps) {
   return (
     <StyledCheckbox>
       <input

@@ -28,8 +28,19 @@ ConfirmDelete.propTypes = {
   onCloseModal: PropTypes.func,
 };
 
-function ConfirmDelete({ resourceName, disabled, onConfirm, onCloseModal }) {
-  // console.log(onConfirm);
+interface ConfirmDeleteProps {
+  resourceName: string;
+  disabled: boolean;
+  onConfirm: () => void;
+  onCloseModal: () => void;
+}
+
+function ConfirmDelete({
+  resourceName,
+  disabled,
+  onConfirm,
+  onCloseModal,
+}: ConfirmDeleteProps) {
   return (
     <StyledConfirmDelete>
       <Heading as="h3">Delete {resourceName}</Heading>
