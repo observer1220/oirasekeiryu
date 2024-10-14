@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { createPortal } from "react-dom";
 import { useOutsideClick } from "../../hooks";
@@ -30,7 +29,11 @@ const StyledToggle = styled.button`
   }
 `;
 
-const StyledList = styled.ul`
+interface StyledListProps {
+  position: { x: number; y: number };
+}
+
+const StyledList = styled.ul<StyledListProps>`
   position: fixed;
 
   background-color: var(--color-grey-0);
@@ -66,33 +69,32 @@ const StyledButton = styled.button`
   }
 `;
 
-const MenuContext = createContext();
+interface MenuContextType {
+  openId: number;
+  close: () => void;
+  open: (id: number) => void;
+  position: { x: number; y: number };
+  setPosition: (position: { x: number; y: number }) => void;
+}
 
-Menus.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+const MenuContext = createContext<MenuContextType>({
+  openId: 0,
+  close: () => {},
+  open: () => {},
+  position: { x: 0, y: 0 },
+  setPosition: () => {},
+});
 
-Toggle.propTypes = {
-  id: PropTypes.number.isRequired,
-};
+interface MenusProps {
+  children: React.ReactNode;
+}
 
-List.propTypes = {
-  id: PropTypes.number.isRequired,
-  children: PropTypes.node.isRequired,
-};
+function Menus({ children }: MenusProps) {
+  const [openId, setOpenId] = useState(0);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  icon: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-};
-
-function Menus({ children }) {
-  const [openId, setOpenId] = useState("");
-  const [position, setPosition] = useState(null);
-
-  const close = () => setOpenId("");
-  const open = setOpenId;
+  const close = () => setOpenId(0);
+  const open: any = setOpenId;
   return (
     <MenuContext.Provider
       value={{ openId, close, open, position, setPosition }}
@@ -102,10 +104,14 @@ function Menus({ children }) {
   );
 }
 
-function Toggle({ id }) {
+interface ToggleProps {
+  id: number;
+}
+
+function Toggle({ id }: ToggleProps) {
   const { openId, close, open, setPosition } = useContext(MenuContext);
 
-  function handleClick(event) {
+  function handleClick(event: any) {
     event.stopPropagation();
     console.log("click");
 
@@ -116,7 +122,7 @@ function Toggle({ id }) {
       y: rect.y + rect.height + 8,
     });
 
-    openId === "" || openId !== id ? open(id) : close();
+    openId === 0 || openId !== id ? open(id) : close();
   }
 
   return (
@@ -126,11 +132,16 @@ function Toggle({ id }) {
   );
 }
 
-function List({ id, children }) {
+interface ListProps {
+  id: number;
+  children: React.ReactNode;
+}
+
+function List({ id, children }: ListProps) {
   const { openId, position, close } = useContext(MenuContext);
   /* useOutsideClick()的第二個參數為listenCapturing，將其設定為false
      並在handleClick()使用event.stopPropagation()，才能避免Toggle時出現無法開啟的BUG */
-  const ref = useOutsideClick(close, false);
+  const ref: any = useOutsideClick(close, false);
 
   if (openId !== id) return null;
 
@@ -142,7 +153,13 @@ function List({ id, children }) {
   );
 }
 
-function Button({ children, icon, onClick }) {
+interface ButtonProps {
+  children: React.ReactNode;
+  icon: React.ReactNode;
+  onClick?: () => void;
+}
+
+function Button({ children, icon, onClick }: ButtonProps) {
   const { close } = useContext(MenuContext);
   function handleClick() {
     onClick?.();

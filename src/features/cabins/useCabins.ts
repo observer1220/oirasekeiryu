@@ -6,6 +6,17 @@ import {
   deleteCabin as deleteCabinApi,
 } from "../../services/apiCabins";
 
+interface Cabin {
+  created_at: string;
+  description: string;
+  discount: number;
+  id: number;
+  image: string;
+  maxCapacity: number;
+  name: string;
+  regularPrice: number;
+}
+
 function useCabins() {
   const {
     isLoading,
@@ -29,7 +40,7 @@ function useCreateCabin() {
         queryKey: ["cabins"],
       });
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });
@@ -39,14 +50,20 @@ function useCreateCabin() {
 function useEditCabin() {
   const queryClient = useQueryClient();
   const { isLoading: isUpdating, mutate: editCabin } = useMutation({
-    mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
+    mutationFn: ({
+      newCabinData,
+      id,
+    }: {
+      newCabinData: Partial<Cabin>;
+      id: number;
+    }) => createEditCabin(newCabinData, id),
     onSuccess: () => {
       toast.success("Cabin successfully edited");
       queryClient.invalidateQueries({
         queryKey: ["cabins"],
       });
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });
@@ -65,7 +82,7 @@ function useDeleteCabin() {
         queryKey: ["cabins"],
       });
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });

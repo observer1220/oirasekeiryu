@@ -29,7 +29,15 @@ const CabinInfo = styled.div`
   }
 `;
 
-const RoomSection = forwardRef((props, ref) => {
+interface CabinType {
+  id: number;
+  name: string;
+  maxCapacity: number;
+  description: string;
+  image: string;
+}
+
+const RoomSection = forwardRef((props, ref: any) => {
   const { isLoading, cabins } = useCabins();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -39,7 +47,7 @@ const RoomSection = forwardRef((props, ref) => {
       <h1>{t("homePage.room")}</h1>
       {isLoading ? (
         <Spinner />
-      ) : (
+      ) : cabins ? (
         cabins.map((cabin) => (
           <div key={cabin.id}>
             <CabinInfo>
@@ -56,7 +64,7 @@ const RoomSection = forwardRef((props, ref) => {
             </Button>
           </div>
         ))
-      )}
+      ) : null}
     </TextLayer>
   );
 });

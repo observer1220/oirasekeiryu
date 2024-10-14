@@ -20,7 +20,7 @@ const GoogleMap = styled.iframe`
   border: 0;
 `;
 
-const TrafficSection = forwardRef((props, ref) => {
+const TrafficSection = forwardRef((props, ref: any) => {
   const { t } = useTranslation();
   return (
     <TextLayer ref={ref}>

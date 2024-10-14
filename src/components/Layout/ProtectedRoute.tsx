@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../features/authentication/useAuthentication";
 import { Spinner } from "../common";
-import PropTypes from "prop-types";
 
 const FullPage = styled.div`
   height: 100vh;
@@ -13,11 +12,11 @@ const FullPage = styled.div`
   justify-content: center;
 `;
 
-ProtectedRoute.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+interface ProtectedRouteProps {
+  children: React.ReactNode;
+}
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate();
 
   // 1. Load the authenticated user

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { formatCurrency } from "../../utils";
-import BookingDataBox from "../../features/bookings/BookingDataBox";
+import BookingDataBox from "../bookings/BookingDataBox";
 import {
   Row,
   ButtonGroup,
