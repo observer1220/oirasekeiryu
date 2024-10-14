@@ -48,18 +48,18 @@ const variations = {
   `,
 };
 
-const Button = styled.button`
+interface ButtonType {
+  $size: "small" | "medium" | "large";
+  $variation?: "primary" | "secondary" | "danger";
+}
+
+const Button = styled.button<ButtonType>`
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
 
   ${(props) => sizes[props.$size]}
-  ${(props) => variations[props.$variation]}
+  ${(props) => variations[props.$variation || "primary"]}
 `;
-
-Button.defaultProps = {
-  $variation: "primary",
-  $size: "medium",
-};
 
 export default Button;

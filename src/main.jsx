@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { ErrorBoundary } from "react-error-boundary";
-import { ErrorFallback } from "./components/common";
-import "./i18n/configs";
+import { ErrorFallback } from "./components/common/index.js";
+import "./i18n/configs.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
