@@ -1,8 +1,12 @@
 import { createContext, useContext } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const StyledTable = styled.div`
+interface StyledTableProps {
+  columns?: string;
+  children: React.ReactNode;
+}
+
+const StyledTable = styled.div<StyledTableProps>`
   border: 1px solid var(--color-grey-200);
   font-size: 1.4rem;
   background-color: var(--color-grey-0);
@@ -10,7 +14,11 @@ const StyledTable = styled.div`
   overflow: hidden;
 `;
 
-const CommonRow = styled.div`
+interface CommonRowProps {
+  $columns: string;
+}
+
+const CommonRow = styled.div<CommonRowProps>`
   display: grid;
   grid-template-columns: ${(props) => props.$columns};
   column-gap: 2.4rem;
@@ -56,27 +64,20 @@ const Empty = styled.p`
   margin: 2.4rem;
 `;
 
-Table.propTypes = {
-  columns: PropTypes.string,
-  children: PropTypes.node,
-};
+interface TableContextType {
+  columns: string;
+}
 
-Header.propTypes = {
-  children: PropTypes.node,
-};
+const TableContext = createContext<TableContextType>({
+  columns: "",
+});
 
-Row.propTypes = {
-  children: PropTypes.node,
-};
+interface TableProps {
+  columns: string;
+  children: React.ReactNode;
+}
 
-Body.propTypes = {
-  data: PropTypes.array,
-  render: PropTypes.func,
-};
-
-const TableContext = createContext();
-
-function Table({ columns, children }) {
+function Table({ columns, children }: TableProps) {
   return (
     <TableContext.Provider value={{ columns }}>
       <StyledTable role="table">{children}</StyledTable>
@@ -84,7 +85,11 @@ function Table({ columns, children }) {
   );
 }
 
-function Header({ children }) {
+interface HeaderProps {
+  children: React.ReactNode;
+}
+
+function Header({ children }: HeaderProps) {
   const { columns } = useContext(TableContext);
 
   return (
@@ -94,7 +99,11 @@ function Header({ children }) {
   );
 }
 
-function Row({ children }) {
+interface RowProps {
+  children: React.ReactNode;
+}
+
+function Row({ children }: RowProps) {
   const { columns } = useContext(TableContext);
 
   return (
@@ -104,7 +113,12 @@ function Row({ children }) {
   );
 }
 
-function Body({ data, render }) {
+interface BodyProps {
+  data: any[];
+  render: (item: any) => JSX.Element;
+}
+
+function Body({ data, render }: BodyProps) {
   if (!data?.length) return <Empty>No data to show at the moment</Empty>;
   return <StyledBody>{data.map((item) => render(item))}</StyledBody>;
 }

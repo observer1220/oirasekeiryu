@@ -23,10 +23,16 @@ FormRowVertical.propTypes = {
   children: PropTypes.node,
 };
 
-function FormRowVertical({ label, error, children }) {
+interface FormRowVerticalProps {
+  label?: string;
+  error?: string;
+  children: React.ReactNode;
+}
+
+function FormRowVertical({ label, error, children }: FormRowVerticalProps) {
   return (
     <StyledFormRow>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
+      {label && <Label htmlFor={label}>{label}</Label>}
       {children}
       {error && <Error>{error}</Error>}
     </StyledFormRow>

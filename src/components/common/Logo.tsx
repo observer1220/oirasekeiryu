@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useDarkMode } from "../../hooks";
-import PropTypes from "prop-types";
 import DarkLogo from "../../assets/logo-dark.svg";
 import LightLogo from "../../assets/logo-light.svg";
 
@@ -12,11 +11,12 @@ const Img = styled.img`
   height: ${(props) => props.height};
   width: auto;
 `;
-Logo.propTypes = {
-  height: PropTypes.string,
-};
 
-function Logo({ height }) {
+interface LogoProps {
+  height: string;
+}
+
+function Logo({ height }: LogoProps) {
   const { isDarkMode } = useDarkMode();
   const src = isDarkMode ? DarkLogo : LightLogo;
 

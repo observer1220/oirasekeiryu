@@ -1,19 +1,8 @@
 import { cloneElement, createContext, useContext, useState } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { HiXMark } from "react-icons/hi2";
 import { createPortal } from "react-dom";
 import { useOutsideClick } from "../../hooks";
-
-Modal.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClose: PropTypes.func,
-};
-
-Window.propTypes = {
-  children: PropTypes.node.isRequired,
-  name: PropTypes.string.isRequired,
-};
 
 const Overlay = styled.div`
   position: fixed;
@@ -57,16 +46,27 @@ const Button = styled.button`
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    /* Sometimes we need both */
-    /* fill: var(--color-grey-500);
-    stroke: var(--color-grey-500); */
     color: var(--color-grey-500);
   }
 `;
 
-const ModalContext = createContext();
+interface ModalContextType {
+  openName: string;
+  close: () => void;
+  open: (name: string) => void;
+}
 
-function Modal({ children }) {
+const ModalContext = createContext<ModalContextType>({
+  openName: "",
+  close: () => {},
+  open: () => {},
+});
+
+interface ModalProps {
+  children: React.ReactNode;
+}
+
+function Modal({ children }: ModalProps) {
   const [openName, setOpenName] = useState("");
 
   const close = () => setOpenName("");
@@ -79,7 +79,12 @@ function Modal({ children }) {
   );
 }
 
-function Open({ children, opens: opensWindowName }) {
+interface OpenProps {
+  children: React.ReactElement;
+  opens: string;
+}
+
+function Open({ children, opens: opensWindowName }: OpenProps) {
   const { open } = useContext(ModalContext);
 
   return cloneElement(children, {
@@ -87,9 +92,14 @@ function Open({ children, opens: opensWindowName }) {
   });
 }
 
-function Window({ children, name }) {
+interface WindowProps {
+  children: React.ReactElement;
+  name: string;
+}
+
+function Window({ children, name }: WindowProps) {
   const { openName, close } = useContext(ModalContext);
-  const ref = useOutsideClick(close);
+  const ref: any = useOutsideClick(close);
 
   if (name !== openName) return null;
 

@@ -1,11 +1,4 @@
 import { styled } from "styled-components";
-import PropTypes from "prop-types";
-
-FormRow.propTypes = {
-  label: PropTypes.string,
-  error: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
 
 const StyledFormRow = styled.div`
   display: grid;
@@ -47,10 +40,16 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function FormRow({ label, error, children }) {
+interface FormRowProps {
+  label?: string;
+  error?: string;
+  children: React.ReactNode;
+}
+
+function FormRow({ label, error, children }: FormRowProps) {
   return (
     <StyledFormRow>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
+      {label && <Label htmlFor={label}>{label}</Label>}
       {children}
       {error && <Error>{error}</Error>}
     </StyledFormRow>

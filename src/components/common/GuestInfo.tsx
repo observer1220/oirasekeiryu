@@ -14,13 +14,18 @@ const Welcome = styled.span`
   font-size: 14px;
 `;
 
+interface userType {
+  fullName: string;
+}
+
 function GuestInfo() {
-  const user = JSON.parse(localStorage.getItem("guest"));
+  const user: userType = JSON.parse(localStorage.getItem("guest") || "{}");
   const { t } = useTranslation();
   const logoutBtn = () => {
     localStorage.removeItem("guest");
     window.location.reload();
   };
+
   return (
     <>
       <GuestInfoContainer>

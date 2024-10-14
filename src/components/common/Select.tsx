@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const StyledSelect = styled.select`
+interface StyledSelectProps {
+  $type?: "white" | "grey";
+}
+
+const StyledSelect = styled.select<StyledSelectProps>`
   font-size: 1.4rem;
   padding: 0.8rem 1.2rem;
   border: 1px solid
     ${(props) =>
-      props.type === "white"
+      props.$type === "white"
         ? "var(--color-grey-100)"
         : "var(--color-grey-300)"};
   border-radius: var(--border-radius-sm);
@@ -15,19 +18,13 @@ const StyledSelect = styled.select`
   box-shadow: var(--shadow-sm);
 `;
 
-Select.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-    })
-  ),
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-};
+interface SelectProps {
+  options: { label: string; value: string | number }[];
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
 
-function Select({ options, value, onChange, ...props }) {
+function Select({ options, value, onChange, ...props }: SelectProps) {
   return (
     <StyledSelect value={value} onChange={onChange} {...props}>
       {options?.map((option, idx) => (
