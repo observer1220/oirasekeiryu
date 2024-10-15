@@ -26,7 +26,7 @@ const StyledSalesChart = styled(DashboardBox)`
 
 interface SalesChartProps {
   bookings: {
-    id: number;
+    id?: number;
     totalPrice: number;
     extrasPrice: number;
     created_at: string;

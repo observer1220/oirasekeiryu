@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface TagProps {
-  type: "primary" | "secondary" | "danger";
+  type: "primary" | "secondary" | "danger" | any;
 }
 
 const Tag = styled.span<TagProps>`

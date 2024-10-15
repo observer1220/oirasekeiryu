@@ -9,7 +9,7 @@ import { formatCurrency } from "../../utils";
 
 interface StatsProps {
   bookings: {
-    id: number;
+    id?: number;
     totalPrice: number;
   }[];
   confirmedStays: {

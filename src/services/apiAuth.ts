@@ -1,6 +1,12 @@
 import supabase, { supabaseUrl } from "./supabase";
 
-async function signup({ fullName, email, password }) {
+interface SignupData {
+  fullName: string;
+  email: string;
+  password: string;
+}
+
+async function signup({ fullName, email, password }: SignupData) {
   // toString(36)，包含數字 0-9 和字母 a-z，前幾個字符通常是 0. 開頭，因此從第 7 個字符開始擷取
   const robotID = Math.random().toString(36).substring(7);
   const { data, error } = await supabase.auth.signUp({
@@ -19,7 +25,12 @@ async function signup({ fullName, email, password }) {
   return data;
 }
 
-async function login({ email, password }) {
+interface LoginData {
+  email: string;
+  password: string;
+}
+
+async function login({ email, password }: LoginData) {
   let { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -46,9 +57,20 @@ async function logout() {
   if (error) throw new Error(error.message);
 }
 
-async function updateCurrentUser({ password, fullName, avatar }) {
+interface UpdateCurrentUserData {
+  password?: string;
+  fullName?: string;
+  avatar?: File;
+}
+
+async function updateCurrentUser({
+  password,
+  fullName,
+  avatar,
+}: UpdateCurrentUserData) {
   // 1. Update password OR fullName
   let updateData;
+  if (!updateData) return null;
   if (password) updateData = { password };
   if (fullName) updateData = { data: { fullName } };
   const { data, error } = await supabase.auth.updateUser(updateData);

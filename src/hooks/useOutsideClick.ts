@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 
-function useOutsideClick(handler, listenCapturing = true) {
-  const ref = useRef();
+function useOutsideClick(handler: any, listenCapturing = true) {
+  const ref = useRef<HTMLElement>();
 
   useEffect(() => {
-    function handleClick(event) {
+    function handleClick(event: any) {
       // console.log("ref.current", ref.current);
       // console.log("event.target", event.target);
 

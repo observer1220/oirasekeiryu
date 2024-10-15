@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { format, isToday } from "date-fns";
 import { Table, Tag, Modal, ConfirmDelete } from "../../components/common";
 import { Menus } from "../../components/Layout";
@@ -13,6 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useCheckout } from "../check-in-out/useCheckin";
 import { useDeleteBooking } from "./useBookings";
+import { STATUS_TAGNAME } from "../../utils/constants";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -41,25 +41,18 @@ const Amount = styled.div`
   font-weight: 500;
 `;
 
-BookingRow.propTypes = {
-  booking: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    created_at: PropTypes.string.isRequired,
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
-    numNights: PropTypes.number.isRequired,
-    numGuests: PropTypes.number.isRequired,
-    totalPrice: PropTypes.number.isRequired,
-    status: PropTypes.string.isRequired,
-    guests: PropTypes.shape({
-      fullName: PropTypes.string,
-      email: PropTypes.string,
-    }),
-    cabins: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }),
-  }),
-};
+interface BookingRowProps {
+  booking: {
+    id: number;
+    startDate: string;
+    endDate: string;
+    numNights: number;
+    totalPrice: number;
+    status: "unconfirmed" | "checked-in" | "checked-out";
+    guests: { fullName: string; email: string };
+    cabins: { name: string };
+  };
+}
 
 function BookingRow({
   booking: {
@@ -74,13 +67,8 @@ function BookingRow({
     guests: { fullName: guestName, email },
     cabins: { name: cabin_name },
   },
-}) {
+}: BookingRowProps) {
   const navigate = useNavigate();
-  const statusToTagName = {
-    unconfirmed: "blue",
-    "checked-in": "green",
-    "checked-out": "silver",
-  };
 
   const { isCheckingOut, checkout } = useCheckout();
   const { isDeleting, deleteBooking } = useDeleteBooking();
@@ -107,7 +95,7 @@ function BookingRow({
         </span>
       </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+      <Tag type={STATUS_TAGNAME[status]}>{status.replace("-", " ")}</Tag>
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
 
@@ -133,7 +121,8 @@ function BookingRow({
             {status === "checked-in" && (
               <Menus.Button
                 icon={<HiArrowUpOnSquare />}
-                onClick={() => checkout(bookingId)}
+                // onClick={() => checkout(bookingId)}
+                onClick={() => checkout()}
                 disabled={isCheckingOut}
               >
                 Check out

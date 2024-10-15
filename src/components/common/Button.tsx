@@ -52,6 +52,7 @@ interface ButtonType {
   $size?: "small" | "medium" | "large";
   $variation?: "primary" | "secondary" | "danger";
   onClick?: () => void;
+  icon?: React.ReactNode;
 }
 
 const Button = styled.button<ButtonType>`

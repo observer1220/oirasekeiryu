@@ -16,7 +16,7 @@ function UpdateSettingsForm() {
 
   if (isLoading) return <Spinner />;
 
-  const handleUpdate = (event, fieldName) => {
+  const handleUpdate = (event: any, fieldName: string) => {
     const { value } = event.target;
     if (!value) return;
     updateSetting({ [fieldName]: value });

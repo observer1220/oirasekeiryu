@@ -1,9 +1,13 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { getBooking, getBookings, deleteBooking as deleteBookingApi } from "../../services/apiBookings";
+import {
+  getBooking,
+  getBookings,
+  deleteBooking as deleteBookingApi,
+} from "../../services/apiBookings";
 
-function useBooking () {
+function useBooking() {
   const { bookingId } = useParams();
 
   // QUERY
@@ -18,28 +22,27 @@ function useBooking () {
     retry: false,
   });
 
-  return { isLoading, booking, error }
+  return { isLoading, booking, error };
 }
 
-function useBookings () {
+function useBookings() {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
   // FILTER
   const filterValue = searchParams.get("status");
-  const filter = !filterValue || filterValue === 'all'
-    ? null
-    : { field: 'status', value: filterValue, method: 'eq' };
+  const filter =
+    !filterValue || filterValue === "all"
+      ? null
+      : { field: "status", value: filterValue, method: "eq" };
 
   // SORT
-  const sortByRaw = searchParams.get("sortBy") || 'startDate-desc';
-  const [field, direction] = sortByRaw.split('-')
-  const sortBy = { field, direction, method: 'order' };
+  const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
+  const [field, direction] = sortByRaw.split("-");
+  const sortBy = { field, direction, method: "order" };
 
   // PAGINATION
-  const page = !searchParams.get("page")
-    ? 1
-    : Number(searchParams.get("page"));
+  const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
   // QUERY
   const {
@@ -53,24 +56,25 @@ function useBookings () {
   });
 
   // PRE-FETCHING：只有在後面還有資料時，才會預先載入下一頁的資料
-  const pageCount = Math.ceil(count / 10);
+  // count 無值時，預設為 0
+  const pageCount = Math.ceil(count ?? 0 / 10);
 
   if (page < pageCount)
     queryClient.prefetchQuery({
       queryKey: ["bookings", filter, sortBy, page + 1],
       queryFn: () => getBookings({ filter, sortBy, page: page + 1 }),
-    })
+    });
 
   if (page > 1)
     queryClient.prefetchQuery({
       queryKey: ["bookings", filter, sortBy, page - 1],
       queryFn: () => getBookings({ filter, sortBy, page: page - 1 }),
-    })
+    });
 
-  return { isLoading, bookings, error, count }
+  return { isLoading, bookings, error, count };
 }
 
-function useDeleteBooking () {
+function useDeleteBooking() {
   const queryClient = useQueryClient();
 
   const { isLoading: isDeleting, mutate: deleteBooking } = useMutation({
@@ -81,12 +85,12 @@ function useDeleteBooking () {
         queryKey: ["bookings"],
       });
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
-    }
+    },
   });
 
-  return { isDeleting, deleteBooking }
+  return { isDeleting, deleteBooking };
 }
 
-export { useBooking, useBookings, useDeleteBooking }
+export { useBooking, useBookings, useDeleteBooking };
