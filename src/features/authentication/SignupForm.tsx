@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { Button, Form, FormRow, Input, Spinner } from "../../components/common";
 import { useSignup } from "./useAuthentication";
 
@@ -7,7 +7,7 @@ function SignupForm() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
-  function onSubmit({ fullName, email, password }) {
+  function onSubmit({ fullName, email, password }: FieldValues) {
     signup(
       { fullName, email, password },
       {
@@ -78,7 +78,7 @@ function SignupForm() {
       <FormRow>
         {/* type is an HTML attribute! */}
         <Button
-          $$variation="secondary"
+          $variation="secondary"
           type="reset"
           disabled={isLoading}
           onClick={reset}

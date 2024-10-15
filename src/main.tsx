@@ -7,11 +7,11 @@ import "./i18n/configs.ts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    {/* <ErrorBoundary
+    <ErrorBoundary
       FallbackComponent={ErrorFallback}
       onReset={() => window.location.replace("/")}
-    > */}
-    <App />
-    {/* </ErrorBoundary> */}
+    >
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>
 );

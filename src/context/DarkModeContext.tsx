@@ -1,26 +1,22 @@
-import {
-  createContext,
-  useEffect,
-  useMemo,
-  useCallback,
-} from "react";
+import { createContext, useEffect, useMemo, useCallback } from "react";
 import { useLocalStorageState } from "../hooks";
-import PropTypes from "prop-types";
 
 // 創建 Context
-const DarkModeContext = createContext();
+const DarkModeContext = createContext({
+  isDarkMode: false,
+  toggleDarkMode: () => {},
+});
 
-// 定義 DarkModeProvider 組件
-DarkModeProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+interface DarkModeProviderProps {
+  children: React.ReactNode;
+}
 
-function DarkModeProvider({ children }) {
+function DarkModeProvider({ children }: DarkModeProviderProps) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState("isDarkMode", false);
 
   // 使用 useCallback 避免重新渲染時重新創建函數
   const toggleDarkMode = useCallback(() => {
-    setIsDarkMode((prevMode) => !prevMode);
+    setIsDarkMode((prevMode: boolean) => !prevMode);
   }, [setIsDarkMode]);
 
   useEffect(() => {

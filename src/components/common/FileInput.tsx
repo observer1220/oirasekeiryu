@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const FileInput = styled.input.attrs({ type: "file" })`
+interface FileInputProps {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const FileInput = styled.input.attrs({ type: "file" })<FileInputProps>`
   font-size: 1.4rem;
   border-radius: var(--border-radius-sm);
 

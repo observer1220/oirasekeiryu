@@ -10,6 +10,11 @@ import {
 } from "../../services/apiAuth";
 import { reserve as reserveAPI } from "../../services/apiGuest";
 
+interface loginProps {
+  email: string;
+  password: string;
+}
+
 function useLogin() {
   // 使用 useQueryClient 來獲取 queryClient 實例
   const queryClient = useQueryClient();
@@ -17,13 +22,14 @@ function useLogin() {
 
   // 使用 useMutation 來創建 login 函數
   const { mutate: login, isLoading } = useMutation({
-    mutationFn: ({ email, password }) => loginApi({ email, password }),
+    mutationFn: ({ email, password }: loginProps) =>
+      loginApi({ email, password }),
     onSuccess: (user) => {
       queryClient.setQueryData(["user"], user.user);
       navigate("/admin/dashboard", { replace: true });
       toast.success("Login success");
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       console.log(error.message);
       toast.error("Provided email or password is incorrect");
     },
@@ -51,7 +57,7 @@ function useReserve() {
     onSuccess: () => {
       toast.success("Reservation successful!");
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });
@@ -67,7 +73,7 @@ function useSignup() {
         "Account created successfully! Please verify the new account from the user's email address."
       );
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });
@@ -80,12 +86,12 @@ function useUpdateUser() {
 
   const { isLoading: isUpdating, mutate: updateUser } = useMutation({
     mutationFn: updateCurrentUser,
-    onSuccess: ({ user }) => {
+    onSuccess: ({ user }: any) => {
       toast.success("User account successfully updated");
       // Update the user data in the cache
       queryClient.setQueryData(["user"], user);
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });

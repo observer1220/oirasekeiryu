@@ -19,7 +19,7 @@ function LoginForm() {
   const [nationalID, setNationalID] = useState("");
   const { isLoading, login } = useLogin();
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!email || !nationalID) return;
     login(
@@ -57,7 +57,7 @@ function LoginForm() {
           />
         </FormRowVertical>
         <FormRowVertical>
-          <Button size="large" disabled={isLoading}>
+          <Button $size="large" disabled={isLoading}>
             {!isLoading ? "登入" : <SpinnerMini />}
           </Button>
         </FormRowVertical>

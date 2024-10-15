@@ -14,7 +14,7 @@ function useSignup() {
         "Account created successfully! Please verify the new account from the user's email address."
       );
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message);
     },
   });
@@ -22,12 +22,18 @@ function useSignup() {
   return { isLoading, signup };
 }
 
+interface LoginData {
+  email: string;
+  nationalID: string;
+}
+
 function useLogin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { mutate: login, isLoading } = useMutation({
-    mutationFn: ({ email, nationalID }) => loginApi({ email, nationalID }),
+    mutationFn: ({ email, nationalID }: LoginData) =>
+      loginApi({ email, nationalID }),
     onSuccess: (user) => {
       queryClient.setQueryData(["guest"], user[0]);
       console.log(user);
@@ -35,7 +41,7 @@ function useLogin() {
       navigate("/", { replace: true });
       toast.success("Login success");
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       console.log(error.message);
       toast.error("Provided email or national ID is incorrect");
     },

@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { Button, Form, FormRow, Input } from "../../components/common";
 import { useUpdateUser } from "./useAuthentication";
 
@@ -8,8 +8,15 @@ function UpdatePasswordForm() {
 
   const { updateUser, isUpdating } = useUpdateUser();
 
-  function onSubmit({ password }) {
-    updateUser({ password }, { onSuccess: reset });
+  function onSubmit({ password }: FieldValues) {
+    updateUser(
+      { password },
+      {
+        onSuccess: () => {
+          reset;
+        },
+      }
+    );
   }
 
   return (

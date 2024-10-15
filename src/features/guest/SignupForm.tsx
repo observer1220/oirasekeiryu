@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import {
   Button,
   Form,
@@ -23,7 +23,7 @@ function SignupForm() {
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
-  function onSubmit({ fullName, email, nationalID }) {
+  function onSubmit({ fullName, email, nationalID }: FieldValues) {
     signup(
       { fullName, email, nationalID },
       {

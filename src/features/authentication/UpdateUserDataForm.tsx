@@ -16,14 +16,14 @@ function UpdateUserDataForm() {
       email,
       user_metadata: { fullName: currentFullName },
     },
-  } = useUser();
+  }: any = useUser();
 
   const { isUpdating, updateUser } = useUpdateUser();
 
   const [fullName, setFullName] = useState(currentFullName);
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState<any>();
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!fullName) {
       toast.error("Full name field cannot be empty!");
@@ -34,7 +34,8 @@ function UpdateUserDataForm() {
       {
         onSuccess: () => {
           setAvatar(null);
-          event.target.reset();
+          const form = event.target as HTMLFormElement;
+          form.reset(); // Reset the form
         },
       }
     );
@@ -63,7 +64,12 @@ function UpdateUserDataForm() {
         <FileInput
           id="avatar"
           accept="image/*"
-          onChange={(e) => setAvatar(e.target.files[0])}
+          onChange={(event) => {
+            const files: any = event.target.files;
+            if (files) {
+              setAvatar(files[0]);
+            }
+          }}
           disabled={isUpdating}
         />
       </FormRow>

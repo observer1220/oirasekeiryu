@@ -1,25 +1,26 @@
 import { createContext, useCallback, useEffect, useMemo } from "react";
 import { useLocalStorageState } from "../hooks";
 import { changeLanguage } from "i18next";
-import PropTypes from "prop-types";
 
-const LanguageContext = createContext();
+const LanguageContext = createContext({
+  isMandarin: false,
+  switchLanguage: () => {},
+});
 
-LanguageSwitchProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+interface LanguageSwitchProviderProps {
+  children: React.ReactNode;
+}
 
-function LanguageSwitchProvider({ children }) {
+function LanguageSwitchProvider({ children }: LanguageSwitchProviderProps) {
   const [isMandarin, setisMandarin] = useLocalStorageState("isMandarin", false);
 
   const switchLanguage = useCallback(() => {
-    setisMandarin((prev) => !prev);
+    setisMandarin((prev: boolean) => !prev);
   }, [setisMandarin]);
 
   useEffect(() => {
     changeLanguage(isMandarin ? "zh" : "en");
   }, [isMandarin]);
-
 
   const value = useMemo(
     () => ({
