@@ -39,6 +39,8 @@ const NoActivity = styled.p`
 function TodayActivity() {
   const { isLoading, activities } = useTodayActivity();
 
+  if (!activities) return null;
+
   return (
     <StyledToday>
       <Row type="horizontal">

@@ -1,23 +1,10 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { formatCurrency } from "../../utils";
 import CreateCabinForm from "./CreateCabinForm";
 import { useCreateCabin, useDeleteCabin } from "./useCabins";
 import { HiSquare2Stack, HiPencil, HiTrash } from "react-icons/hi2";
 import { Table, Modal, ConfirmDelete } from "../../components/common";
 import { Menus } from "../../components/Layout";
-
-CabinRow.propTypes = {
-  cabin: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    maxCapacity: PropTypes.number.isRequired,
-    regularPrice: PropTypes.number.isRequired,
-    discount: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired || null,
-    description: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 const Img = styled.img`
   display: block;
@@ -46,7 +33,19 @@ const Discount = styled.div`
   color: var(--color-green-700);
 `;
 
-function CabinRow({ cabin }) {
+interface CabinRowProps {
+  cabin: {
+    id: number;
+    name: string;
+    maxCapacity: number;
+    regularPrice: number;
+    discount: number;
+    image: string;
+    description: string;
+  };
+}
+
+function CabinRow({ cabin }: CabinRowProps) {
   const {
     id: cabinId,
     name,

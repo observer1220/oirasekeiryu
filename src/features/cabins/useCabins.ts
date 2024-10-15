@@ -22,10 +22,11 @@ function useCabins() {
     isLoading,
     data: cabins,
     error,
-  } = useQuery({
+  } = useQuery<Cabin[]>({
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
+
   return { isLoading, cabins, error };
 }
 

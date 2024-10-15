@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import PropTypes from "prop-types";
 import {
   Input,
   Form,
@@ -10,22 +9,34 @@ import {
 } from "../../components/common";
 import { useCreateCabin, useEditCabin } from "./useCabins";
 
-CreateCabinForm.propTypes = {
-  cabinToEdit: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    maxCapacity: PropTypes.number.isRequired,
-    regularPrice: PropTypes.number.isRequired,
-    discount: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired || null,
-  }),
-  onCloseModal: PropTypes.func,
-};
+interface CreateCabinFormProps {
+  cabinToEdit?: {
+    id: number;
+    name: string;
+    maxCapacity: number;
+    regularPrice: number;
+    discount: number;
+    image: string;
+    description: string;
+  };
+  onCloseModal?: () => void;
+}
 
-function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
+function CreateCabinForm({
+  cabinToEdit = {
+    id: 0,
+    name: "",
+    maxCapacity: 0,
+    regularPrice: 0,
+    discount: 0,
+    image: "",
+    description: "",
+  },
+  onCloseModal,
+}: CreateCabinFormProps) {
   const { isCreating, createCabin } = useCreateCabin();
-  const { isEditing, editCabin } = useEditCabin();
-  const isWorking = isCreating || isEditing;
+  const { isUpdating, editCabin } = useEditCabin();
+  const isWorking = isCreating || isUpdating;
 
   const { id: edit_id, ...edit_values } = cabinToEdit;
   const isEditSession = Boolean(edit_id);
@@ -35,7 +46,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   });
   const { errors } = formState;
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     // console.log(data);
     const image = typeof data.image === "string" ? data.image : data.image[0];
 
@@ -62,7 +73,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
     }
   };
 
-  const onError = (errors) => {
+  const onError = (errors: any) => {
     console.log(errors);
   };
 
@@ -131,7 +142,6 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 
       <FormRow label="Description" error={errors?.description?.message}>
         <Textarea
-          type="number"
           id="description"
           disabled={isWorking}
           defaultValue=""

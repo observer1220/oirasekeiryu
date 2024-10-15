@@ -5,17 +5,22 @@ import {
   HiOutlineChartBar,
 } from "react-icons/hi2";
 import Stat from "./Stat";
-import PropTypes from "prop-types";
 import { formatCurrency } from "../../utils";
 
-Stats.propTypes = {
-  bookings: PropTypes.array,
-  confirmedStays: PropTypes.array,
-  numDays: PropTypes.number,
-  cabinCount: PropTypes.number,
-};
+interface StatsProps {
+  bookings: {
+    id: number;
+    totalPrice: number;
+  }[];
+  confirmedStays: {
+    id: number;
+    numNights: number;
+  }[];
+  numDays: number;
+  cabinCount: number;
+}
 
-function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
+function Stats({ bookings, confirmedStays, numDays, cabinCount }: StatsProps) {
   const numBookings = bookings.length;
   const sales = bookings.reduce((acc, cur) => {
     return acc + cur.totalPrice;

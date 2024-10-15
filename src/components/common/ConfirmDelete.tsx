@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Button from "./Button";
 import Heading from "./Heading";
-import PropTypes from "prop-types";
 
 const StyledConfirmDelete = styled.div`
   width: 40rem;
@@ -21,18 +20,11 @@ const StyledConfirmDelete = styled.div`
   }
 `;
 
-ConfirmDelete.propTypes = {
-  resourceName: PropTypes.string,
-  disabled: PropTypes.bool,
-  onConfirm: PropTypes.func,
-  onCloseModal: PropTypes.func,
-};
-
 interface ConfirmDeleteProps {
   resourceName: string;
   disabled: boolean;
   onConfirm: () => void;
-  onCloseModal: () => void;
+  onCloseModal?: () => void;
 }
 
 function ConfirmDelete({

@@ -51,6 +51,7 @@ const variations = {
 interface ButtonType {
   $size?: "small" | "medium" | "large";
   $variation?: "primary" | "secondary" | "danger";
+  onClick?: () => void;
 }
 
 const Button = styled.button<ButtonType>`

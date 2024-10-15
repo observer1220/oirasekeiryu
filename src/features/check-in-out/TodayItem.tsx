@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { Tag, Flag, Button } from "../../components/common";
 import CheckoutButton from "./CheckoutButton";
 
@@ -23,29 +22,33 @@ const Guest = styled.div`
   font-weight: 500;
 `;
 
-TodayItem.propTypes = {
-  activity: PropTypes.shape({
-    id: PropTypes.number,
-    status: PropTypes.string,
-    guests: PropTypes.object,
-    numNight: PropTypes.number,
-  }),
-};
+interface TodayItemProps {
+  activity: {
+    id: number;
+    status: string;
+    guests: {
+      countryFlag: string;
+      fullName: string;
+      country: string;
+    };
+    numNight: number;
+  };
+}
 
-function TodayItem({ activity }) {
+function TodayItem({ activity }: TodayItemProps) {
   const { id, status, guests, numNight } = activity;
 
   return (
     <StyledTodayItem>
-      {status === "unconfirmed" && <Tag type="green">Arriving</Tag>}
-      {status === "checked-in" && <Tag type="blue">Departing</Tag>}
+      {status === "unconfirmed" && <Tag type="primary">Arriving</Tag>}
+      {status === "checked-in" && <Tag type="primary">Departing</Tag>}
       <Flag src={guests?.countryFlag} alt={`Flag of ${guests?.country}`} />
       <Guest>{guests?.fullName}</Guest>
       <div>{numNight}</div>
 
       {status === "unconfirmed" && (
         <Button
-          size="small"
+          $size="small"
           $variation="primary"
           as={Link}
           to={`/checkin/${id}`}

@@ -24,12 +24,17 @@ const StyledSalesChart = styled(DashboardBox)`
   }
 `;
 
-SalesChart.propTypes = {
-  bookings: PropTypes.array,
-  numDays: PropTypes.number,
-};
+interface SalesChartProps {
+  bookings: {
+    id: number;
+    totalPrice: number;
+    extrasPrice: number;
+    created_at: string;
+  }[];
+  numDays: number;
+}
 
-function SalesChart({ bookings, numDays }) {
+function SalesChart({ bookings, numDays }: SalesChartProps) {
   const { isDarkMode } = useDarkMode();
 
   const allDates = eachDayOfInterval({
@@ -51,23 +56,27 @@ function SalesChart({ bookings, numDays }) {
 
   const colors = isDarkMode
     ? {
-      totalSales: { stroke: "#4f46e5", fill: "#4f46e5" },
-      extrasSales: { stroke: "#22c55e", fill: "#22c55e" },
-      text: "#e5e7eb",
-      background: "#18212f",
-    }
+        totalSales: { stroke: "#4f46e5", fill: "#4f46e5" },
+        extrasSales: { stroke: "#22c55e", fill: "#22c55e" },
+        text: "#e5e7eb",
+        background: "#18212f",
+      }
     : {
-      totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },
-      extrasSales: { stroke: "#16a34a", fill: "#dcfce7" },
-      text: "#374151",
-      background: "#fff",
-    };
+        totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },
+        extrasSales: { stroke: "#16a34a", fill: "#dcfce7" },
+        text: "#374151",
+        background: "#fff",
+      };
+
+  // Ensure allDates array has valid Date objects before formatting
+  const startDate = allDates[0];
+  const endDate = allDates[allDates.length - 1];
 
   return (
     <StyledSalesChart>
       <Heading as="h2">
-        Sales from {format(allDates.at(0), "MMM dd yyyy")} &mdash;{" "}
-        {format(allDates.at(-1), "MMM dd yyyy")}
+        Sales from {startDate ? format(startDate, "MMM dd yyyy") : ""} &mdash;{" "}
+        {endDate ? format(endDate, "MMM dd yyyy") : ""}
       </Heading>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data}>
