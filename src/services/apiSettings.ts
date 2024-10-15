@@ -13,7 +13,7 @@ async function getSettings() {
 }
 
 // We expect a newSetting object that looks like {setting: newValue}
-async function updateSetting(newSetting) {
+async function updateSetting(newSetting: any) {
   // There is only ONE row of settings in the database, so we can use eq("id", 1)
   const { data, error } = await supabase
     .from("settings")

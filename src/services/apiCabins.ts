@@ -10,17 +10,31 @@ async function getCabins() {
   return data;
 }
 
-async function createEditCabin(newCabin, id) {
-  // 檢查是否有圖片路徑，如果有，則不需上傳圖片
-  const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
+interface Cabin {
+  created_at?: string | undefined;
+  description?: string | undefined;
+  discount?: number | undefined;
+  id?: number | undefined;
+  image?: any;
+  maxCapacity?: number | undefined;
+  name?: string | undefined;
+  regularPrice?: number | undefined;
+}
 
-  const imageName = `${Math.random()}-${newCabin.image.name}`.replace("/", "");
+async function createEditCabin(newCabin?: Cabin, id?: number) {
+  // 檢查是否有圖片路徑，如果有，則不需上傳圖片
+  const hasImagePath = newCabin?.image?.startsWith?.(supabaseUrl);
+
+  const imageName = `${Math.random()}-${newCabin?.image?.name ?? ""}`.replace(
+    "/",
+    ""
+  );
   const imagePath = hasImagePath
-    ? newCabin.image
+    ? newCabin?.image
     : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
 
   // 1. Create/Edit cabin
-  let query = supabase.from("cabins");
+  let query: any = supabase.from("cabins");
 
   // A) Create
   if (!id) {
@@ -48,7 +62,7 @@ async function createEditCabin(newCabin, id) {
 
   const { error: storageError } = await supabase.storage
     .from("cabin-images")
-    .upload(imageName, newCabin.image);
+    .upload(imageName, newCabin?.image);
 
   // 3. 刪除舊圖片
   if (storageError) {
@@ -60,7 +74,7 @@ async function createEditCabin(newCabin, id) {
   return data;
 }
 
-async function deleteCabin(id) {
+async function deleteCabin(id: number) {
   const { data, error } = await supabase.from("cabins").delete().eq("id", id);
 
   if (error) {

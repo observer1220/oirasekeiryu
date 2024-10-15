@@ -1,3 +1,4 @@
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 import { styled } from "styled-components";
 
 const StyledFormRow = styled.div`
@@ -42,7 +43,7 @@ const Error = styled.span`
 
 interface FormRowProps {
   label?: string;
-  error?: string;
+  error?: any;
   children: React.ReactNode;
 }
 

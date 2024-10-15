@@ -30,7 +30,7 @@ function useCheckin() {
       bookingId,
       breakfast,
     }: {
-      bookingId: string;
+      bookingId: number;
       breakfast?: { [key: string]: any };
     }) =>
       updateBooking(bookingId, {
@@ -54,7 +54,7 @@ function useCheckout() {
   const queryClient = useQueryClient();
 
   const { isLoading: isCheckingOut, mutate: checkout } = useMutation({
-    mutationFn: (bookingId) =>
+    mutationFn: (bookingId: any) =>
       updateBooking(bookingId, {
         status: "checked-out",
       }),

@@ -1,6 +1,12 @@
 import supabase from "./supabase";
 
-async function signup({ fullName, email, nationalID }) {
+interface SignupData {
+  fullName: string;
+  email: string;
+  nationalID: string;
+}
+
+async function signup({ fullName, email, nationalID }: SignupData) {
   const { data, error } = await supabase
     .from("guests")
     .insert([{ fullName, email, nationalID }]);
@@ -10,7 +16,12 @@ async function signup({ fullName, email, nationalID }) {
   return data;
 }
 
-async function login({ email, nationalID }) {
+interface LoginData {
+  email: string;
+  nationalID: string;
+}
+
+async function login({ email, nationalID }: LoginData) {
   const { data, error } = await supabase
     .from("guests")
     .select()
@@ -22,14 +33,29 @@ async function login({ email, nationalID }) {
   return data;
 }
 
-async function reserve({ guestName, startDate, endDate, numGuests, cabinId }) {
+interface ReserveData {
+  guestName: string;
+  startDate: string;
+  endDate: string;
+  numGuests: number;
+  cabinId: number;
+}
+
+async function reserve({
+  guestName,
+  startDate,
+  endDate,
+  numGuests,
+  cabinId,
+}: ReserveData) {
   console.log({ startDate, endDate, numGuests, cabinId });
   const numNights =
-    (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
+    (Number(new Date(endDate)) - Number(new Date(startDate))) /
+    (1000 * 60 * 60 * 24);
 
   const { data: cabinData } = await supabase.from("cabins").select("*");
 
-  const cabinDataById = cabinData.find((cabin) => cabin.id === cabinId);
+  const cabinDataById = cabinData?.find((cabin) => cabin.id === cabinId);
   const cabinPrice =
     cabinDataById.discount === 0
       ? cabinDataById.regularPrice
@@ -40,6 +66,8 @@ async function reserve({ guestName, startDate, endDate, numGuests, cabinId }) {
     .select("id")
     .eq("fullName", guestName);
   // console.log('guestData', guestData[0].id);
+
+  if (!guestData) return;
 
   const { data, error } = await supabase.from("bookings").insert([
     {

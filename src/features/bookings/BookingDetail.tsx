@@ -62,8 +62,7 @@ function BookingDetail() {
         {status === "checked-in" && (
           <Button
             icon={<HiArrowUpOnSquare />}
-            // onClick={() => checkout(bookingId)}
-            onClick={() => checkout()}
+            onClick={() => checkout(bookingId)}
             disabled={isCheckingOut}
           >
             Check out

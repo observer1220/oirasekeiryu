@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import {
   Button,
   Form,
@@ -30,15 +30,15 @@ function Reservation() {
   const { t } = useTranslation();
   const { isLoading, reserve } = useReserve();
   const { cabins } = useCabins();
-  const [options, setOptions] = useState([]);
-  const guestName = JSON.parse(localStorage.getItem("guest"))?.fullName;
+  const [options, setOptions] = useState<any>([]);
+  const guestName = JSON.parse(localStorage.getItem("guest") || "{}")?.fullName;
   const cabinId = Number(location.pathname.split("/").pop());
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
-  function onSubmit({ guestName, startDate, endDate, numGuests }) {
+  function onSubmit({ guestName, startDate, endDate, numGuests }: FieldValues) {
     // console.log("訂房", guestName, startDate, endDate, numGuests, cabinId);
     reserve(
       { guestName, startDate, endDate, numGuests, cabinId },
@@ -52,7 +52,7 @@ function Reservation() {
   }
 
   useEffect(() => {
-    const results = [];
+    const results: any = [];
     cabins?.forEach((value) => {
       results.push({
         key: value.name,
@@ -77,25 +77,26 @@ function Reservation() {
       <Form onSubmit={handleSubmit(onSubmit)}>
         {/* cabinPrice extrasPrice totalPrice hasBreakfast */}
         <FormRow label={t("reserve.roomType")} error={errors?.cabinId?.message}>
-          <Select
-            value={cabinId}
-            options={options}
-            id="cabinId"
-            disabled="true"
-          />
+          <Select value={cabinId} options={options} id="cabinId" disabled />
         </FormRow>
-        <FormRow label={t("reserve.guestName")} error={errors?.guestName?.message}>
+        <FormRow
+          label={t("reserve.guestName")}
+          error={errors?.guestName?.message}
+        >
           <Input
             value={guestName}
             type="text"
             id="guestName"
-            disabled="true"
+            disabled
             {...register("guestName", {
               required: "This field is required",
             })}
           />
         </FormRow>
-        <FormRow label={t("reserve.checkIn")} error={errors?.startDate?.message}>
+        <FormRow
+          label={t("reserve.checkIn")}
+          error={errors?.startDate?.message}
+        >
           <Input
             type="date"
             id="startDate"
@@ -127,7 +128,10 @@ function Reservation() {
             })}
           />
         </FormRow>
-        <FormRow label={t("reserve.numGuests")} error={errors?.numGuests?.message}>
+        <FormRow
+          label={t("reserve.numGuests")}
+          error={errors?.numGuests?.message}
+        >
           <Input
             type="number"
             id="numGuests"
@@ -144,9 +148,13 @@ function Reservation() {
         {/* <FormRow label="Breakfast" error={errors?.hasBreakfast?.message}>
         </FormRow> */}
         <FormRow>
-          <Button disabled={isLoading}>{t('reserve.reserve')}</Button>
-          <Button $variation="secondary" disabled={isLoading} onClick={moveBack}>
-            {t('reserve.backHome')}
+          <Button disabled={isLoading}>{t("reserve.reserve")}</Button>
+          <Button
+            $variation="secondary"
+            disabled={isLoading}
+            onClick={moveBack}
+          >
+            {t("reserve.backHome")}
           </Button>
         </FormRow>
       </Form>

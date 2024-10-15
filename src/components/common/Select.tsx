@@ -19,12 +19,14 @@ const StyledSelect = styled.select<StyledSelectProps>`
 `;
 
 interface SelectProps {
+  id?: string;
   options: { label: string; value: string | number }[];
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  value: number | string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  disabled?: boolean;
 }
 
-function Select({ options, value, onChange, ...props }: SelectProps) {
+function Select({ id, options, value, onChange, ...props }: SelectProps) {
   return (
     <StyledSelect value={value} onChange={onChange} {...props}>
       {options?.map((option, idx) => (
