@@ -12,7 +12,6 @@ import {
 } from "recharts";
 import { useDarkMode } from "../../hooks";
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
-import PropTypes from "prop-types";
 
 const StyledSalesChart = styled(DashboardBox)`
   grid-column: 1 / -1;

@@ -8,11 +8,6 @@ import {
 } from "../../components/common";
 import { useLogin } from "./useAuthentication";
 
-interface LoginFormProps {
-  email: string;
-  password: string;
-}
-
 function LoginForm() {
   const [email, setEmail] = useState("test@gmail.com");
   const [password, setPassword] = useState("test1234");

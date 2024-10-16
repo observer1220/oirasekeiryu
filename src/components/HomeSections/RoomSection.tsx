@@ -29,18 +29,11 @@ const CabinInfo = styled.div`
   }
 `;
 
-interface CabinType {
-  id: number;
-  name: string;
-  maxCapacity: number;
-  description: string;
-  image: string;
-}
-
 const RoomSection = forwardRef((props, ref: any) => {
   const { isLoading, cabins } = useCabins();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  console.log(props);
 
   return (
     <TextLayer ref={ref}>

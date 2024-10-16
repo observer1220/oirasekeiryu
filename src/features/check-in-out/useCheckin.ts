@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import {
@@ -6,23 +6,7 @@ import {
   updateBooking,
 } from "../../services/apiBookings";
 
-// Define the shape of the booking update payload
-interface BookingUpdatePayload {
-  status: string;
-  isPaid?: boolean;
-  breakfast?: { [key: string]: any }; // Adjust this type according to the shape of breakfast
-}
-
-// Define the shape of the booking data returned from the server
-interface Booking {
-  id: string;
-  status: string;
-  isPaid: boolean;
-  // Add other fields as per your backend response
-}
-
 function useCheckin() {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { isLoading: isCheckingIn, mutate: checkin } = useMutation({
@@ -51,8 +35,6 @@ function useCheckin() {
 }
 
 function useCheckout() {
-  const queryClient = useQueryClient();
-
   const { isLoading: isCheckingOut, mutate: checkout } = useMutation({
     mutationFn: (bookingId: any) =>
       updateBooking(bookingId, {

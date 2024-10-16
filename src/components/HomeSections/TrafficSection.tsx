@@ -22,6 +22,8 @@ const GoogleMap = styled.iframe`
 
 const TrafficSection = forwardRef((props, ref: any) => {
   const { t } = useTranslation();
+  console.log(props);
+
   return (
     <TextLayer ref={ref}>
       <h1>{t("homePage.trafficGuide")}</h1>
