@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const StyledDataItem = styled.div`
   display: flex;
@@ -20,12 +19,6 @@ const Label = styled.span`
     color: var(--color-brand-600);
   }
 `;
-
-DataItem.propTypes = {
-  icon: PropTypes.element.isRequired,
-  label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-};
 
 interface DataItemProps {
   icon: React.ReactNode;

@@ -111,11 +111,12 @@ interface ToggleProps {
 function Toggle({ id }: ToggleProps) {
   const { openId, close, open, setPosition } = useContext(MenuContext);
 
-  function handleClick(event: any) {
+  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.stopPropagation();
     console.log("click");
 
-    const rect = event.target.closest("button").getBoundingClientRect();
+    const button = event.target as HTMLElement;
+    const rect = button.closest("button")!.getBoundingClientRect();
     // console.log(rect);
     setPosition({
       x: window.innerWidth - rect.width - rect.x,

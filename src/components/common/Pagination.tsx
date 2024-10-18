@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
 
@@ -63,10 +62,6 @@ const PaginationButton = styled.button<PaginationButtonProps>`
     color: var(--color-brand-50);
   }
 `;
-
-Pagination.propTypes = {
-  count: PropTypes.number.isRequired,
-};
 
 interface PaginationProps {
   count: number;

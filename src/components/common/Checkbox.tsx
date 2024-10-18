@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const StyledCheckbox = styled.div`
   display: flex;
@@ -26,14 +25,6 @@ const StyledCheckbox = styled.div`
   }
 `;
 
-Checkbox.propTypes = {
-  checked: PropTypes.bool,
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool,
-  id: PropTypes.string,
-  children: PropTypes.node,
-};
-
 interface CheckboxProps {
   checked: boolean;
   onChange: () => void;
@@ -42,7 +33,13 @@ interface CheckboxProps {
   children: React.ReactNode;
 }
 
-function Checkbox({ id, checked, onChange, disabled, children }: CheckboxProps) {
+function Checkbox({
+  id,
+  checked,
+  onChange,
+  disabled,
+  children,
+}: CheckboxProps) {
   return (
     <StyledCheckbox>
       <input

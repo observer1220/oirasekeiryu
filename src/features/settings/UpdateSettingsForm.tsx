@@ -16,7 +16,10 @@ function UpdateSettingsForm() {
 
   if (isLoading) return <Spinner />;
 
-  const handleUpdate = (event: any, fieldName: string) => {
+  const handleUpdate = (
+    event: React.FocusEvent<HTMLInputElement>,
+    fieldName: string
+  ) => {
     const { value } = event.target;
     if (!value) return;
     updateSetting({ [fieldName]: value });

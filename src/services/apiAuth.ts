@@ -58,14 +58,14 @@ async function logout() {
 }
 
 interface UpdateCurrentUserData {
-  password?: string;
   fullName?: string;
-  avatar?: File;
+  password?: string;
+  avatar?: File | null;
 }
 
 async function updateCurrentUser({
-  password,
   fullName,
+  password,
   avatar,
 }: UpdateCurrentUserData) {
   // 1. Update password OR fullName

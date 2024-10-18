@@ -30,7 +30,7 @@ function Reservation() {
   const { t } = useTranslation();
   const { isLoading, reserve } = useReserve();
   const { cabins } = useCabins();
-  const [options, setOptions] = useState<any>([]);
+  const [options, setOptions] = useState<SelectOptionType[]>([]);
   const guestName = JSON.parse(localStorage.getItem("guest") || "{}")?.fullName;
   const cabinId = Number(location.pathname.split("/").pop());
   const { register, formState, getValues, handleSubmit, reset } = useForm();

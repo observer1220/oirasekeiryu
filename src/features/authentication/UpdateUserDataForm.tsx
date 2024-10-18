@@ -21,7 +21,7 @@ function UpdateUserDataForm() {
   const { isUpdating, updateUser } = useUpdateUser();
 
   const [fullName, setFullName] = useState(currentFullName);
-  const [avatar, setAvatar] = useState<any>();
+  const [avatar, setAvatar] = useState<File | null>(null);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

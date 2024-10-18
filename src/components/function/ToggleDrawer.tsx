@@ -2,13 +2,7 @@ import { MouseEvent, RefObject, useState } from "react";
 import styled from "styled-components";
 import { StyledNavLink } from "../common";
 import menuIcon from "../../assets/menuIcon.png";
-import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-
-ToggleDrawer.propTypes = {
-  roomsRef: PropTypes.object,
-  trafficRef: PropTypes.object,
-};
 
 const HamburguerMenu = styled.button`
   background-color: transparent;
