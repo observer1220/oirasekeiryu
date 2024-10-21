@@ -42,8 +42,8 @@ const Icon = styled.img`
 `;
 
 interface ToggleDrawerProps {
-  roomsRef: any;
-  trafficRef: any;
+  roomsRef: RefObject<HTMLDivElement>;
+  trafficRef: RefObject<HTMLDivElement>;
 }
 
 function ToggleDrawer({ roomsRef, trafficRef }: ToggleDrawerProps) {

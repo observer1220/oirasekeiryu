@@ -4,8 +4,13 @@ import { useSignup } from "./useAuthentication";
 
 function SignupForm() {
   const { isLoading, signup } = useSignup();
-  const { register, formState, getValues, handleSubmit, reset } = useForm();
-  const { errors } = formState;
+  const {
+    register,
+    formState: { errors },
+    getValues,
+    handleSubmit,
+    reset,
+  } = useForm();
 
   function onSubmit({ fullName, email, password }: FieldValues) {
     signup(

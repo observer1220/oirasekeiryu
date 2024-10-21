@@ -18,8 +18,12 @@ const GuestSignupContainer = styled.main`
 
 function SignupForm() {
   const { isLoading, signup } = useSignup();
-  const { register, formState, handleSubmit, reset } = useForm();
-  const { errors } = formState;
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 

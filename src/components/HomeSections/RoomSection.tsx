@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import styled from "styled-components";
 import { useCabins } from "../../features/cabins/useCabins";
 import { Button, Spinner } from "../common";
@@ -29,11 +29,10 @@ const CabinInfo = styled.div`
   }
 `;
 
-const RoomSection = forwardRef((props, ref: any) => {
+const RoomSection = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const { isLoading, cabins } = useCabins();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  console.log(props);
 
   return (
     <TextLayer ref={ref}>
@@ -48,7 +47,9 @@ const RoomSection = forwardRef((props, ref: any) => {
               <h3>{cabin.name}</h3>
               <p>
                 容納人數：
-                {cabin.maxCapacity === 1 ? "1位" : `1-${cabin.maxCapacity}位`}
+                {cabin.maxCapacity === 1
+                  ? "1"
+                  : `1-${cabin.maxCapacity}` + "位"}
               </p>
               <p>{cabin.description}</p>
             </CabinInfo>
@@ -62,5 +63,4 @@ const RoomSection = forwardRef((props, ref: any) => {
   );
 });
 
-RoomSection.displayName = "RoomSection";
 export default RoomSection;

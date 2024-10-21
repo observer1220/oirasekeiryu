@@ -72,16 +72,16 @@ const StyledButton = styled.button`
 interface MenuContextType {
   openId: number;
   close: () => void;
-  open: (id: number) => void;
   position: { x: number; y: number };
+  setOpenId: (id: number) => void;
   setPosition: (position: { x: number; y: number }) => void;
 }
 
 const MenuContext = createContext<MenuContextType>({
   openId: 0,
   close: () => {},
-  open: () => {},
   position: { x: 0, y: 0 },
+  setOpenId: () => {},
   setPosition: () => {},
 });
 
@@ -94,10 +94,9 @@ function Menus({ children }: MenusProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const close = () => setOpenId(0);
-  const open: any = setOpenId;
   return (
     <MenuContext.Provider
-      value={{ openId, close, open, position, setPosition }}
+      value={{ openId, close, setOpenId, position, setPosition }}
     >
       {children}
     </MenuContext.Provider>
@@ -109,7 +108,7 @@ interface ToggleProps {
 }
 
 function Toggle({ id }: ToggleProps) {
-  const { openId, close, open, setPosition } = useContext(MenuContext);
+  const { openId, close, setOpenId, setPosition } = useContext(MenuContext);
 
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.stopPropagation();
@@ -123,7 +122,7 @@ function Toggle({ id }: ToggleProps) {
       y: rect.y + rect.height + 8,
     });
 
-    openId === 0 || openId !== id ? open(id) : close();
+    openId === 0 || openId !== id ? setOpenId(id) : close();
   }
 
   return (

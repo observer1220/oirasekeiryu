@@ -36,7 +36,7 @@ function useCheckin() {
 
 function useCheckout() {
   const { isLoading: isCheckingOut, mutate: checkout } = useMutation({
-    mutationFn: (bookingId: any) =>
+    mutationFn: (bookingId: number) =>
       updateBooking(bookingId, {
         status: "checked-out",
       }),

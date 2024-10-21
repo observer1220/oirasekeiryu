@@ -52,7 +52,7 @@ function Reservation() {
   }
 
   useEffect(() => {
-    const results: any = [];
+    const results: SelectOptionType[] = [];
     cabins?.forEach((value) => {
       results.push({
         key: value.name,

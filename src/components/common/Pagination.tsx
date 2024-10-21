@@ -76,14 +76,15 @@ function Pagination({ count }: PaginationProps) {
   const pageCount = Math.ceil(count / PAGE_SIZE);
 
   const prevPage = () => {
-    const prev: any = currentPage === 1 ? currentPage : currentPage - 1;
-    searchParams.set("page", prev);
+    const prev: number = currentPage === 1 ? currentPage : currentPage - 1;
+    searchParams.set("page", prev.toString());
     setSearchParams(searchParams);
   };
 
   const nextPage = () => {
-    const next: any = currentPage === pageCount ? currentPage : currentPage + 1;
-    searchParams.set("page", next);
+    const next: number =
+      currentPage === pageCount ? currentPage : currentPage + 1;
+    searchParams.set("page", next.toString());
     setSearchParams(searchParams);
   };
 

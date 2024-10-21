@@ -38,8 +38,8 @@ interface userType {
 }
 
 function Home() {
-  const roomsRef = useRef();
-  const trafficRef = useRef();
+  const roomsRef = useRef<HTMLDivElement>(null);
+  const trafficRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const user: userType = JSON.parse(localStorage.getItem("guest") || "{}");

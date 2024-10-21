@@ -3,7 +3,7 @@ import { getToday } from "../utils";
 import { PAGE_SIZE } from "../utils/constants";
 
 interface GetBookingsProps {
-  filter?: any;
+  filter?: { field: string; value: string; method: string } | null;
   sortBy?: { field: string; direction: string };
   page?: number;
 }
@@ -43,7 +43,7 @@ async function getBookings({ filter, sortBy, page }: GetBookingsProps) {
   return { data, count };
 }
 
-async function getBooking(id: any) {
+async function getBooking(id?: string) {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, cabins(*), guests(*)")

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 
 const TextLayer = styled.div`
@@ -20,9 +20,8 @@ const GoogleMap = styled.iframe`
   border: 0;
 `;
 
-const TrafficSection = forwardRef((props, ref: any) => {
+const TrafficSection = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const { t } = useTranslation();
-  console.log(props);
 
   return (
     <TextLayer ref={ref}>
@@ -36,5 +35,4 @@ const TrafficSection = forwardRef((props, ref: any) => {
   );
 });
 
-TrafficSection.displayName = "TrafficSection";
 export default TrafficSection;

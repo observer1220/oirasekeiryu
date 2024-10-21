@@ -50,7 +50,7 @@ const Value = styled.p`
 interface StatProps {
   icon: React.ReactNode;
   title: string;
-  value: any;
+  value: number | string;
   color: string;
 }
 
