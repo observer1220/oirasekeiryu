@@ -25,6 +25,14 @@ const ReserveLayout = styled.main`
   background-color: var(--color-grey-50);
 `;
 
+interface FormValues {
+  cabinId: number;
+  guestName: string;
+  startDate: string;
+  endDate: string;
+  numGuests: number;
+}
+
 function Reservation() {
   const location = useLocation();
   const { t } = useTranslation();
@@ -33,8 +41,13 @@ function Reservation() {
   const [options, setOptions] = useState<SelectOptionType[]>([]);
   const guestName = JSON.parse(localStorage.getItem("guest") || "{}")?.fullName;
   const cabinId = Number(location.pathname.split("/").pop());
-  const { register, formState, getValues, handleSubmit, reset } = useForm();
-  const { errors } = formState;
+  const {
+    register,
+    formState: { errors },
+    getValues,
+    handleSubmit,
+    reset,
+  } = useForm<FormValues>();
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 

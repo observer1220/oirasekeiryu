@@ -42,7 +42,7 @@ const Error = styled.span`
 
 interface FormRowProps {
   label?: string;
-  error?: any;
+  error?: string;
   children: React.ReactNode;
 }
 

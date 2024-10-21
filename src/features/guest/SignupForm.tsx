@@ -16,6 +16,12 @@ const GuestSignupContainer = styled.main`
   width: 100%;
 `;
 
+interface FormValues {
+  fullName: string;
+  email: string;
+  nationalID: string;
+}
+
 function SignupForm() {
   const { isLoading, signup } = useSignup();
   const {
@@ -23,7 +29,7 @@ function SignupForm() {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm<FormValues>();
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 

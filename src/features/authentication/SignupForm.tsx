@@ -2,6 +2,13 @@ import { FieldValues, useForm } from "react-hook-form";
 import { Button, Form, FormRow, Input, Spinner } from "../../components/common";
 import { useSignup } from "./useAuthentication";
 
+interface FormValues {
+  fullName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
+
 function SignupForm() {
   const { isLoading, signup } = useSignup();
   const {
@@ -10,7 +17,7 @@ function SignupForm() {
     getValues,
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm<FormValues>();
 
   function onSubmit({ fullName, email, password }: FieldValues) {
     signup(

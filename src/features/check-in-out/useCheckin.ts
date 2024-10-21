@@ -15,7 +15,9 @@ function useCheckin() {
       breakfast,
     }: {
       bookingId: number;
-      breakfast?: { [key: string]: any };
+      breakfast?: {
+        [key: string]: any;
+      };
     }) =>
       updateBooking(bookingId, {
         status: "checked-in",

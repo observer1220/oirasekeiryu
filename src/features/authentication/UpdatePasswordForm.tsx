@@ -2,9 +2,19 @@ import { FieldValues, useForm } from "react-hook-form";
 import { Button, Form, FormRow, Input } from "../../components/common";
 import { useUpdateUser } from "./useAuthentication";
 
+interface FormValues {
+  password: string;
+  passwordConfirm: string;
+}
+
 function UpdatePasswordForm() {
-  const { register, handleSubmit, formState, getValues, reset } = useForm();
-  const { errors } = formState;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    reset,
+  } = useForm<FormValues>();
 
   const { updateUser, isUpdating } = useUpdateUser();
 

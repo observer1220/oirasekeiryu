@@ -105,7 +105,16 @@ function useUser() {
     queryFn: getCurrentUser,
   });
 
-  return { isLoading, user, isAuthenticated: user?.role === "authenticated" };
+  const userData = {
+    email: user?.email,
+    user_metadata: user?.user_metadata,
+  };
+
+  return {
+    isLoading,
+    userData,
+    isAuthenticated: user?.role === "authenticated",
+  };
 }
 
 export { useLogin, useLogout, useReserve, useSignup, useUpdateUser, useUser };

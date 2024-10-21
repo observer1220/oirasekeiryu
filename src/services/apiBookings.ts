@@ -57,11 +57,9 @@ async function getBooking(id?: string) {
   return data;
 }
 
-// Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
-interface GetBookingsAfterDateProps {
-  date: string;
-}
-async function getBookingsAfterDate(date: GetBookingsAfterDateProps) {
+// Returns all BOOKINGS that were created after the given date.
+// Useful to get bookings created in the last 30 days, for example.
+async function getBookingsAfterDate(date: string) {
   const { data, error } = await supabase
     .from("bookings")
     .select("created_at, totalPrice, extrasPrice")
@@ -76,10 +74,7 @@ async function getBookingsAfterDate(date: GetBookingsAfterDateProps) {
 }
 
 // Returns all STAYS that are were created after the given date
-interface GetStaysAfterDateProps {
-  date: string;
-}
-async function getStaysAfterDate(date: GetStaysAfterDateProps) {
+async function getStaysAfterDate(date: string) {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, guests(fullName)")
