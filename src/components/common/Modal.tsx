@@ -26,6 +26,8 @@ const StyledModal = styled.div`
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
   transition: all 0.5s;
+  max-height: 80vh;
+  overflow-y: scroll;
 `;
 
 const Button = styled.button`

@@ -11,7 +11,7 @@ async function getCabins() {
   return data;
 }
 
-async function createEditCabin(newCabin: CabinAPI, id?: number) {
+async function createEditCabin(newCabin: CabinRequest, id?: number) {
   // If image is already uploaded, skip the upload process
   const hasImagePath = newCabin.image.startsWith?.(supabaseUrl);
 

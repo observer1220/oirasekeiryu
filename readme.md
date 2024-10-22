@@ -91,4 +91,4 @@
 
 Reference
 
-- 奧入瀨溪流酒店: https://hoshinoresorts.com/zh_tw/hotels/oirasekeiryu/
+- Oirasekeiryu Hotel: https://hoshinoresorts.com/zh_tw/hotels/oirasekeiryu/

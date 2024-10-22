@@ -33,19 +33,7 @@ const Discount = styled.div`
   color: var(--color-green-700);
 `;
 
-interface CabinRowProps {
-  cabin: {
-    id: number;
-    name: string;
-    maxCapacity: number;
-    regularPrice: number;
-    discount: number;
-    image: string;
-    description: string;
-  };
-}
-
-function CabinRow({ cabin }: CabinRowProps) {
+function CabinRow({ cabin }: CabinResponse) {
   const {
     id: cabinId,
     name,
@@ -58,14 +46,14 @@ function CabinRow({ cabin }: CabinRowProps) {
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { createCabin } = useCreateCabin();
 
-  const handleDuplicate = () => {
+  const handleCopy = () => {
     createCabin({
       name: `Copy of ${name}`,
       maxCapacity,
       regularPrice,
       discount,
-      image,
       description,
+      image,
     });
   };
 
@@ -81,8 +69,8 @@ function CabinRow({ cabin }: CabinRowProps) {
           <Menus.Menu>
             <Menus.Toggle id={cabinId} />
             <Menus.List id={cabinId}>
-              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
-                Duplicate
+              <Menus.Button icon={<HiSquare2Stack />} onClick={handleCopy}>
+                Copy
               </Menus.Button>
               <Modal.Open opens="edit">
                 <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>

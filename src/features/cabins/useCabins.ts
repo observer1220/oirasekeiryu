@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import {
   getCabins,
   createEditCabin,
-  deleteCabin as deleteCabinApi,
+  deleteCabin as deleteCabinAPI,
 } from "../../services/apiCabins";
 
 function useCabins() {
@@ -11,7 +11,7 @@ function useCabins() {
     isLoading,
     data: cabins,
     error,
-  } = useQuery<Cabin[]>({
+  } = useQuery({
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
@@ -40,8 +40,13 @@ function useCreateCabin() {
 function useEditCabin() {
   const queryClient = useQueryClient();
   const { isLoading: isUpdating, mutate: editCabin } = useMutation({
-    mutationFn: ({ newCabinData, id }: { newCabinData: Cabin; id: number }) =>
-      createEditCabin(newCabinData, id),
+    mutationFn: ({
+      newCabinData,
+      id,
+    }: {
+      newCabinData: CabinRequest;
+      id: number;
+    }) => createEditCabin(newCabinData, id),
     onSuccess: () => {
       toast.success("Cabin successfully edited");
       queryClient.invalidateQueries({
@@ -59,7 +64,7 @@ function useDeleteCabin() {
   const queryClient = useQueryClient();
 
   const { isLoading: isDeleting, mutate: deleteCabin } = useMutation({
-    mutationFn: deleteCabinApi,
+    mutationFn: deleteCabinAPI,
     onSuccess: () => {
       toast.success("Cabin successfully deleted");
 

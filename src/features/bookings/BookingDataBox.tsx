@@ -103,34 +103,8 @@ const Footer = styled.footer`
   text-align: right;
 `;
 
-interface BookingDataBoxProps {
-  booking: {
-    created_at: string;
-    startDate: string;
-    endDate: string;
-    numNights: number;
-    numGuests: number;
-    cabinPrice: number;
-    extrasPrice: number;
-    totalPrice: number;
-    hasBreakfast: boolean;
-    observations: string;
-    isPaid: boolean;
-    guests: {
-      fullName: string;
-      email: string;
-      country: string;
-      countryFlag: string;
-      nationalID: string;
-    };
-    cabins: {
-      name: string;
-    };
-  };
-}
-
 // A purely presentational component
-function BookingDataBox({ booking }: BookingDataBoxProps) {
+function BookingDataBox({ booking }: BookingResponse) {
   const {
     created_at,
     startDate,

@@ -13,7 +13,7 @@ interface GetBookingsRequest {
 }
 
 interface GetBookingsResponse {
-  data: Cabin[];
+  data: CabinRequest[];
   count: number;
 }
 
@@ -64,9 +64,8 @@ async function getBooking({ id }: GetBookingRequest) {
     .eq("id", id)
     .single();
 
-  if (error) {
-    throw new Error("Booking not found");
-  }
+  if (error) throw new Error("Booking not found");
+  console.log("getBooking", data);
 
   return data;
 }

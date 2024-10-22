@@ -70,11 +70,11 @@ function Reservation() {
       results.push({
         key: value.name,
         label: value.name,
-        value: value.id,
+        value: value.id ?? 0,
       });
     });
     // Update the options state
-    setOptions([{ key: 0, label: "Select a cabin", value: "" }, ...results]);
+    setOptions([{ key: 0, label: "Select a cabin", value: 0 }, ...results]);
 
     // IF guestName is not in localStorage, redirect to /guestLogin
     if (!guestName) {

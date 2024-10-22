@@ -1,31 +1,57 @@
 interface SelectOptionType {
   key: string | number;
   label: string;
-  value: string | number;
+  value: number;
 }
 
 interface GetTodayProps {
   end?: boolean;
 }
 
-interface Cabin {
-  created_at: string;
-  description: string;
-  discount: number;
-  id: number;
-  image: any;
-  maxCapacity: number;
+interface CabinRequest {
+  id?: number;
   name: string;
+  maxCapacity: number;
   regularPrice: number;
+  discount: number;
+  description: string;
+  image: any;
 }
 
-interface CabinAPI {
-  created_at?: string | undefined;
-  description?: string | undefined;
-  discount?: number | undefined;
-  id?: number | undefined;
-  image?: any;
-  maxCapacity?: number | undefined;
-  name?: string | undefined;
-  regularPrice?: number | undefined;
+interface CabinResponse {
+  cabin: {
+    id: number;
+    name: string;
+    maxCapacity: number;
+    regularPrice: number;
+    discount: number;
+    description: string;
+    image: string;
+  };
+}
+
+interface BookingResponse {
+  booking: {
+    created_at: string;
+    startDate: string;
+    endDate: string;
+    numNights: number;
+    numGuests: number;
+    cabinPrice: number;
+    extrasPrice: number;
+    totalPrice: number;
+    hasBreakfast: boolean;
+    observations: string;
+    isPaid: boolean;
+    guests: {
+      fullName: string;
+      email: string;
+      country: string;
+      countryFlag: string;
+      nationalID: string;
+    };
+    cabins: {
+      name: string;
+    };
+  };
 }
