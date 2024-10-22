@@ -53,6 +53,7 @@ async function getBooking(id?: string) {
   if (error) {
     throw new Error("Booking not found");
   }
+  console.log("data", data);
 
   return data;
 }

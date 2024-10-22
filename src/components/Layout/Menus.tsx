@@ -30,7 +30,7 @@ const StyledToggle = styled.button`
 `;
 
 interface StyledListProps {
-  position: { x: number; y: number };
+  $position: { x: number; y: number };
 }
 
 const StyledList = styled.ul<StyledListProps>`
@@ -40,8 +40,8 @@ const StyledList = styled.ul<StyledListProps>`
   box-shadow: var(--shadow-md);
   border-radius: var(--border-radius-md);
 
-  right: ${(props) => props.position.x}px;
-  top: ${(props) => props.position.y}px;
+  right: ${(props) => props.$position.x}px;
+  top: ${(props) => props.$position.y}px;
 `;
 
 const StyledButton = styled.button`
@@ -146,7 +146,7 @@ function List({ id, children }: ListProps) {
   if (openId !== id) return null;
 
   return createPortal(
-    <StyledList position={position} ref={ref}>
+    <StyledList $position={position} ref={ref}>
       {children}
     </StyledList>,
     document.body

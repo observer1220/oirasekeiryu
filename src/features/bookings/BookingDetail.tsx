@@ -25,14 +25,15 @@ const HeadingGroup = styled.div`
 `;
 
 interface BookingDetailProps {
-  status: "unconfirmed" | "checked-in" | "checked-out";
   id: number;
+  status: "unconfirmed" | "checked-in" | "checked-out";
 }
 
 function BookingDetail() {
   const navigate = useNavigate();
   const { isLoading, booking } = useBooking();
-  const { status, id: bookingId }: BookingDetailProps = booking;
+  if (!booking) return null;
+  const { id: bookingId, status }: BookingDetailProps = booking;
   const { isCheckingOut, checkout } = useCheckout();
   const { isDeleting, deleteBooking } = useDeleteBooking();
 

@@ -37,7 +37,6 @@ function CheckinBooking() {
 
   const moveBack = useMoveBack();
   const { isCheckingIn, checkin } = useCheckin();
-
   const {
     id: bookingId,
     guests,

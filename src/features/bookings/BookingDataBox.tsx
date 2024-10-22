@@ -67,7 +67,7 @@ const Guest = styled.div`
 `;
 
 interface PriceProps {
-  isPaid: boolean;
+  $isPaid: boolean;
 }
 
 const Price = styled.div<PriceProps>`
@@ -79,9 +79,9 @@ const Price = styled.div<PriceProps>`
   margin-top: 2.4rem;
 
   background-color: ${(props) =>
-    props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
+    props.$isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
   color: ${(props) =>
-    props.isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
+    props.$isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
 
   & p:last-child {
     text-transform: uppercase;
@@ -103,8 +103,10 @@ const Footer = styled.footer`
   text-align: right;
 `;
 
-interface BookingDataBoxProps {
+interface BookingResponse {
   booking: {
+    id: number;
+    status: "unconfirmed" | "checked-in" | "checked-out";
     created_at: string;
     startDate: string;
     endDate: string;
@@ -130,7 +132,7 @@ interface BookingDataBoxProps {
 }
 
 // A purely presentational component
-function BookingDataBox({ booking }: BookingDataBoxProps) {
+function BookingDataBox({ booking }: BookingResponse) {
   const {
     created_at,
     startDate,
@@ -191,7 +193,7 @@ function BookingDataBox({ booking }: BookingDataBoxProps) {
           {hasBreakfast ? "Yes" : "No"}
         </DataItem>
 
-        <Price isPaid={isPaid}>
+        <Price $isPaid={isPaid}>
           <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
             {formatCurrency(totalPrice)}
 

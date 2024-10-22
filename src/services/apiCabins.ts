@@ -36,6 +36,7 @@ async function createEditCabin(newCabin: CabinAPI, id?: number) {
 
   // 1. Create/Edit cabin
   let query: any = supabase.from("cabins");
+  console.log("query", query);
 
   if (!id) {
     // A) Create
