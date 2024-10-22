@@ -4,12 +4,13 @@ import checker from "vite-plugin-checker";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
+  console.log("mode", mode);
+
   return {
     plugins: [react(), checker({ typescript: true })],
-    base:
-      process.env.NODE_ENV === "development" ? "/oirasekeiryu" : "oirasekeiryu",
     define: {
       "process.env": env,
     },
+    base: env.VITE_BASE_URL,
   };
 });
