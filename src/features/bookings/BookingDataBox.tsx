@@ -103,10 +103,8 @@ const Footer = styled.footer`
   text-align: right;
 `;
 
-interface BookingResponse {
+interface BookingDataBoxProps {
   booking: {
-    id: number;
-    status: "unconfirmed" | "checked-in" | "checked-out";
     created_at: string;
     startDate: string;
     endDate: string;
@@ -132,7 +130,7 @@ interface BookingResponse {
 }
 
 // A purely presentational component
-function BookingDataBox({ booking }: BookingResponse) {
+function BookingDataBox({ booking }: BookingDataBoxProps) {
   const {
     created_at,
     startDate,

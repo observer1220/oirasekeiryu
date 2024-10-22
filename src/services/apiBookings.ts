@@ -2,13 +2,22 @@ import supabase from "./supabase";
 import { getToday } from "../utils";
 import { PAGE_SIZE } from "../utils/constants";
 
-interface GetBookingsProps {
+interface GetBookingsRequest {
   filter?: { field: string; value: string; method: string } | null;
   sortBy?: { field: string; direction: string };
   page?: number;
 }
 
-async function getBookings({ filter, sortBy, page }: GetBookingsProps) {
+interface GetBookingsResponse {
+  data: Cabin[];
+  count: number;
+}
+
+async function getBookings({
+  filter,
+  sortBy,
+  page,
+}: GetBookingsRequest): Promise<GetBookingsResponse> {
   let query: any = supabase
     .from("bookings")
     .select(
@@ -16,18 +25,18 @@ async function getBookings({ filter, sortBy, page }: GetBookingsProps) {
       { count: "exact" }
     );
 
-  // FILTER，過濾條件
+  // FILTER CONDITION
   if (filter) {
     query = query[filter.method](filter.field, filter.value);
   }
 
-  // SORT，排序
+  // SORT
   if (sortBy)
     query = query.order(sortBy.field, {
       ascending: sortBy.direction === "asc",
     });
 
-  // Pagination，分頁
+  // PAGINATION
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
     const to = from + PAGE_SIZE - 1;
@@ -35,15 +44,16 @@ async function getBookings({ filter, sortBy, page }: GetBookingsProps) {
   }
 
   const { data, error, count } = await query;
-
-  if (error) {
-    throw new Error("Bookings could not be loaded");
-  }
+  if (error) throw new Error("Bookings could not be loaded");
 
   return { data, count };
 }
 
-async function getBooking(id?: string) {
+interface GetBookingRequest {
+  id?: string;
+}
+
+async function getBooking({ id }: GetBookingRequest) {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, cabins(*), guests(*)")
@@ -53,7 +63,6 @@ async function getBooking(id?: string) {
   if (error) {
     throw new Error("Booking not found");
   }
-  console.log("data", data);
 
   return data;
 }
