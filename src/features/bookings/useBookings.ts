@@ -52,8 +52,7 @@ function useBookings() {
     queryFn: () => getBookings({ filter, sortBy, page }),
   });
 
-  // PRE-FETCHING：只有在後面還有資料時，才會預先載入下一頁的資料
-  // count 無值時，預設為 0
+  // PRE-FETCHING：只有在後面還有資料時，才會預先載入下一頁的資料，count 無值時預設為 0
   const pageCount = Math.ceil(count ?? 0 / 10);
 
   if (page < pageCount)

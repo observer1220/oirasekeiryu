@@ -1,5 +1,11 @@
 # Oirase Keiryu Hotel
 
+### General
+
+- [x] TypeScript
+- [] Review 368 Converting the Modal to a Compound Component
+- [] Review 381 + 382 pagination
+
 ### Guest Pages
 
 #### Home Page
@@ -76,33 +82,10 @@
 - [x] Guest Login
 - [x] Room Reservation
 
-### TodoList
-
-- [] 複習 368. Converting the Modal to a Compound Component
-- [] 複習 381 + 382 pagination
-- [] TypeScript
-
 ### Test Account
 
 - Account: test@gmail.com
 - Password: test1234
-
----
-
-### Structure of the project
-
-|     | File Name  | Describtion                                       |
-| :-- | :--------- | :------------------------------------------------ |
-| [x] | assets     | folder for static files, such as images           |
-| [x] | components | common, function, layout components               |
-| [x] | context    | global state management                           |
-| [x] | features   | components that are related to a specific feature |
-| [x] | hooks      | self-defined hooks                                |
-| [x] | i18n       | internationalization                              |
-| [x] | pages      | admin, guest, general pages                       |
-| []  | services   | api service that manipulate data from Supabase    |
-| [x] | styles     | global styles                                     |
-| []  | utils      | utility functions                                 |
 
 ---
 

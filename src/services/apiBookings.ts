@@ -3,7 +3,11 @@ import { getToday } from "../utils";
 import { PAGE_SIZE } from "../utils/constants";
 
 interface GetBookingsRequest {
-  filter?: { field: string; value: string; method: string } | null;
+  filter?: {
+    field: string;
+    value: string;
+    method: string;
+  } | null;
   sortBy?: { field: string; direction: string };
   page?: number;
 }
