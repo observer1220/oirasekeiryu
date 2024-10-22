@@ -83,10 +83,11 @@ function useSignup() {
 
 function useUpdateUser() {
   const queryClient = useQueryClient();
-
   const { isLoading: isUpdating, mutate: updateUser } = useMutation({
     mutationFn: updateCurrentUser,
     onSuccess: ({ user }: any) => {
+      console.log("我瞧瞧", user);
+
       toast.success("User account successfully updated");
       // Update the user data in the cache
       queryClient.setQueryData(["user"], user);
@@ -107,7 +108,10 @@ function useUser() {
 
   const userData = {
     email: user?.email,
-    user_metadata: user?.user_metadata,
+    user_metadata: {
+      fullName: user?.user_metadata.fullName,
+      avatar: user?.user_metadata.avatar,
+    },
   };
 
   return {

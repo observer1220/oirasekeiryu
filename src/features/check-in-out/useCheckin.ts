@@ -6,19 +6,17 @@ import {
   updateBooking,
 } from "../../services/apiBookings";
 
+interface CheckinProps {
+  bookingId: number;
+  breakfast?: {
+    [key: string]: boolean | number;
+  };
+}
+
 function useCheckin() {
   const navigate = useNavigate();
-
   const { isLoading: isCheckingIn, mutate: checkin } = useMutation({
-    mutationFn: ({
-      bookingId,
-      breakfast,
-    }: {
-      bookingId: number;
-      breakfast?: {
-        [key: string]: any;
-      };
-    }) =>
+    mutationFn: ({ bookingId, breakfast }: CheckinProps) =>
       updateBooking(bookingId, {
         status: "checked-in",
         isPaid: true,

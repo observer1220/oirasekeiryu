@@ -13,12 +13,9 @@ function UpdateUserDataForm() {
   // We don't need the loading state, and can immediately use the user data,
   // because we know that it has already been loaded at this point
   const { userData } = useUser();
-
   const { isUpdating, updateUser } = useUpdateUser();
 
-  const [fullName, setFullName] = useState(
-    userData.user_metadata?.currentFullName || ""
-  );
+  const [fullName, setFullName] = useState(userData.user_metadata.fullName);
   const [avatar, setAvatar] = useState<File | null>(null);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -27,6 +24,7 @@ function UpdateUserDataForm() {
       toast.error("Full name field cannot be empty!");
       return;
     }
+
     updateUser(
       { fullName, avatar },
       {
@@ -40,7 +38,7 @@ function UpdateUserDataForm() {
   }
 
   function handleCancel() {
-    setFullName(userData.user_metadata?.currentFullName || "");
+    setFullName(userData.user_metadata.fullName);
     setAvatar(null);
   }
 
@@ -53,7 +51,7 @@ function UpdateUserDataForm() {
         <Input
           type="text"
           value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          onChange={(event) => setFullName(event.target.value)}
           id="fullName"
           disabled={isUpdating}
         />

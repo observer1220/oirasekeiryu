@@ -16,7 +16,7 @@ function UpdatePasswordForm() {
     reset,
   } = useForm<FormValues>();
 
-  const { updateUser, isUpdating } = useUpdateUser();
+  const { isUpdating, updateUser } = useUpdateUser();
 
   function onSubmit({ password }: FieldValues) {
     updateUser(

@@ -1,3 +1,4 @@
+import { generateRandomString } from "../utils/helper";
 import supabase, { supabaseUrl } from "./supabase";
 
 async function getCabins() {
@@ -10,62 +11,60 @@ async function getCabins() {
   return data;
 }
 
-interface Cabin {
-  created_at?: string | undefined;
-  description?: string | undefined;
-  discount?: number | undefined;
-  id?: number | undefined;
-  image?: any;
-  maxCapacity?: number | undefined;
-  name?: string | undefined;
-  regularPrice?: number | undefined;
-}
+async function createEditCabin(newCabin: CabinAPI, id?: number) {
+  // If image is already uploaded, skip the upload process
+  const hasImagePath = newCabin.image.startsWith?.(supabaseUrl);
 
-async function createEditCabin(newCabin?: Cabin, id?: number) {
-  // 檢查是否有圖片路徑，如果有，則不需上傳圖片
-  const hasImagePath = newCabin?.image?.startsWith?.(supabaseUrl);
+  // If imageName has chinese charactors, replace them with random string
+  const chineseRegex = /[\u4E00-\u9FA5]/g;
+  let imageName = newCabin.image.name;
 
-  const imageName = `${Math.random()}-${newCabin?.image?.name ?? ""}`.replace(
-    "/",
-    ""
-  );
+  if (chineseRegex.test(imageName)) {
+    imageName = imageName
+      .replace(chineseRegex, generateRandomString(1))
+      .replace("/", "");
+  } else {
+    imageName = `${Math.random()
+      .toString(36)
+      .substring(2)}-${imageName}`.replace("/", "");
+  }
+
+  // If image is already uploaded, use the image path
   const imagePath = hasImagePath
-    ? newCabin?.image
+    ? newCabin.image
     : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
 
   // 1. Create/Edit cabin
   let query: any = supabase.from("cabins");
-  console.log("query", query);
 
-  // A) Create
   if (!id) {
+    // A) Create
     query = query.insert([{ ...newCabin, image: imagePath }]);
-  }
-
-  // B) Edit
-  if (id) {
+  } else {
+    // B) Edit
     query = query
       .update({ ...newCabin, image: imagePath })
       .eq("id", id)
       .select();
   }
 
+  // Execute query
   const { data, error } = await query.select().single();
 
   if (error) {
     throw new Error("Cabin could not be created");
   }
 
-  // 2. 上傳圖片，如有圖片路徑，則不需上傳圖片，代表使用者透過複製的方式來新增項目
+  // 2. Return data if image is already uploaded
   if (hasImagePath) {
     return data;
   }
 
   const { error: storageError } = await supabase.storage
     .from("cabin-images")
-    .upload(imageName, newCabin?.image);
+    .upload(imageName, newCabin.image);
 
-  // 3. 刪除舊圖片
+  // 3. Delete cabin if image upload failed
   if (storageError) {
     await supabase.from("cabins").delete().eq("id", data.id);
     throw new Error(
