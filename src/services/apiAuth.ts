@@ -1,10 +1,17 @@
 import { AuthTokenResponse, User, UserResponse } from "@supabase/supabase-js";
 import supabase, { supabaseUrl } from "./supabase";
 
-async function signup({ fullName, email, password }: AdminSignupRequest) {
+async function signup({
+  fullName,
+  email,
+  password,
+}: AdminSignupRequest): Promise<User | null> {
   // toString(36)，包含數字 0-9 和字母 a-z，前幾個字符通常是 0. 開頭，因此從第 7 個字符開始擷取
   const robotID = Math.random().toString(36).substring(7);
-  const { data, error } = await supabase.auth.signUp({
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -16,8 +23,8 @@ async function signup({ fullName, email, password }: AdminSignupRequest) {
   });
 
   if (error) throw new Error(error.message);
-  console.log("signup", data);
-  return data;
+
+  return user;
 }
 
 async function login({
