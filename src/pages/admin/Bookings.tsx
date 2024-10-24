@@ -9,7 +9,7 @@ function Bookings() {
         <Heading as="h1">All bookings</Heading>
         <BookingTableOperations />
       </Row>
-      <Row>
+      <Row type="vertical">
         <BookingTable />
       </Row>
     </>

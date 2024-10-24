@@ -16,7 +16,7 @@ function UpdateUserDataForm() {
   const { isUpdating, updateUser } = useUpdateUser();
 
   const [fullName, setFullName] = useState(userData.user_metadata.fullName);
-  const [avatar, setAvatar] = useState<File | null>(null);
+  const [avatar, setAvatar] = useState<File | null>();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,6 +38,7 @@ function UpdateUserDataForm() {
   }
 
   function handleCancel() {
+    console.log("測試", userData);
     setFullName(userData.user_metadata.fullName);
     setAvatar(null);
   }

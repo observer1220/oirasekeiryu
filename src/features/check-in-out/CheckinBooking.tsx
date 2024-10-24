@@ -28,6 +28,7 @@ function CheckinBooking() {
   const { isLoading, booking } = useBooking();
   if (!booking) return <p>Booking not found</p>;
   const { isLoading: isLoadingSettings, settings } = useSettings();
+  if (!settings) return <p>Settings not found</p>;
 
   const [confirmPaid, setConfirmPaid] = useState(false);
   const [addBreakfast, setAddBreakfast] = useState(false);
@@ -48,7 +49,7 @@ function CheckinBooking() {
   } = booking;
 
   const optionalBreakfastPrice =
-    settings?.breakfastPrice * numNights * numGuests;
+    settings.breakfastPrice * numNights * numGuests;
 
   function handleCheckin() {
     if (!confirmPaid) return;

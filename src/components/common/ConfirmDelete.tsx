@@ -35,7 +35,7 @@ function ConfirmDelete({
 }: ConfirmDeleteProps) {
   return (
     <StyledConfirmDelete>
-      <Heading as="h3">Delete {resourceName}</Heading>
+      <Heading as="h2">Delete {resourceName}</Heading>
       <p>
         Are you sure you want to delete this {resourceName} permanently? This
         action cannot be undone.

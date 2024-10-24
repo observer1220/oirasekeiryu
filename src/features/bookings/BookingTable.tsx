@@ -5,7 +5,6 @@ import { useBookings } from "./useBookings";
 
 function BookingTable() {
   const { isLoading, bookings, count } = useBookings();
-  // console.log(isLoading, bookings, error);
 
   if (!bookings?.length) return <Empty resourceName="bookings" />;
 

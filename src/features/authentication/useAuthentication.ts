@@ -85,9 +85,8 @@ function useUpdateUser() {
   const queryClient = useQueryClient();
   const { isLoading: isUpdating, mutate: updateUser } = useMutation({
     mutationFn: updateCurrentUser,
-    onSuccess: ({ user }: any) => {
-      console.log("我瞧瞧", user);
-
+    onSuccess: ({ user }) => {
+      console.log("user", user);
       toast.success("User account successfully updated");
       // Update the user data in the cache
       queryClient.setQueryData(["user"], user);

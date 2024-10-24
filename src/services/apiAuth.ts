@@ -1,12 +1,7 @@
+import { AuthTokenResponse, User, UserResponse } from "@supabase/supabase-js";
 import supabase, { supabaseUrl } from "./supabase";
 
-interface SignupData {
-  fullName: string;
-  email: string;
-  password: string;
-}
-
-async function signup({ fullName, email, password }: SignupData) {
+async function signup({ fullName, email, password }: AdminSignupRequest) {
   // toString(36)，包含數字 0-9 和字母 a-z，前幾個字符通常是 0. 開頭，因此從第 7 個字符開始擷取
   const robotID = Math.random().toString(36).substring(7);
   const { data, error } = await supabase.auth.signUp({
@@ -21,16 +16,14 @@ async function signup({ fullName, email, password }: SignupData) {
   });
 
   if (error) throw new Error(error.message);
-
+  console.log("signup", data);
   return data;
 }
 
-interface LoginData {
-  email: string;
-  password: string;
-}
-
-async function login({ email, password }: LoginData) {
+async function login({
+  email,
+  password,
+}: AdminLoginRequest): Promise<AuthTokenResponse["data"]> {
   let { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -41,15 +34,18 @@ async function login({ email, password }: LoginData) {
   return data;
 }
 
-async function getCurrentUser() {
+async function getCurrentUser(): Promise<User | null> {
   const { data: session } = await supabase.auth.getSession();
   if (!session.session) return null;
 
-  const { data, error } = await supabase.auth.getUser();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
 
   if (error) throw new Error(error.message);
 
-  return data?.user;
+  return user;
 }
 
 async function logout() {
@@ -57,23 +53,17 @@ async function logout() {
   if (error) throw new Error(error.message);
 }
 
-interface UpdateCurrentUserData {
-  fullName?: string;
-  password?: string;
-  avatar?: File | null;
-}
-
 async function updateCurrentUser({
   fullName,
   password,
   avatar,
-}: UpdateCurrentUserData) {
+}: UpdateCurrentUserRequest): Promise<UserResponse["data"]> {
   // 1. Update password OR fullName
   let updateData;
-  if (!updateData) return null;
   if (password) updateData = { password };
   if (fullName) updateData = { data: { fullName } };
-  const { data, error } = await supabase.auth.updateUser(updateData);
+
+  const { data, error } = await supabase.auth.updateUser(updateData!);
 
   if (error) throw new Error(error.message);
   if (!avatar) return data;
