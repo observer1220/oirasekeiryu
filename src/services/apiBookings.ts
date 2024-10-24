@@ -2,21 +2,6 @@ import supabase from "./supabase";
 import { getToday } from "../utils";
 import { PAGE_SIZE } from "../utils/constants";
 
-interface GetBookingsRequest {
-  filter?: {
-    field: string;
-    value: string;
-    method: string;
-  } | null;
-  sortBy?: { field: string; direction: string };
-  page?: number;
-}
-
-interface GetBookingsResponse {
-  data: CabinRequest[];
-  count: number;
-}
-
 async function getBookings({
   filter,
   sortBy,
@@ -53,11 +38,7 @@ async function getBookings({
   return { data, count };
 }
 
-interface GetBookingRequest {
-  id?: string;
-}
-
-async function getBooking({ id }: GetBookingRequest) {
+async function getBooking({ id }: GetBookingRequest): Promise<BookingResponse> {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, cabins(*), guests(*)")
@@ -65,59 +46,11 @@ async function getBooking({ id }: GetBookingRequest) {
     .single();
 
   if (error) throw new Error("Booking not found");
-  console.log("getBooking", data);
 
   return data;
 }
 
-// Returns all BOOKINGS that were created after the given date.
-// Useful to get bookings created in the last 30 days, for example.
-async function getBookingsAfterDate(date: string) {
-  const { data, error } = await supabase
-    .from("bookings")
-    .select("created_at, totalPrice, extrasPrice")
-    .gte("created_at", date)
-    .lte("created_at", getToday({ end: true }));
-
-  if (error) {
-    throw new Error("Bookings could not get loaded");
-  }
-
-  return data;
-}
-
-// Returns all STAYS that are were created after the given date
-async function getStaysAfterDate(date: string) {
-  const { data, error } = await supabase
-    .from("bookings")
-    .select("*, guests(fullName)")
-    .gte("startDate", date)
-    .lte("startDate", getToday());
-
-  if (error) {
-    throw new Error("Bookings could not get loaded");
-  }
-
-  return data;
-}
-
-// Activity means that there is a check in or a check out today
-async function getStaysTodayActivity() {
-  const { data, error } = await supabase
-    .from("bookings")
-    .select("*, guests(fullName, nationality, countryFlag)")
-    .or(
-      `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`
-    )
-    .order("created_at");
-
-  if (error) {
-    throw new Error("Bookings could not get loaded");
-  }
-  return data;
-}
-
-async function updateBooking(id: number, obj: any) {
+async function updateBooking(id: number, obj: any): Promise<BookingResponse> {
   const { data, error } = await supabase
     .from("bookings")
     .update(obj)
@@ -133,12 +66,52 @@ async function updateBooking(id: number, obj: any) {
 }
 
 async function deleteBooking(id: number) {
-  // REMEMBER RLS POLICIES
-  const { data, error } = await supabase.from("bookings").delete().eq("id", id);
+  const { error } = await supabase.from("bookings").delete().eq("id", id);
 
-  if (error) {
-    throw new Error("Booking could not be deleted");
-  }
+  if (error) throw new Error("Booking could not be deleted");
+}
+
+async function getBookingsAfterDate({
+  date,
+}: GetDataByDateRequest): Promise<GetBookingsAfterDateResponse[]> {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("created_at, totalPrice, extrasPrice")
+    .gte("created_at", date)
+    .lte("created_at", getToday({ end: true }));
+
+  if (error) throw new Error("Bookings could not get loaded");
+
+  return data;
+}
+
+async function getStaysAfterDate({
+  date,
+}: GetDataByDateRequest): Promise<GetStaysAfterDateResponse[]> {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, guests(fullName)")
+    .gte("startDate", date)
+    .lte("startDate", getToday());
+
+  if (error) throw new Error("Bookings could not get loaded");
+
+  return data;
+}
+
+async function getStaysTodayActivity(): Promise<
+  GetStaysTodayActivityResponse[]
+> {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, guests(fullName, nationality, countryFlag)")
+    .or(
+      `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`
+    )
+    .order("created_at");
+
+  if (error) throw new Error("Bookings could not get loaded");
+
   return data;
 }
 

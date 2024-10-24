@@ -9,6 +9,7 @@ import {
 } from "../../components/common";
 import { useLogin } from "./useGuest";
 import styled from "styled-components";
+import toast from "react-hot-toast";
 
 const GuestLoginContainer = styled.main`
   width: 100%;
@@ -21,7 +22,21 @@ function LoginForm() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!email || !nationalID) return;
+    const errors = [];
+
+    if (!email) {
+      errors.push("Email is required");
+    }
+
+    if (!nationalID) {
+      errors.push("National ID is required");
+    }
+
+    if (errors.length > 0) {
+      toast.error(errors.join("\n"));
+      return;
+    }
+
     login(
       { email, nationalID },
       {

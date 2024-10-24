@@ -26,6 +26,7 @@ const Box = styled.div`
 
 function CheckinBooking() {
   const { isLoading, booking } = useBooking();
+  if (!booking) return <p>Booking not found</p>;
   const { isLoading: isLoadingSettings, settings } = useSettings();
 
   const [confirmPaid, setConfirmPaid] = useState(false);

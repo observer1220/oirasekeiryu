@@ -15,7 +15,7 @@ function useRecentBookings() {
   const queryDate = subDays(new Date(), numDays).toISOString();
 
   const { isLoading, data: bookings } = useQuery({
-    queryFn: () => getBookingsAfterDate(queryDate),
+    queryFn: () => getBookingsAfterDate({ date: queryDate }),
     queryKey: ["bookings", `last-${numDays}`],
   });
   return { isLoading, bookings };
@@ -30,7 +30,7 @@ function useRecentStays() {
   const queryDate = subDays(new Date(), numDays).toISOString();
 
   const { isLoading, data: stays } = useQuery({
-    queryFn: () => getStaysAfterDate(queryDate),
+    queryFn: () => getStaysAfterDate({ date: queryDate }),
     queryKey: ["stays", `last-${numDays}`],
   });
 

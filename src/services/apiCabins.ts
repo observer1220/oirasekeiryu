@@ -1,17 +1,18 @@
 import { generateRandomString } from "../utils/helper";
 import supabase, { supabaseUrl } from "./supabase";
 
-async function getCabins() {
+async function getCabins(): Promise<CabinResponse[]> {
   const { data, error } = await supabase.from("cabins").select("*");
 
-  if (error) {
-    throw new Error("Cabins could not be loaded");
-  }
+  if (error) throw new Error("Cabins could not be loaded");
 
   return data;
 }
 
-async function createEditCabin(newCabin: CabinRequest, id?: number) {
+async function createEditCabin(
+  newCabin: CabinRequest,
+  id?: number
+): Promise<CabinResponse[]> {
   // If image is already uploaded, skip the upload process
   const hasImagePath = newCabin.image.startsWith?.(supabaseUrl);
 
@@ -36,7 +37,6 @@ async function createEditCabin(newCabin: CabinRequest, id?: number) {
 
   // 1. Create/Edit cabin
   let query: any = supabase.from("cabins");
-  console.log("query", query);
 
   if (!id) {
     // A) Create
@@ -72,16 +72,14 @@ async function createEditCabin(newCabin: CabinRequest, id?: number) {
       "Cabin image could not be uploaded and the cabin was not to created"
     );
   }
+
   return data;
 }
 
 async function deleteCabin(id: number) {
-  const { data, error } = await supabase.from("cabins").delete().eq("id", id);
+  const { error } = await supabase.from("cabins").delete().eq("id", id);
 
-  if (error) {
-    throw new Error("Cabins could not be deleted");
-  }
-  return data;
+  if (error) throw new Error("Cabins could not be deleted");
 }
 
 export { getCabins, createEditCabin, deleteCabin };

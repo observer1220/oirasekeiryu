@@ -33,7 +33,11 @@ const Discount = styled.div`
   color: var(--color-green-700);
 `;
 
-function CabinRow({ cabin }: CabinResponse) {
+interface CabinRowProps {
+  cabin: CabinResponse;
+}
+
+function CabinRow({ cabin }: CabinRowProps) {
   const {
     id: cabinId,
     name,

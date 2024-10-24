@@ -24,28 +24,25 @@ const HeadingGroup = styled.div`
   align-items: center;
 `;
 
-interface BookingDetailProps {
-  status: "unconfirmed" | "checked-in" | "checked-out";
-  id: number;
-}
-
 function BookingDetail() {
   const navigate = useNavigate();
   const { isLoading, booking } = useBooking();
-  const { id: bookingId, status }: BookingDetailProps = booking;
   const { isCheckingOut, checkout } = useCheckout();
   const { isDeleting, deleteBooking } = useDeleteBooking();
 
   const moveBack = useMoveBack();
 
   if (isLoading) return <Spinner />;
+  if (!booking) return <p>Booking not found</p>;
 
   return (
     <>
       <Row type="horizontal">
         <HeadingGroup>
-          <Heading as="h1">Booking #{bookingId}</Heading>
-          <Tag type={STATUS_TAGNAME[status]}>{status.replace("-", " ")}</Tag>
+          <Heading as="h1">Booking #{booking.id}</Heading>
+          <Tag type={STATUS_TAGNAME[booking.status]}>
+            {status.replace("-", " ")}
+          </Tag>
         </HeadingGroup>
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
@@ -54,7 +51,7 @@ function BookingDetail() {
 
       <ButtonGroup>
         {status === "unconfirmed" && (
-          <Button onClick={() => navigate(`/admin/checkin/${bookingId}`)}>
+          <Button onClick={() => navigate(`/admin/checkin/${booking.id}`)}>
             Check in
           </Button>
         )}
@@ -62,7 +59,7 @@ function BookingDetail() {
         {status === "checked-in" && (
           <Button
             icon={<HiArrowUpOnSquare />}
-            onClick={() => checkout(bookingId)}
+            onClick={() => checkout(booking.id)}
             disabled={isCheckingOut}
           >
             Check out
@@ -78,7 +75,7 @@ function BookingDetail() {
               resourceName="booking"
               disabled={isDeleting}
               onConfirm={() => {
-                deleteBooking(bookingId, {
+                deleteBooking(booking.id, {
                   onSuccess: () => {
                     navigate(-1);
                   },

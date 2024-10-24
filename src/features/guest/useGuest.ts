@@ -22,27 +22,20 @@ function useSignup() {
   return { isLoading, signup };
 }
 
-interface LoginData {
-  email: string;
-  nationalID: string;
-}
-
 function useLogin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { mutate: login, isLoading } = useMutation({
-    mutationFn: ({ email, nationalID }: LoginData) =>
+    mutationFn: ({ email, nationalID }: GuestLoginRequest) =>
       loginApi({ email, nationalID }),
     onSuccess: (user) => {
       queryClient.setQueryData(["guest"], user[0]);
-      console.log(user);
       localStorage.setItem("guest", JSON.stringify(user[0]));
       navigate("/", { replace: true });
       toast.success("Login success");
     },
-    onError: (error: Error) => {
-      console.log(error.message);
+    onError: () => {
       toast.error("Provided email or national ID is incorrect");
     },
   });

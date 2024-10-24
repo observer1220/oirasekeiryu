@@ -14,12 +14,8 @@ const Welcome = styled.span`
   font-size: 14px;
 `;
 
-interface userType {
-  fullName: string;
-}
-
 function GuestInfo() {
-  const user: userType = JSON.parse(localStorage.getItem("guest") || "{}");
+  const user = JSON.parse(localStorage.getItem("guest")!);
   const { t } = useTranslation();
   const logoutBtn = () => {
     localStorage.removeItem("guest");
@@ -27,16 +23,14 @@ function GuestInfo() {
   };
 
   return (
-    <>
-      <GuestInfoContainer>
-        <Welcome>
-          <span>{t("homePage.welcome")}</span>
-          <br />
-          <span>{user.fullName}</span>
-        </Welcome>
-        <Button onClick={logoutBtn}>{t("homePage.logout")}</Button>
-      </GuestInfoContainer>
-    </>
+    <GuestInfoContainer>
+      <Welcome>
+        <span>{t("homePage.welcome")}</span>
+        <br />
+        <span>{user.fullName}</span>
+      </Welcome>
+      <Button onClick={logoutBtn}>{t("homePage.logout")}</Button>
+    </GuestInfoContainer>
   );
 }
 

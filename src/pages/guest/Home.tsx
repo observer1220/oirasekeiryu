@@ -42,7 +42,7 @@ function Home() {
   const trafficRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const user: userType = JSON.parse(localStorage.getItem("guest") || "{}");
+  const user: userType = JSON.parse(localStorage.getItem("guest")!);
 
   return (
     <HomeContainer>

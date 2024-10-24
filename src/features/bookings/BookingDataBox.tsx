@@ -103,8 +103,12 @@ const Footer = styled.footer`
   text-align: right;
 `;
 
+interface BookingDataBoxProps {
+  booking: BookingResponse;
+}
+
 // A purely presentational component
-function BookingDataBox({ booking }: BookingResponse) {
+function BookingDataBox({ booking }: BookingDataBoxProps) {
   const {
     created_at,
     startDate,

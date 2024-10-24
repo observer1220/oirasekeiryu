@@ -1,27 +1,17 @@
 import supabase from "./supabase";
 
-interface SignupData {
-  fullName: string;
-  email: string;
-  nationalID: string;
-}
-
-async function signup({ fullName, email, nationalID }: SignupData) {
-  const { data, error } = await supabase
+async function signup({ fullName, email, nationalID }: GuestSignupRequest) {
+  const { error } = await supabase
     .from("guests")
     .insert([{ fullName, email, nationalID }]);
 
   if (error) throw new Error(error.message);
-
-  return data;
 }
 
-interface LoginData {
-  email: string;
-  nationalID: string;
-}
-
-async function login({ email, nationalID }: LoginData) {
+async function login({
+  email,
+  nationalID,
+}: GuestLoginRequest): Promise<GuestLoginResponse[]> {
   const { data, error } = await supabase
     .from("guests")
     .select()
@@ -33,22 +23,13 @@ async function login({ email, nationalID }: LoginData) {
   return data;
 }
 
-interface ReserveData {
-  guestName: string;
-  startDate: string;
-  endDate: string;
-  numGuests: number;
-  cabinId: number;
-}
-
 async function reserve({
-  guestName,
+  fullName,
   startDate,
   endDate,
   numGuests,
   cabinId,
-}: ReserveData) {
-  console.log({ startDate, endDate, numGuests, cabinId });
+}: GuestReserveRequest) {
   const numNights =
     (Number(new Date(endDate)) - Number(new Date(startDate))) /
     (1000 * 60 * 60 * 24);
@@ -64,12 +45,11 @@ async function reserve({
   const { data: guestData } = await supabase
     .from("guests")
     .select("id")
-    .eq("fullName", guestName);
-  // console.log('guestData', guestData[0].id);
+    .eq("fullName", fullName);
 
   if (!guestData) return;
 
-  const { data, error } = await supabase.from("bookings").insert([
+  const { error } = await supabase.from("bookings").insert([
     {
       startDate: startDate,
       endDate: endDate,
@@ -84,11 +64,7 @@ async function reserve({
     },
   ]);
 
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return data;
+  if (error) throw new Error(error.message);
 }
 
 export { signup, login, reserve };

@@ -27,7 +27,7 @@ const ReserveLayout = styled.main`
 
 interface FormValues {
   cabinId: number;
-  guestName: string;
+  fullName: string;
   startDate: string;
   endDate: string;
   numGuests: number;
@@ -39,7 +39,7 @@ function Reservation() {
   const { isLoading, reserve } = useReserve();
   const { cabins } = useCabins();
   const [options, setOptions] = useState<SelectOptionType[]>([]);
-  const guestName = JSON.parse(localStorage.getItem("guest") || "{}")?.fullName;
+  const user = JSON.parse(localStorage.getItem("guest")!);
   const cabinId = Number(location.pathname.split("/").pop());
   const {
     register,
@@ -51,10 +51,9 @@ function Reservation() {
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
-  function onSubmit({ guestName, startDate, endDate, numGuests }: FieldValues) {
-    // console.log("訂房", guestName, startDate, endDate, numGuests, cabinId);
+  function onSubmit({ fullName, startDate, endDate, numGuests }: FieldValues) {
     reserve(
-      { guestName, startDate, endDate, numGuests, cabinId },
+      { fullName, startDate, endDate, numGuests, cabinId },
       {
         onSuccess: () => {
           reset();
@@ -77,31 +76,30 @@ function Reservation() {
     setOptions([{ key: 0, label: "Select a cabin", value: 0 }, ...results]);
 
     // IF guestName is not in localStorage, redirect to /guestLogin
-    if (!guestName) {
+    if (!user.fullName) {
       navigate("/guestLogin");
       toast.error("請先登入");
     }
-  }, [cabins, guestName, navigate]);
+  }, [cabins, user.fullName, navigate]);
 
   if (isLoading) return <Spinner />;
   return (
     <ReserveLayout>
       <h1>{t("reserve.title")}</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        {/* cabinPrice extrasPrice totalPrice hasBreakfast */}
         <FormRow label={t("reserve.roomType")} error={errors?.cabinId?.message}>
           <Select value={cabinId} options={options} id="cabinId" disabled />
         </FormRow>
         <FormRow
           label={t("reserve.guestName")}
-          error={errors?.guestName?.message}
+          error={errors?.fullName?.message}
         >
           <Input
-            value={guestName}
+            value={user.fullName}
             type="text"
-            id="guestName"
-            disabled
-            {...register("guestName", {
+            id="fullName"
+            readOnly
+            {...register("fullName", {
               required: "This field is required",
             })}
           />

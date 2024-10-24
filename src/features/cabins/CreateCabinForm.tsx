@@ -47,7 +47,6 @@ function CreateCabinForm({
   const { errors } = formState;
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
     const image = typeof data.image === "string" ? data.image : data.image[0];
 
     if (isEditSession) {
