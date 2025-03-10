@@ -76,11 +76,11 @@ function Reservation() {
     setOptions([{ key: 0, label: "Select a cabin", value: 0 }, ...results]);
 
     // IF guestName is not in localStorage, redirect to /guestLogin
-    if (!user.fullName) {
+    if (!user || !user.fullName) {
       navigate("/guestLogin");
       toast.error("請先登入");
     }
-  }, [cabins, user.fullName, navigate]);
+  }, [cabins, navigate]);
 
   if (isLoading) return <Spinner />;
   return (
@@ -95,7 +95,7 @@ function Reservation() {
           error={errors?.fullName?.message}
         >
           <Input
-            value={user.fullName}
+            value={user?.fullName}
             type="text"
             id="fullName"
             readOnly

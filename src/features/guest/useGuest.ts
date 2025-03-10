@@ -31,9 +31,14 @@ function useLogin() {
       loginApi({ email, nationalID }),
     onSuccess: (user) => {
       queryClient.setQueryData(["guest"], user[0]);
-      localStorage.setItem("guest", JSON.stringify(user[0]));
-      navigate("/", { replace: true });
-      toast.success("Login success");
+
+      if (user.length > 0) {
+        localStorage.setItem("guest", JSON.stringify(user[0]));
+        navigate("/", { replace: true });
+        toast.success("Login success");
+      } else {
+        toast.error("Provided email or national ID is incorrect");
+      }
     },
     onError: () => {
       toast.error("Provided email or national ID is incorrect");
